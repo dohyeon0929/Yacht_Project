@@ -15,21 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Dice.h">
+    <ClInclude Include="dice-classes.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="essential.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DiceState.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Dice.cpp">
+    <ClCompile Include="dice-classes.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DiceState.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
