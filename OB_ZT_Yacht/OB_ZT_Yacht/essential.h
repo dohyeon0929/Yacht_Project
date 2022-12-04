@@ -17,6 +17,7 @@
 
 using namespace std;
 
+
 #define MAGIC_KEY 224 // 상하좌우 화살표가 들어올 때 선행되어 들어오는 숫자
 #define SPACE 32 // 스페이스 키 값
 #define UP 0
@@ -41,4 +42,6 @@ int RandRange(int min, int max)
     return min + static_cast<int>((max - min + 1) * (std::rand() * fraction));
 }
 */
+
+
 #endif

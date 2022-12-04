@@ -1,0 +1,9 @@
+diff a/OB_ZT_Yacht/OB_ZT_Yacht/OB_ZT_Yacht.vcxproj b/OB_ZT_Yacht/OB_ZT_Yacht/OB_ZT_Yacht.vcxproj	(rejected hunks)
+@@ -146,6 +146,7 @@
+   <ItemGroup>
+     <ClCompile Include="Dice.cpp" />
+     <ClCompile Include="DiceState.cpp" />
++    <ClCompile Include="system-classes.cpp" />
+   </ItemGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+   <ImportGroup Label="ExtensionTargets">
