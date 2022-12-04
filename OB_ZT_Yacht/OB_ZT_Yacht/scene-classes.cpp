@@ -1,10 +1,10 @@
 #include "scene-classes.h"
 
-void StartScene::Init() {
+void StartSceneDraw::Init() {
 	system("mode con cols=110 lines=35 | title Yatch Dice with Special Items");
 }
 
-void StartScene::TitleDraw() { // title은 startscene에만 등장
+void StartSceneDraw::TitleDraw() { // title은 startscene에만 등장
 	
 	cout << "\n\n";
 	gotoxy(25, 2);
@@ -36,6 +36,9 @@ void StartScene::TitleDraw() { // title은 startscene에만 등장
 	gotoxy(48, 26);
 	cout << "Team 4";
 
+}
+
+void StartSceneInputManager::KeyMovingControl() {
 	int x = 42;
 	int y = 15;
 	gotoxy(x - 2, y);
@@ -63,14 +66,12 @@ void StartScene::TitleDraw() { // title은 startscene에만 등장
 		case ENTER: {
 			if (y - 15 == 0) { // gamestart
 				GameSceneDraw game_scene_draw;
-				//gamescene.GameDraw();
 			}
 			else if (y - 15 == 1) { // InfoScene으로 전환
-				InfoScene infoscene;
-				infoscene.InfoDraw();
+				InfoSceneDraw infoscene;
 			}
 
-			else if(y - 15 == 2) { // exit
+			else if (y - 15 == 2) { // exit
 				gotoxy(0, 27);
 				cout << "\n\n--------------------------------------------------------------------------------------";
 				exit(1);
@@ -81,53 +82,7 @@ void StartScene::TitleDraw() { // title은 startscene에만 등장
 	}
 }
 
-int StartScene::MenuDraw() { // 안씀
-	gotoxy(22, 12);
-	cout << ">";
-	gotoxy(24, 12);
-	cout << "Let's play this game !"; // 0
-	gotoxy(24, 13);
-	cout << "How to play this game ?"; // 1
-	gotoxy(24, 14);
-	cout << "Exit"; // 2
-	gotoxy(0, 15);
-
-	int x = 24;
-	int y = 12;
-	gotoxy(x - 2, y);
-	
-	while (1) { // 무한 반복
-		int n = KeyControl(); // 키보드 입력을 키값으로 받아오기
-		
-		
-		switch (n) {
-		case UP: {
-			if (y > 12) {
-				gotoxy(x - 2, y);
-				cout << " ";
-				gotoxy(x - 2, --y);
-				cout << ">";
-			}
-			break;
-		}
-		case DOWN: {
-			if (y < 14) {
-				gotoxy(x - 2, y);
-				cout << " ";
-				gotoxy(x - 2, ++y);
-				cout << ">";
-			}
-			break;
-		}
-		case SUBMIT: {
-			return y - 12;
-		}
-		}
-	}
-	cout << "--------------------------------------------------------------------------------------";
-}
-
-void SceneManager::gotoxy(int x, int y) { // 키보드 입력으로 움직임
+void Draw::gotoxy(int x, int y) { // 키보드 입력으로 움직임
 	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE); // 콘솔 핸들 가져오기
 	COORD pos;
 	pos.X = x;
@@ -135,7 +90,7 @@ void SceneManager::gotoxy(int x, int y) { // 키보드 입력으로 움직임
 	SetConsoleCursorPosition(consoleHandle, pos);
 }
 
-int SceneManager::KeyControl() {
+int SceneInputManager::KeyControl() {
 
 	char temp = _getch();
 
@@ -146,23 +101,74 @@ int SceneManager::KeyControl() {
 	else if (temp == 13) { return ENTER; }
 }
 
-void SceneManager::EraseScene() {
+void Draw::EraseScene() {
 	system("cls");
 }
 
-void InfoScene::InfoDraw() { // 게임 정보 화면
+InfoSceneDraw::InfoSceneDraw() { // 게임 정보 화면
 	EraseScene();
 	cout << "게임 정보 설명\n";
 	cout << "엔터키를 누르면 startscene으로 돌아갑니다.";
 
-	while(1) {
+}
+
+void EndSceneInputManager::KeyMovingControl() {
+	int x = 42;
+	int y = 15;
+	gotoxy(x - 2, y);
+	while (1) { // 무한 반복
+		int n = KeyControl(); // 키보드 입력을 키값으로 받아오기
+		switch (n) {
+		case UP: {
+			if (y > 15) {
+				gotoxy(x - 2, y);
+				cout << " ";
+				gotoxy(x - 2, --y);
+				cout << ">";
+			}
+			break;
+		}
+		case DOWN: {
+			if (y < 17) {
+				gotoxy(x - 2, y);
+				cout << " ";
+				gotoxy(x - 2, ++y);
+				cout << ">";
+			}
+			break;
+		}
+		case ENTER: {
+			if (y - 15 == 0) { // gamestart
+				GameSceneDraw game_scene_draw;
+			}
+			else if (y - 15 == 1) { // InfoScene으로 전환
+				InfoSceneDraw infoscene;
+			}
+
+			else if (y - 15 == 2) { // exit
+				gotoxy(0, 27);
+				cout << "\n\n--------------------------------------------------------------------------------------";
+				exit(1);
+			}
+
+		}
+		}
+	}
+}
+
+void InfoSceneInputManager::KeyMovingControl() {
+	while (1) {
 		if (KeyControl() == ENTER) {
 			EraseScene();
-			StartScene startscene;
+			StartSceneDraw startscene;
 			startscene.TitleDraw();
 			break;
 		}
 	}
+}
+
+void GameSceneInputManager::KeyMovingControl() { // 얘는 좀 구현이 빡세보임
+
 }
 
 GameSceneDraw::GameSceneDraw() { // 생성자에서 그림 그리기
@@ -172,6 +178,24 @@ GameSceneDraw::GameSceneDraw() { // 생성자에서 그림 그리기
 	DiceValueDraw v({6,6,6,6,6});
 	vector<pair<int, int>> table_pos = { {24, 5}, {36, 5} };
 	pair<int, int> dice_pos = { 52, 15 };
+}
+
+EndSceneDraw::EndSceneDraw() {
+
+	/*  누가 승리하였는지 띄워주고 아래에 메뉴 출력 */
+
+	gotoxy(42, 15); // starscene과 같은 위치에 메뉴 나오도록 하고 싶음
+	cout << "Let's play this game!"; // 0
+	gotoxy(42, 16);
+	cout << "How to play this game?"; // 1
+	gotoxy(42, 17);
+	cout << "Exit"; // 2
+
+	/* team 정보 표시 */
+	gotoxy(38, 25);
+	cout << "< Object Oriented Programming >";
+	gotoxy(48, 26);
+	cout << "Team 4";
 }
 
 TableDraw::TableDraw() {

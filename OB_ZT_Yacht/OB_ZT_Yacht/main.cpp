@@ -3,7 +3,7 @@
 #include "scene-classes.h"
 
 int main() {
-	StartScene startscene;
+	StartSceneDraw startscene;
 	startscene.Init();
 	startscene.TitleDraw();	
 }

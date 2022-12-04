@@ -3,64 +3,59 @@
 
 #include "essential.h"
 
-
-//여러 씬들을 관리하는 SceneManager
-class SceneInputManager // 인터페이스
+class Draw // 추상클래스
 {
 public:	
-	void gotoxy(int, int); // 공통
-	int KeyControl(); // 공통
-	void EraseScene(); // 공통
+	void gotoxy(int, int); // 공통	
+	virtual void EraseScene(); // 공통
 	
 private:
 	
 };
 
 // 단일 scene 내부에서 작동하는 기능, scenemanager를 상속
-class StartScene : public SceneInputManager 
+class StartSceneDraw : public Draw
 {
 public:
 	void Init(); // startscene
 	void TitleDraw(); // startscene
-	int MenuDraw(); // startscene
+	
 };
 
-class InfoScene : public SceneInputManager
-{
-public:
-	void InfoDraw(); // infoscene
-};
-
-class GameSceneDraw : public SceneInputManager
+class GameSceneDraw : public Draw
 {
 public:
 	GameSceneDraw(); // 생성자
-	//void GameDraw(); // 게임화면 그리기
 };
 
-class TableDraw : public SceneInputManager
+class EndSceneDraw : public Draw
+{
+public:
+	EndSceneDraw();
+};
+
+class TableDraw : public GameSceneDraw
 {
 public:
 	TableDraw(); // 생성자
 };
 
-class DiceDraw : public SceneInputManager
+class DiceDraw : public GameSceneDraw
 {
 public:
 	DiceDraw();
 };
 
-class TableValueDraw : public SceneInputManager
+class TableValueDraw : public GameSceneDraw
 {
-public :
+public:
 	TableValueDraw(vector<int>);
 
 private:
-	
 	vector<pair<int, int>> table_pos = { {24, 5}, {36, 5} };
 };
 
-class DiceValueDraw : public SceneInputManager
+class DiceValueDraw : public GameSceneDraw
 {
 public:
 	DiceValueDraw(vector<int>);
@@ -68,9 +63,48 @@ private:
 	pair<int, int> dice_pos = { 52, 15 };
 };
 
-class CursorDraw : public SceneInputManager
+class InfoSceneDraw : public Draw
+{
+public:
+	InfoSceneDraw();
+};
+
+class CursorDraw : public GameSceneDraw // ??
 {
 public:
 
 };
+
+class SceneInputManager : public Draw// 추상클래스
+{
+public:
+	//virtual void InputKeyBoard();
+	int KeyControl();
+	virtual void KeyMovingControl() = 0; // 공통
+};
+
+class StartSceneInputManager : public SceneInputManager
+{
+public:
+	void KeyMovingControl(); // 공통
+};
+
+class InfoSceneInputManager : public SceneInputManager
+{
+public:
+	void KeyMovingControl(); // 공통
+};
+
+class GameSceneInputManager : public SceneInputManager
+{
+public:
+	void KeyMovingControl();
+};
+
+class EndSceneInputManager : public SceneInputManager
+{
+public:
+	void KeyMovingControl();
+};
+
 #endif
