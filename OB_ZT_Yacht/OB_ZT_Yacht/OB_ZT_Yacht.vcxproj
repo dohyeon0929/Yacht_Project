@@ -139,14 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Dice.h" />
-    <ClInclude Include="DiceState.h" />
+    <ClInclude Include="dice-classes.h" />
     <ClInclude Include="essential.h" />
+    <ClInclude Include="scene-classes.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Dice.cpp" />
-    <ClCompile Include="DiceState.cpp" />
-    <ClCompile Include="system-classes.cpp" />
+    <ClCompile Include="dice-classes.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="scene-classes.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
