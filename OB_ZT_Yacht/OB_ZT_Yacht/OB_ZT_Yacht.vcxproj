@@ -142,11 +142,13 @@
     <ClInclude Include="dice-classes.h" />
     <ClInclude Include="essential.h" />
     <ClInclude Include="scene-classes.h" />
+    <ClInclude Include="system-classes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dice-classes.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="scene-classes.cpp" />
+    <ClCompile Include="system-classes.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

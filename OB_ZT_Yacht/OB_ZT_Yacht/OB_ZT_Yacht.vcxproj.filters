@@ -15,10 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="essential.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
     <ClInclude Include="dice-classes.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="essential.h">
+    <ClInclude Include="system-classes.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="scene-classes.h">
@@ -26,6 +29,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="system-classes.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
     <ClCompile Include="dice-classes.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -33,9 +39,6 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="scene-classes.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="system-classes.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
