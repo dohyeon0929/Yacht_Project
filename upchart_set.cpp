@@ -2,10 +2,10 @@
 
 using namespace std;
 
-// yatch_chartÀÇ º¯¼ö°¡ nullÀÎÁö È®ÀÎ, nullÀÌ ¾Æ´Ï¶ó¸é,, setValue ½ÃÀÛ
+// yatch_chartì˜ ë³€ìˆ˜ê°€ nullì¸ì§€ í™•ì¸, nullì´ ì•„ë‹ˆë¼ë©´,, setValue ì‹œì‘
 
 
-bool UpChart::IsNullptr(int* value)
+bool CalChart::IsNullptr(int* value)
 {
 	int result = 0;
 	if (*value)
@@ -14,12 +14,16 @@ bool UpChart::IsNullptr(int* value)
 	}
 	else return true;
 }
-
-int UpChart::SetValue(vector<int>dice_num)
+int CalChart::SetValue(vector<int>dicenum)
 {
 	return 0;
 }
 
+
+SetUpValue:: SetUpValue(Chart* chart)
+{
+	this->chart = chart;
+}
 
 int SetUpValue::SetValue(vector<int>dice_num, int number)
 {
