@@ -1,11 +1,10 @@
 #pragma once
 #include "chart_needs.h"
 using namespace std;
-//Ç¥ class
+//í‘œ class
 class Chart
 {
 	private:
-				//ÇÏ´Ü Â÷Æ® ´ã´ç Å¬·¡½º ¼±¾ğ
 		Chart();
 		Chart(string name);
 		string player_name = "";
@@ -15,120 +14,115 @@ class Chart
 		int *fours = nullptr;	//4
 		int *fives = nullptr;	//5
 		int *sixes = nullptr;	//6
-		int* bonus = nullptr;				//º¸³Ê½º Á¡¼ö
-		int* subtotal = nullptr;			//¼­ºê ÅäÅ»
+		int* bonus = nullptr;				//ë³´ë„ˆìŠ¤ ì ìˆ˜
+		int* subtotal = nullptr;			//ì„œë¸Œ í† íƒˆ
 
 		int *choice = nullptr;				//choice				7
-		int *four_of_a_kind = nullptr;		//4°³ °°Àº¼ö			8
-		int *full_house = nullptr;			//Ç® ÇÏ¿ì½º(2°³ 3°³)	9
-		int *s_straight = nullptr;			//¿¬¼ÓµÈ 4°³			10
-		int *b_straight = nullptr;			//¿¬¼ÓµÈ 5°³			11
-		int *yacht = nullptr;				//°°Àº¼ö 5°³			12
+		int *four_of_a_kind = nullptr;		//4ê°œ ê°™ì€ìˆ˜			8
+		int *full_house = nullptr;			//í’€ í•˜ìš°ìŠ¤(2ê°œ 3ê°œ)	9
+		int *s_straight = nullptr;			//ì—°ì†ëœ 4ê°œ			10
+		int *b_straight = nullptr;			//ì—°ì†ëœ 5ê°œ			11
+		int *yacht = nullptr;				//ê°™ì€ìˆ˜ 5ê°œ			12
 		int* totalvalue = nullptr;
 	public:
-		friend class ChartFactory;  //Â÷Æ® ÆÑÅä¸® »ı¼º
-		vector<int> dice_num;		//ÁÖ»çÀ§ °ª
-		vector<int> chart_value;	//ÀÓ½Ã °ª
-		void SetDefaultValue(); //º¤ÅÍ ÃÊ±âÈ­(chart_value)
-		vector<int> GetChartValue(); //chart_value °ª ¸®ÅÏ 
-		vector<int>GetRoundResult(); // ¶ó¿îµå °á°ú°ª ¸®ÅÏ
 
-		void GetTotalSum();						//ÀüÃ¼ °ª ÇÕ
-		void GetSubTotal();						//À§ÂÊ Ç¥ °ª ´õÇÏ±â
-		void PushValue(int choose_num);			//ÀÓ½Ã°ª °è»ê °á°úÁß ÀúÀåÇÒ °ª È®Á¤Áş±â
-		void GetBonus();						//º¸³Ê½º Á¡¼ö È®ÀÎ
-		void GetDiceValue(vector<int>input);	//ÁÖ»çÀ§·ÎºÎÅÍ ÀÔ·Â¹ŞÀº °ª ÀúÀå
+		friend class ChartFactory;		//ì°¨íŠ¸ íŒ©í† ë¦¬ ìƒì„±
+		vector<int> dice_num;			//ì£¼ì‚¬ìœ„ ê°’
+		vector<int> chart_value;		//ì„ì‹œ ê°’
+		void SetDefaultValue();			//chart_value ì´ˆê¸°í™” ë° ì €ì¥ëœ ê°’ ëŒ€ì…
+		vector<int> GetChartValue();	//chart_value ê°’ ë¦¬í„´ 
+		vector<int>GetRoundResult();	// ë¼ìš´ë“œ ê²°ê³¼ê°’ ë¦¬í„´
+
+		void GetTotalSum();						//ì „ì²´ ê°’ í•©
+		void GetSubTotal();						//ìœ„ìª½ í‘œ ê°’ ë”í•˜ê¸°
+		void PushValue(int choose_num);			//ì„ì‹œê°’ ê³„ì‚° ê²°ê³¼ì¤‘ ì €ì¥í•  ê°’ í™•ì •ì§“ê¸°
+		void GetBonus();						//ë³´ë„ˆìŠ¤ ì ìˆ˜ í™•ì¸
+		void GetDiceValue(vector<int>input);	//ì£¼ì‚¬ìœ„ë¡œë¶€í„° ì…ë ¥ë°›ì€ ê°’ ì €ì¥
 		
 };
 
 
-// À§ÂÊ Ç¥, command
-class UpChart //: public ISetValue
+// ìœ„ìª½ í‘œ, command
+class CalChart //: public ISetValue
 {
+private:
+	Chart* chart;
 public:
-	//virtual ~UpChart();
 	virtual bool IsNullptr(int* values);
 	virtual int SetValue(vector<int>dice_num);
 };
 
 
-//ÁÖ»çÀ§ °ª¿¡ µû¸¥ Ç¥ °ª ¼³Á¤
-class SetUpValue : public UpChart
+//ì£¼ì‚¬ìœ„ ê°’ì— ë”°ë¥¸ í‘œ ê°’ ì„¤ì •
+class SetUpValue : public CalChart
 {
 private:
 	Chart* chart;
 public:
-	//SetUpValue(Chart& chart);
-	int SetValue(vector<int>cal_value, int number);
+	SetUpValue(Chart* chart);
+	int SetValue(vector<int>dice_num, int number);
 };
 
 
 
-//¾Æ·¡ÂÊ Ç¥, command
+//ì•„ë˜ìª½ í‘œ, command
 
-class DownChart //: public ISetValue
-{
-public:
-	//virtual ~DownChart();
-	virtual bool IsNullptr(int* values);
-	virtual int SetValue(vector<int>dice_num);
-};
-
-
-class CheckFOK : public DownChart
+class CheckFOK : public CalChart
 {
 private:
 	Chart* chart;
 public:
-	//CheckFOK(Chart& chart);
+	CheckFOK(Chart* chart);
 	int SetValue(vector<int>dice_num);
 };
 
-class CheckFH : public DownChart
+class CheckFH : public CalChart
 {
 private:
 	Chart* chart;
 public:
-	//CheckFH(Chart& chart);
+	CheckFH(Chart* chart);
 	int SetValue(vector<int>dice_num);
 };
 
-class CheckSS : public DownChart
+class CheckSS : public CalChart
 {
 private:
 	Chart* chart;
 public:
-	//CheckSS(Chart& chart);
+	CheckSS(Chart* chart);
 	int SetValue(vector<int>dice_num);
 };
 
-class CheckBS : public DownChart
+class CheckBS : public CalChart
 {
 private:
 	Chart* chart;
 public:
-	//CheckBS(Chart& chart);
+	CheckBS(Chart* chart);
 	int SetValue(vector<int>dice_num);
 };
 
 
-class CheckYacht : public DownChart
+class CheckYacht : public CalChart
 {
 private:
 	Chart* chart;
 public:
-	//CheckYacht(Chart* chart);
+	CheckYacht(Chart* chart);
 	int SetValue(vector<int>dice_num);
 };
 
-class CheckChoice : public DownChart
+class CheckChoice : public CalChart
 {
 private:
 	Chart* chart;
 public:
-	//CheckChoice(Chart* chart);
+	CheckChoice(Chart* chart);
 	int SetValue(vector<int>dice_num);
 };
+
+
 
 class ChartFactory
 {
@@ -136,61 +130,6 @@ class ChartFactory
 		Chart GetChart();
 		Chart GetChart(string name);
 };
-
-
-
-class Scene
-{
-public:
-	virtual vector<int> DrawScene(Chart &player) = 0;
-};
-
-class StartScene : Scene
-{
-public:
-	vector<Chart> setChart();
-	//void game_scene();
-};
-
-
-class GameScene : Scene
-{
-private:
-	int game_round = 12;
-public:
-	virtual void SetGameRound(int &game_round);
-	virtual int GetGameRound(vector<Chart>& player, int& game_round);
-	virtual vector<int> DrawScene(Chart & player) = 0;
-};
-
-
-class GameScenePrev : GameScene
-{
-public:
-	vector<int> DrawScene(Chart &player);
-};
-
-class GameSceneCal : GameScene
-{
-public:
-	vector<int> DrawScene(Chart &player);
-};
-
-class GameSceneResult : GameScene
-{
-public:
-	vector<int> DrawScene(Chart &player);
-};
-
-
-/*
-class EndScene : Scene
-{
-private:
-
-public:
-	vector<int> DrawScene(Chart player);
-};*/
 
 
 
