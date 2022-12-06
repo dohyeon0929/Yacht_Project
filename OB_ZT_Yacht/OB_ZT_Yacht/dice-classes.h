@@ -69,7 +69,7 @@ private:
 	int count;
 	vector<int> num_set; 
 public:
-	SelectNums(int count=2);
+	SelectNums(int count = 2) { this->count = count; }
 	void Select(); //숫자 count개 입력받기
 	vector<int> GetDiceNumSet() { return num_set; }
 };

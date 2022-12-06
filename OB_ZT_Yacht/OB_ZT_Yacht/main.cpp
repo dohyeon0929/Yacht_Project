@@ -6,4 +6,7 @@ int main() {
 	StartSceneDraw startscene;
 	startscene.Init();
 	startscene.TitleDraw();	
+	StartSceneInputManager startsceneinputmanager;
+	startsceneinputmanager.KeyMovingControl();
+
 }

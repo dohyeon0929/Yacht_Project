@@ -41,9 +41,11 @@ void StartSceneDraw::TitleDraw() { // title은 startscene에만 등장
 void StartSceneInputManager::KeyMovingControl() {
 	int x = 42;
 	int y = 15;
+	bool stop = false;
 	gotoxy(x - 2, y);
 	while (1) { // 무한 반복
 		int n = KeyControl(); // 키보드 입력을 키값으로 받아오기
+		if (stop == true) break;
 		switch (n) {
 		case UP: {
 			if (y > 15) {
@@ -65,7 +67,8 @@ void StartSceneInputManager::KeyMovingControl() {
 		}
 		case ENTER: {
 			if (y - 15 == 0) { // gamestart
-				GameSceneDraw game_scene_draw;
+				GameSceneDraw gamescene;
+				stop = true;
 			}
 			else if (y - 15 == 1) { // InfoScene으로 전환
 				InfoSceneDraw infoscene;
@@ -77,7 +80,7 @@ void StartSceneInputManager::KeyMovingControl() {
 				exit(1);
 			}
 
-		}
+		}	    
 		}
 	}
 }
@@ -109,6 +112,8 @@ InfoSceneDraw::InfoSceneDraw() { // 게임 정보 화면
 	EraseScene();
 	cout << "게임 정보 설명\n";
 	cout << "엔터키를 누르면 startscene으로 돌아갑니다.";
+	InfoSceneInputManager infosceneinputmanager;
+	infosceneinputmanager.KeyMovingControl();
 
 }
 
@@ -162,22 +167,54 @@ void InfoSceneInputManager::KeyMovingControl() {
 			EraseScene();
 			StartSceneDraw startscene;
 			startscene.TitleDraw();
+			gotoxy(42, 15);
 			break;
 		}
 	}
 }
 
 void GameSceneInputManager::KeyMovingControl() { // 얘는 좀 구현이 빡세보임
-
+	
 }
 
 GameSceneDraw::GameSceneDraw() { // 생성자에서 그림 그리기
-	TableDraw table_draw; // 표그리기
-	DiceDraw dice_draw; //주사위그리기
+	EraseScene();
+	vector<string> categories;
+	categories = { "Aces  ", "Deuces", "Threes", "Fours", "Fives", "Sixes", "Subtotal"
+		, "Choice", "4 of a Kind", "Full House", "S.Straight", "L.Straight", "Yatch", "Total" };
+	EraseScene();
+
+	cout << "  -----------------------------------------\n";
+	cout.width(2);
+	cout << "   " << std::left << "       ";
+	cout << "\t  l           l\n";
+
+	cout << "   " << std::left << "       ";
+	cout << "\t  l     1p    l     2p     \n";
+
+	cout << "   " << std::left << "       ";
+	cout << "\t  l           l\n";
+
+
+	for (int i = 0; i < 13; i++) {
+		cout << "  -----------------------------------------\n";
+		cout.width(2);
+		cout << "   " << std::left << categories.at(i);
+		cout << "\t  l           l\n";
+	}
+
+	cout << "  -----------------------------------------\n";
+	cout << "   " << std::left << categories.at(13);
+	cout << "\t  l           l\n";
+	//TableDraw table_draw;// 표그리기
+	//DiceDraw dice_draw; //주사위그리기
 	TableValueDraw s({});
 	DiceValueDraw v({6,6,6,6,6});
 	vector<pair<int, int>> table_pos = { {24, 5}, {36, 5} };
 	pair<int, int> dice_pos = { 52, 15 };
+
+	//GameSceneInputManager gamesceneinputmanager;
+	//gamesceneinputmanager.KeyMovingControl();
 }
 
 EndSceneDraw::EndSceneDraw() {
@@ -199,6 +236,7 @@ EndSceneDraw::EndSceneDraw() {
 }
 
 TableDraw::TableDraw() {
+
 	vector<string> categories;
 	categories = { "Aces  ", "Deuces", "Threes", "Fours", "Fives", "Sixes", "Subtotal"
 		, "Choice", "4 of a Kind", "Full House", "S.Straight", "L.Straight", "Yatch", "Total" };
