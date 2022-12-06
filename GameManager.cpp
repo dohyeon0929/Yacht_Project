@@ -1,5 +1,5 @@
 #include "yatch_chart.h"
-
+#include "Scene.h"
 
 
 
@@ -12,43 +12,95 @@ vector<Chart> StartScene::setChart()
 	return playerchart;
 }
 
-
+/*
 void GameScene::SetGameRound(int& game_round)
 {
 	game_round--;
-}
+}*/
 /*
 vector<int> GameScene::DrawScene(Chart& player)
 {
 	return player.GetRoundResult();
 }*/
+int GameScene::GetGameRound(vector<Chart>& player, int& game_round)
+{
+	GameScenePrev prev;
+	GameSceneCal cal;
+	GameSceneResult result;
 
+	while (game_round > 0) //12ë¼ìš´ë“œ ë°˜ë³µ
+	{
+		for (int i = 0; i < player.size(); i++) //chart ë²¡í„° playerì˜ ìˆ˜ ë§Œí¼ , ì¦‰ í”Œë ˆì´ì–´ì˜ ìˆ˜ ë§Œí¼ ë°˜ë³µ
+		{
+			int roll_count = 3;
+			prev.DrawScene(player[i]); 			//ë§¨ ì²˜ìŒ í„´ì´ ë„˜ì–´ì˜¤ë©´ ì´ì „ ê°’ ë¨¼ì € ë¦¬í„´í•˜ì—¬ ì¶œë ¥
+
+			//ìµœëŒ€ 3íšŒ ë°˜ë³µ
+			while (roll_count > 3)
+			{
+				//1 .dice ì‹¤í–‰ , ì£¼ì‚¬ìœ„ ê°’ ê°€ì ¸ì˜¤ê¸°
+				vector<int>dice;  //ìˆ˜ì • í•„ìš” ..... ì£¼ì‚¬ìœ„ ëŒë¦¬ê³ 
+
+				//2. chart_value ê°’ ì´ˆê¸°í™” í›„ ì—°ì‚° ìˆ˜í–‰
+				player[i].SetDefaultValue(); //chart_value ê°’ ì´ˆê¸°í™”
+				player[i].GetDiceValue(dice); //ì£¼ì‚¬ìœ„ ê°’ ê°€ì ¸ì™€ì„œ dice_num ì´ˆê¸°í™”
+				cal.DrawScene(player[i]); //ì—°ì‚° ê²°ê³¼ê°’ ë¦¬í„´
+				roll_count--;
+
+				//ìˆ˜ì •í•„ìš”, UIì—ì„œ select í–ˆì„ ë•Œ selectí•œ ì¹¸ ë²ˆí˜¸ ì½ì–´ì™€ì„œ ëë‚´ê¸°
+				if (1)  //UIì—ì„œ ì„ íƒí•œ ê°’ì´ í‘œ ê°’ì¸ ê²½ìš°
+				{
+					player[i].PushValue(1); //ì˜ˆì‹œê°’
+					break;
+				}
+				else continue;
+			}
+			result.DrawScene(player[i]);
+		}
+		/*
+			 // ì—°ì‚°ì— ì´ìš©í•  vector<int> chart_value ì´ˆê¸°í™”
+			 // ì£¼ì‚¬ìœ„ ê°’ vector<int> dice_num ì— ì €ì¥
+
+			cal.DrawScene(player[i]);
+			DrawScene(player[i].chart_value); //ì—°ì‚° í›„ ê³„ì‚° ê°’ ë³´ì—¬ì£¼ê¸°
+
+
+			displayì—ì„œ ì„ íƒí•œ ìœ„ì¹˜ ì…ë ¥ë°›ì•„ì„œ ìµœì¢… ì…ë ¥ê°’ ë°ì´í„° ì €ì¥í•´ë†“ê¸°
+			player[i].PushValue();
+
+			player[i].GetRoundResult();
+			DrawScene(player[i].GetRoundResult());
+		}*/
+	}
+	return 0;
+}
 
 
 vector<int>GameScenePrev::DrawScene(Chart& player)
 {
 	player.SetDefaultValue();
-	return player.GetRoundResult(); //vector<int>Result °ª ¸®ÅÏ
+	return player.GetRoundResult(); //vector<int>Result ê°’ ë¦¬í„´
 }
 
 vector<int>GameSceneCal::DrawScene(Chart& player)
 {
 	player.SetDefaultValue();
-	SetUpValue upvalue;
-	CheckFOK fok;
-	CheckFH fh;
-	CheckSS ss;
-	CheckBS bs;
-	CheckYacht yatcht;
-	CheckChoice choice;
+	SetUpValue upvalue(&player);
+	//SetUpValue upvalue(&player);
+	CheckFOK fok(&player);
+	CheckFH fh(&player);
+	CheckSS ss(&player);
+	CheckBS bs(&player);
+	CheckYacht yatcht(&player);
+	CheckChoice choice(&player);
 	for (int i = 0; i < 6; i++)
 	{
 		if (upvalue.IsNullptr(&player.chart_value[i]))
 			player.chart_value[i] = upvalue.SetValue(player.dice_num, i);
-	} //À§ÂÊ Ç¥ °ª °è»ê
+	} //ìœ„ìª½ í‘œ ê°’ ê³„ì‚°
 
-		//for of kind ºÎÅÍ choice ±îÁö null ¿©ºÎ È®ÀÎ ÈÄ °ª ´ëÀÔ ¿¬»ê(chart_value¿¡ ÀúÀåÇÑ´Ù)
-	if (fok.IsNullptr(&player.chart_value[6])) //¾Æ·¡ÂÊ Ç¥ °ª °è»ê
+		//for of kind ë¶€í„° choice ê¹Œì§€ null ì—¬ë¶€ í™•ì¸ í›„ ê°’ ëŒ€ì… ì—°ì‚°(chart_valueì— ì €ì¥í•œë‹¤)
+	if (fok.IsNullptr(&player.chart_value[6])) //ì•„ë˜ìª½ í‘œ ê°’ ê³„ì‚°
 		player.chart_value[6] = fok.SetValue(player.dice_num);
 
 	if (fh.IsNullptr(&player.chart_value[7]))
@@ -65,70 +117,15 @@ vector<int>GameSceneCal::DrawScene(Chart& player)
 
 	if (choice.IsNullptr(&player.chart_value[11]))
 		player.chart_value[11] = choice.SetValue(player.dice_num);
-	return player.chart_value; //vector<int>chart_value °ª ¸®ÅÏ
+	return player.chart_value; //vector<int>chart_value ê°’ ë¦¬í„´
 }
 
 vector<int>GameSceneResult::DrawScene(Chart& player)
 {
-	player.GetSubTotal(); //À§ Ç¥ °ª °è»ê
+	player.GetSubTotal(); //ìœ„ í‘œ ê°’ ê³„ì‚°
 	player.GetBonus(); //
 	player.GetTotalSum();
 	return player.GetRoundResult();
 }
-
-
-int GameScene:: GetGameRound(vector<Chart>&player, int& game_round)
-{
-	GameScenePrev prev;
-	GameSceneCal cal;
-	GameSceneResult result;
-
-	while (game_round > 0) //12¶ó¿îµå ¹İº¹
-	{
-		for (int i = 0; i < player.size(); i++) //chart º¤ÅÍ playerÀÇ ¼ö ¸¸Å­ , Áï ÇÃ·¹ÀÌ¾îÀÇ ¼ö ¸¸Å­ ¹İº¹
-		{
-			int roll_count = 3;
-			prev.DrawScene(player[i]); 			//¸Ç Ã³À½ ÅÏÀÌ ³Ñ¾î¿À¸é ÀÌÀü °ª ¸ÕÀú ¸®ÅÏÇÏ¿© Ãâ·Â
-
-			//ÃÖ´ë 3È¸ ¹İº¹
-			while (roll_count > 3)
-			{
-				//1 .dice ½ÇÇà , ÁÖ»çÀ§ °ª °¡Á®¿À±â
-				vector<int>dice;  //¼öÁ¤ ÇÊ¿ä ..... ÁÖ»çÀ§ µ¹¸®°í
-
-				//2. chart_value °ª ÃÊ±âÈ­ ÈÄ ¿¬»ê ¼öÇà
-				player[i].SetDefaultValue(); //chart_value °ª ÃÊ±âÈ­
-				player[i].GetDiceValue(dice); //ÁÖ»çÀ§ °ª °¡Á®¿Í¼­ dice_num ÃÊ±âÈ­
-				cal.DrawScene(player[i]); //¿¬»ê °á°ú°ª ¸®ÅÏ
-				roll_count--;
-
-				//¼öÁ¤ÇÊ¿ä, UI¿¡¼­ select ÇßÀ» ¶§ selectÇÑ Ä­ ¹øÈ£ ÀĞ¾î¿Í¼­ ³¡³»±â
-				if (1)  //UI¿¡¼­ ¼±ÅÃÇÑ °ªÀÌ Ç¥ °ªÀÎ °æ¿ì
-				{
-					player[i].PushValue(1); //¿¹½Ã°ª
-					break;
-				}
-				else continue;
-			}
-			result.DrawScene(player[i]);
-		}
-		/*
-			 // ¿¬»ê¿¡ ÀÌ¿ëÇÒ vector<int> chart_value ÃÊ±âÈ­ 
-			 // ÁÖ»çÀ§ °ª vector<int> dice_num ¿¡ ÀúÀå
-
-			cal.DrawScene(player[i]);
-			DrawScene(player[i].chart_value); //¿¬»ê ÈÄ °è»ê °ª º¸¿©ÁÖ±â
-			
-
-			display¿¡¼­ ¼±ÅÃÇÑ À§Ä¡ ÀÔ·Â¹Ş¾Æ¼­ ÃÖÁ¾ ÀÔ·Â°ª µ¥ÀÌÅÍ ÀúÀåÇØ³õ±â
-			player[i].PushValue();
-
-			player[i].GetRoundResult();
-			DrawScene(player[i].GetRoundResult());
-		}*/
-	}
-	return 0;
-}
-
 
 
