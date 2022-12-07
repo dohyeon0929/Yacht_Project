@@ -208,8 +208,6 @@ void GameSceneInputManager::KeyMovingControl() { // 얘는 좀 구현이 빡세보임
 				gotoxy(x, y - 3);
 				cout << "V";
 				gotoxy(x , y);
-
-
 			}
 			break;
 		}
@@ -328,11 +326,14 @@ void GameSceneInputManager::TableFixedDraw(int n) { //표의 행
 	}
 	cout << "/";
 	*/
-
 	COORD pos;
 	pos = getxy();
-	gotoxy(pos.X - 1, pos.Y);
-	cout << "/";
+	if (pos.X < 40) {
+		gotoxy(pos.X + 2, pos.Y);
+		cout << "/";
+		gotoxy(pos.X, pos.Y);
+
+	}
 
 }
 
