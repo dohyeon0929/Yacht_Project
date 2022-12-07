@@ -1,6 +1,5 @@
 #include <iostream>
 #include "yatch_chart.h"
-using namespace std;
 
 
 Chart::Chart() // »ı¼ºÀÚ 
