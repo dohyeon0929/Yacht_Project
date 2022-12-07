@@ -10,7 +10,7 @@ GameManage::GameManage()
 	player[0] = factory.GetChart();
 	player[1] = factory.GetChart();
 
-	vector<int>dice; // ÁÖ»çÀ§ ¼Â ÀÓ½Ã°ª
+	vector<int>dice; // ì£¼ì‚¬ìœ„ ì…‹ ì„ì‹œê°’
 	int winner;
 
 	for (int i = 0; i < 12; i++)
@@ -25,7 +25,7 @@ GameManage::GameManage()
 					int command = 0;
 					switch (command)
 					{
-					case 1: //ÁÖ»çÀ§ ±¼¸²
+					case 1: //ì£¼ì‚¬ìœ„ êµ´ë¦¼
 						player[i].SetDiceValue(dice);
 						player[i].SetDefaultValue();
 						player[i].CalSet();
@@ -33,14 +33,14 @@ GameManage::GameManage()
 						//TableValueDraw(player[i].GetChartValue());
 
 					case 2:
-						//¿©ÂÊ ÄÚµå´Â ³»°¡ ¸ô¶ó¿ä,,,¿ì¤Ğ¤Ì..
+						//ì—¬ìª½ ì½”ë“œëŠ” ë‚´ê°€ ëª°ë¼ìš”,,,ìš°ã… ã…œ..
 						/*
-						Ä¿¼­°¡ ½ºÆäÀÌ½º¸¦ ´­·¶À» ¶§->¾ê°¡ ¸î ¹øÂ° ÁÖ»çÀ§¿¡¼­ ´©¸¥ °ÇÁö¸¦
-						ÀÔ·Â¹Ş´Â ¾Ö°¡ ¹İÈ¯ÇØÁÖ¸é ÁÁ¾Æ
-						ÁÖ»çÀ§ ¹øÈ£¸¦ ÁÙ±î ?
-						ÇØ´ç ´ÙÀÌ½º.Toggle()
-						DiceKeepDraw(int ¸î ¹øÂ° ÁÖ»çÀ§)-- > Å×µÎ¸®¿¡ ¹º°¡ ±×·ÁÁ®¼­ Keep »óÅÂÀÎ °É ¾Ë¾Æ¾ß ÇØ
-						DiceActivateDraw(int ¸î ¹øÂ° ÁÖ»çÀ§)-- > Å×µÎ¸®¿¡ ¾Æ¹«°Íµµ ¾ø°Ô #±âº» »óÅÂ
+						ì»¤ì„œê°€ ìŠ¤í˜ì´ìŠ¤ë¥¼ ëˆŒë €ì„ ë•Œ->ì–˜ê°€ ëª‡ ë²ˆì§¸ ì£¼ì‚¬ìœ„ì—ì„œ ëˆ„ë¥¸ ê±´ì§€ë¥¼
+						ì…ë ¥ë°›ëŠ” ì• ê°€ ë°˜í™˜í•´ì£¼ë©´ ì¢‹ì•„
+						ì£¼ì‚¬ìœ„ ë²ˆí˜¸ë¥¼ ì¤„ê¹Œ ?
+						í•´ë‹¹ ë‹¤ì´ìŠ¤.Toggle()
+						DiceKeepDraw(int ëª‡ ë²ˆì§¸ ì£¼ì‚¬ìœ„)-- > í…Œë‘ë¦¬ì— ë­”ê°€ ê·¸ë ¤ì ¸ì„œ Keep ìƒíƒœì¸ ê±¸ ì•Œì•„ì•¼ í•´
+						DiceActivateDraw(int ëª‡ ë²ˆì§¸ ì£¼ì‚¬ìœ„)-- > í…Œë‘ë¦¬ì— ì•„ë¬´ê²ƒë„ ì—†ê²Œ #ê¸°ë³¸ ìƒíƒœ
 						*/
 
 					case 3:
