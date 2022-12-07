@@ -7,6 +7,7 @@ class Draw // 추상클래스
 {
 public:	
 	void gotoxy(int, int); // 공통	
+	COORD getxy();
 	virtual void EraseScene(); // 공통
 	
 private:
@@ -34,28 +35,37 @@ public:
 	EndSceneDraw();
 };
 
-class TableDraw : public GameSceneDraw
+class TableDraw : public Draw
 {
 public:
 	TableDraw(); // 생성자
 };
 
-class DiceDraw : public GameSceneDraw
+class DiceDraw : public Draw
 {
 public:
 	DiceDraw();
 };
 
-class TableValueDraw : public GameSceneDraw
+class TableValueDraw : public Draw
 {
 public:
 	TableValueDraw(vector<int>);
+	//TableFixedDraw();
 
 private:
 	vector<pair<int, int>> table_pos = { {24, 5}, {36, 5} };
+	
 };
 
-class DiceValueDraw : public GameSceneDraw
+class CursorDraw : public Draw
+{
+public:
+	int KeyMovingControl();
+	vector<pair<int, int>> cursordice_pos = { {52, 15}, { 64, 15}, {76, 15}, {88, 15}, {100, 15} }; // 일단 주사위만
+};
+
+class DiceValueDraw : public Draw
 {
 public:
 	DiceValueDraw(vector<int>);
@@ -69,11 +79,6 @@ public:
 	InfoSceneDraw();
 };
 
-class CursorDraw : public GameSceneDraw // ??
-{
-public:
-
-};
 
 class SceneInputManager : public Draw// 추상클래스
 {
@@ -99,6 +104,10 @@ class GameSceneInputManager : public SceneInputManager
 {
 public:
 	void KeyMovingControl();
+	void DiceKeepDraw(int); // 몇번째 주사위인지
+	void DiceActivateDraw(int);
+	void TableFixedDraw(int); // 선택된 표의 행 num
+	void RollTurnRoundDraw(int, int, int); // 라운드, 턴, 롤
 };
 
 class EndSceneInputManager : public SceneInputManager

@@ -9,4 +9,6 @@ int main() {
 	StartSceneInputManager startsceneinputmanager;
 	startsceneinputmanager.KeyMovingControl();
 
+	
+
 }

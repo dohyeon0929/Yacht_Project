@@ -27,6 +27,21 @@ using namespace std;
 #define SUBMIT 4
 #define ENTER 13
 
+#define ACES 20
+#define Deuce5s 21
+#define Threes 22
+#define Fours 23
+#define Fives 24
+#define Sixes 25
+#define Subtotal 26
+#define Choice 27
+#define FourofaKind 28
+#define FullHouse 29
+#define SStraight 30
+#define LStraight 31
+#define Yatch 32
+#define Total 33
+
 /*
 enum KEYBOARD {
     1p_UP = 72, 1p_LEFT = 75, 1p_RIGHT = 77, 1p_DOWN = 80

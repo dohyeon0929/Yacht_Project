@@ -60,7 +60,7 @@ void StartSceneInputManager::KeyMovingControl() {
 			if (y < 17) {
 				gotoxy(x - 2, y);
 				cout << " ";
-				gotoxy(x - 2, ++y);
+				gotoxy(x - 2, ++y); //
 				cout << ">";
 			}
 			break;
@@ -69,6 +69,8 @@ void StartSceneInputManager::KeyMovingControl() {
 			if (y - 15 == 0) { // gamestart
 				GameSceneDraw gamescene;
 				stop = true;
+				
+				break;
 			}
 			else if (y - 15 == 1) { // InfoScene으로 전환
 				InfoSceneDraw infoscene;
@@ -84,6 +86,8 @@ void StartSceneInputManager::KeyMovingControl() {
 		}
 	}
 }
+
+
 
 void Draw::gotoxy(int x, int y) { // 키보드 입력으로 움직임
 	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE); // 콘솔 핸들 가져오기
@@ -167,54 +171,186 @@ void InfoSceneInputManager::KeyMovingControl() {
 			EraseScene();
 			StartSceneDraw startscene;
 			startscene.TitleDraw();
-			gotoxy(42, 15);
+			gotoxy(40, 15);
 			break;
 		}
 	}
 }
 
 void GameSceneInputManager::KeyMovingControl() { // 얘는 좀 구현이 빡세보임
-	
+	int x = 52;
+	int y = 15;
+	gotoxy(52, 15); // 무조건 첫번째 주사위 커서로 이동
+	gotoxy(x, y - 3);
+	cout << "V";
+	while (1) {
+		int n = KeyControl();
+		switch (n) {
+			
+		case RIGHT: {
+			if (x < 100 && x > 40) { // 가장 오른쪽 주사위는 넘어가지 않음, 주사위에서의 right
+				gotoxy(x, y - 3);
+				cout << " ";
+				gotoxy(x + 12, y - 3);
+				cout << "V";
+				gotoxy(x + 12, y);
+				x = x + 12;
+			}
+			else if (x < 40) { // 표에서의 right, 해당 cell의 커서 삭제
+				COORD pos;
+				pos = getxy();
+				gotoxy(pos.X - 1, pos.Y);
+
+				cout << " ";
+				x = 52;
+				y = 15;
+				gotoxy(52, 15); // 무조건 첫번째 주사위 커서로 이동
+				gotoxy(x, y - 3);
+				cout << "V";
+				gotoxy(x , y);
+
+
+			}
+			break;
+		}
+		case LEFT: {
+			if (x > 52) { // 주사위에서 left
+				gotoxy(x, y - 3);
+				cout << " ";
+				gotoxy(x - 12, y - 3);
+				cout << "V";
+				gotoxy(x - 12, y); 
+				x = x - 12;
+			}
+			else if (x == 52) { // table로 들어가기
+				gotoxy(x, y - 3);
+				cout << " ";
+				x = 22; y = 5; // 여기서 표로 입장, *** turn을 확인하고 입장해야함 좌표 수정
+				// 1p는 22, 2p는 34
+				gotoxy(22, 5);
+				cout << "V";
+			}
+			break;
+		}
+		case SPACE: {			
+			if (x < 101 && x > 51) { // 주사위에서 스페이스, keep
+
+
+			}
+			break;
+		}
+		case UP: { // 표에서 위로가는 방향키 눌렀을 때
+			if (y > 5 && x < 50) { // 위로 더는 못가게, 주사위에서는 위로 안감
+				gotoxy(x, y);
+				cout << " ";
+				gotoxy(x, y - 2);
+				cout << "V";
+				y = y - 2;
+			}
+			break;
+		}
+
+		case DOWN: { // 표에서 아래로 가는 방향키 눌렀을 떄
+			if (y < 31 && x < 50) { // 주사위에서는 아래로 안감
+				gotoxy(x, y);
+				cout << " ";
+				gotoxy(x, y + 2);
+				cout << "V";
+				y = y + 2;
+			}
+			break;
+			
+		}
+
+		case ENTER: { // 표에서 엔터, 점수박기
+			GameSceneInputManager gamescene;
+			gamescene.TableFixedDraw(1); // 여기 1의 자리에 그냥 없어도 될 듯? 
+			// 엔터 누르면 TableFixedDraw 내에서 해당 커서 위치 확인해서 거기에 / 그림
+		}
+		
+		}
+	}
+}
+
+COORD Draw::getxy() {
+	CONSOLE_SCREEN_BUFFER_INFO cursor;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursor);
+	return cursor.dwCursorPosition;
+}
+void GameSceneInputManager::RollTurnRoundDraw(int round, int turn, int roll) { //  센터가 76, 8
+	gotoxy(64, 8);
+	cout << "Round" << round;
+	gotoxy(76, 8);
+	cout << "Turn" << turn;
+	gotoxy(88, 8);
+	cout << "Roll" << roll;
+}
+void GameSceneInputManager::DiceActivateDraw(int n) { // n번째 주사위
+	switch (n) {
+	case 1: { gotoxy(52 - 1, 18);  break; }// 1주사위 
+	case 2: { gotoxy(64 - 1, 18); break; }
+	case 3: { gotoxy(76 - 1, 18); break; }
+	case 4: { gotoxy(88 - 1, 18); break; }
+	case 5: { gotoxy(100 - 1, 18); break; }
+	}
+	cout << "    ";
+
+}
+
+void GameSceneInputManager::DiceKeepDraw(int n) { // n번째 주사위
+	switch (n) {
+	case 1: { gotoxy(52 - 1, 18);  break; }// 1주사위 
+	case 2: { gotoxy(64 - 1, 18); break; }
+	case 3: { gotoxy(76 - 1, 18); break; }
+	case 4: { gotoxy(88 - 1, 18); break; }
+	case 5: { gotoxy(100 - 1, 18); break; }	
+	}
+	cout << "KEEP";
+
+}
+
+void GameSceneInputManager::TableFixedDraw(int n) { //표의 행
+	/*
+	switch (n) {
+	case1: {gotoxy(24 - 1, 5); break; } // 행의 번호에 따라 해당 위치의 "숫자" 옆에 / 그리기
+	case2: {gotoxy(24 - 1, 7); break; }
+	case3: {gotoxy(24 - 1, 9); break; }
+	case4: {gotoxy(24 - 1, 11); break; }
+	case5: {gotoxy(24 - 1, 13); break; }
+	case6: {gotoxy(24 - 1, 15); break; }
+	case7: {gotoxy(24 - 1, 17); break; }
+	case8: {gotoxy(24 - 1, 19); break; }
+	case9: {gotoxy(24 - 1, 21); break; }
+	case10: {gotoxy(24 - 1, 23); break; }
+	case11: {gotoxy(24 - 1, 25); break; }
+	case12: {gotoxy(24 - 1, 27); break; }
+
+	}
+	cout << "/";
+	*/
+
+	COORD pos;
+	pos = getxy();
+	gotoxy(pos.X - 1, pos.Y);
+	cout << "/";
+
 }
 
 GameSceneDraw::GameSceneDraw() { // 생성자에서 그림 그리기
 	EraseScene();
-	vector<string> categories;
-	categories = { "Aces  ", "Deuces", "Threes", "Fours", "Fives", "Sixes", "Subtotal"
-		, "Choice", "4 of a Kind", "Full House", "S.Straight", "L.Straight", "Yatch", "Total" };
-	EraseScene();
-
-	cout << "  -----------------------------------------\n";
-	cout.width(2);
-	cout << "   " << std::left << "       ";
-	cout << "\t  l           l\n";
-
-	cout << "   " << std::left << "       ";
-	cout << "\t  l     1p    l     2p     \n";
-
-	cout << "   " << std::left << "       ";
-	cout << "\t  l           l\n";
-
-
-	for (int i = 0; i < 13; i++) {
-		cout << "  -----------------------------------------\n";
-		cout.width(2);
-		cout << "   " << std::left << categories.at(i);
-		cout << "\t  l           l\n";
-	}
-
-	cout << "  -----------------------------------------\n";
-	cout << "   " << std::left << categories.at(13);
-	cout << "\t  l           l\n";
-	//TableDraw table_draw;// 표그리기
-	//DiceDraw dice_draw; //주사위그리기
+	TableDraw table_draw;// 표그리기
+	DiceDraw dice_draw; //주사위그리기
 	TableValueDraw s({});
 	DiceValueDraw v({6,6,6,6,6});
 	vector<pair<int, int>> table_pos = { {24, 5}, {36, 5} };
 	pair<int, int> dice_pos = { 52, 15 };
+	GameSceneInputManager game_scene_input_manager;
+	//game_scene_input_manager.TableFixedDraw(2);
+	game_scene_input_manager.KeyMovingControl();
+	
 
-	//GameSceneInputManager gamesceneinputmanager;
-	//gamesceneinputmanager.KeyMovingControl();
+
+
 }
 
 EndSceneDraw::EndSceneDraw() {
@@ -238,9 +374,9 @@ EndSceneDraw::EndSceneDraw() {
 TableDraw::TableDraw() {
 
 	vector<string> categories;
-	categories = { "Aces  ", "Deuces", "Threes", "Fours", "Fives", "Sixes", "Subtotal"
+	categories = { "Aces  ", "Deuce5s", "Threes", "Fours", "Fives", "Sixes", "Subtotal"
 		, "Choice", "4 of a Kind", "Full House", "S.Straight", "L.Straight", "Yatch", "Total" };
-	EraseScene();
+	//EraseScene();
 
 	cout << "  -----------------------------------------\n";
 	cout.width(2);
