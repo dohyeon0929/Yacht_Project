@@ -104,9 +104,9 @@ class GameSceneInputManager : public SceneInputManager
 {
 public:
 	void KeyMovingControl();
-	void DiceKeepDraw(int); // 몇번째 주사위인지
-	void DiceActivateDraw(int);
-	void TableFixedDraw(int); // 선택된 표의 행 num
+	int DiceKeepDraw(); // 몇번째 주사위인지
+	int DiceActivateDraw();
+	int TableFixedDraw(); // 선택된 표의 행 num
 	void RollTurnRoundDraw(int, int, int); // 라운드, 턴, 롤
 };
 

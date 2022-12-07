@@ -42,6 +42,12 @@ using namespace std;
 #define Yatch 32
 #define Total 33
 
+#define FIRST 41
+#define SECOND 42
+#define THIRD 43
+#define FOURTH 44
+#define FIFTH 45
+
 /*
 enum KEYBOARD {
     1p_UP = 72, 1p_LEFT = 75, 1p_RIGHT = 77, 1p_DOWN = 80
