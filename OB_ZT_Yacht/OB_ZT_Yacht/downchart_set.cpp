@@ -2,7 +2,7 @@
 
 using namespace std;
 
-//FOK ╟╙ юж╢баЖ х╝юн, ╢Кют
+//FOK О©╫О©╫ О©╫ж╢О©╫О©╫О©╫ х╝О©╫О©╫, О©╫О©╫О©╫О©╫
 int CheckFOK::SetValue(vector<int>dice_num)
 {
 	int result = 0;
@@ -23,7 +23,7 @@ CheckFOK::CheckFOK(Chart* chart)
 	this->chart = chart;
 }
 
-//Full House ╟╙ юж╢баЖ х╝юн, ╢Кют
+//Full House О©╫О©╫ О©╫ж╢О©╫О©╫О©╫ х╝О©╫О©╫, О©╫О©╫О©╫О©╫
 int CheckFH::SetValue(vector<int>dice_num)
 {
 	int result = 0;
@@ -52,7 +52,7 @@ CheckFH::CheckFH(Chart* chart)
 }
 
 
-//Small Straight ╟╙ юж╢баЖ х╝юн, ╢Кют
+//Small Straight О©╫О©╫ О©╫ж╢О©╫О©╫О©╫ х╝О©╫О©╫, О©╫О©╫О©╫О©╫
 int CheckSS::SetValue(vector<int>dice_num)
 {
 	int result = 0;
@@ -75,7 +75,7 @@ CheckSS::CheckSS(Chart* chart)
 }
 
 
-//Big Straight ╟╙ юж╢баЖ х╝юн, ╢Кют
+//Big Straight О©╫О©╫ О©╫ж╢О©╫О©╫О©╫ х╝О©╫О©╫, О©╫О©╫О©╫О©╫
 int CheckBS::SetValue(vector<int>dice_num)
 {
 	int result = 0;
@@ -91,7 +91,7 @@ CheckBS::CheckBS(Chart* chart)
 }
 
 
-//yacht ╟╙ юж╢баЖ х╝юн, ╢Кют
+//yacht О©╫О©╫ О©╫ж╢О©╫О©╫О©╫ х╝О©╫О©╫, О©╫О©╫О©╫О©╫
 int CheckYacht::SetValue(vector<int>dice_num)
 {
 	int result = 50;
@@ -105,7 +105,7 @@ CheckYacht::CheckYacht(Chart* chart)
 }
 
 
-//choice ╟╙ юж╢баЖ х╝юн, ╢Кют
+//choice О©╫О©╫ О©╫ж╢О©╫О©╫О©╫ х╝О©╫О©╫, О©╫О©╫О©╫О©╫
 int CheckChoice::SetValue(vector<int>dice_num)
 {
 	int result = 0;

@@ -104,8 +104,8 @@ class GameSceneInputManager : public SceneInputManager
 {
 public:
 	void KeyMovingControl();
-	int DiceKeepDraw(); // ���° �ֻ�������
-	int DiceActivateDraw();
+	void DiceKeepDraw(int, int); // ���° �ֻ�������
+	void DiceActivateDraw(int, int);
 	int TableFixedDraw(); // ���õ� ǥ�� �� num
 	void RollTurnRoundDraw(int, int, int); // ����, ��, ��
 };

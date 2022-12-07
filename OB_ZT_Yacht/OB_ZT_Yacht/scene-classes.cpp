@@ -20,11 +20,10 @@ void StartSceneDraw::TitleDraw() { // title은 startscene에만 등장
 	gotoxy(26, 7);
 	cout << "  \\_/   \\__,_| \\__| \\___||_| |_| |___/  |_| \\___| \\___|\n";
 	gotoxy(0, 11);
-<<<<<<< HEAD
-=======
-	for (int i = 0; i < 110; i++)cout<<"■";
+
+	for (int i = 0; i < 110; i++) cout<<"■";
 	cout << '\n';
->>>>>>> c2c392ff82beac7728a51e52760f48bae8dc2c51
+
 	gotoxy(42, 15); 
 	cout << "Let's play this game!"; // 0
 	gotoxy(42, 16);
@@ -237,9 +236,13 @@ void GameSceneInputManager::KeyMovingControl() { // 얘는 좀 구현이 빡세�
 			break;
 		}
 		case SPACE: {			
-			if (x < 101 && x > 51) { // 주사위에서 스페이스, keep
-				
-				DiceKeepDraw();
+			if (x < 101 && x > 51) { // 주사위에서 스페이스, keep	
+				COORD pos;
+				pos = getxy(); // 커서 위치
+
+				/* 여기에 ifelse 만들어두삼 */
+				DiceKeepDraw(pos.X, pos.Y); // dice 변수가 들어옴
+				//DiceActivateDraw(pos.X, pos.Y);
 			}
 			break;
 		}
@@ -284,6 +287,7 @@ COORD Draw::getxy() {
 }
 
 void GameSceneInputManager::RollTurnRoundDraw(int round, int turn, int roll) { //  센터가 76, 8
+
 	gotoxy(64, 8);
 	cout << "Round" << round;
 	gotoxy(76, 8);
@@ -291,8 +295,11 @@ void GameSceneInputManager::RollTurnRoundDraw(int round, int turn, int roll) { /
 	gotoxy(88, 8);
 	cout << "Roll" << roll;
 }
-int GameSceneInputManager::DiceActivateDraw() { // n번째 주사위
 
+void GameSceneInputManager::DiceActivateDraw(int x, int y) { // n번째 주사위
+	gotoxy(x - 2, y + 4);
+	cout << "    ";
+	/*
 	COORD pos;
 	pos = getxy();
 	switch (pos.X) {
@@ -302,20 +309,26 @@ int GameSceneInputManager::DiceActivateDraw() { // n번째 주사위
 	case 88: { cout << "    ";  return FOURTH; } // gotoxy(88 - 1, 18); break;}
 	case 100: { cout << "    "; return FIFTH; } // gotoxy(100 - 1, 18); break;}
 	}
+	*/
 }
 
-int GameSceneInputManager::DiceKeepDraw() { // n번째 주사위
+void GameSceneInputManager::DiceKeepDraw(int x, int y) { // n번째 주사위
 
-	COORD pos;
-	pos = getxy();
-	switch (pos.X) {
-	case 52: { cout << "KEEP";  return FIRST; }// gotoxy(52 - 1, 18);  break; }// 1주사위 
-	case 64: { cout << "KEEP";  return SECOND; } // gotoxy(64 - 1, 18); break;}
-	case 76: { cout << "KEEP";  return THIRD; } //  gotoxy(76 - 1, 18); break;}
-	case 88: { cout << "KEEP";  return FOURTH; } // gotoxy(88 - 1, 18); break;}
-	case 100: { cout << "KEEP";  return FIFTH; } // gotoxy(100 - 1, 18); break;}
-	}
+	gotoxy(x - 2, y + 4);
+	cout << "KEEP";
+
 	/*
+	switch (pos.X) {
+	
+	case 52: { 
+
+	}
+	case 64: { gotoxy(pos.X - 2, pos.Y + 4); cout << "KEEP";  return SECOND; } // gotoxy(64 - 1, 18); break;}
+	case 76: { gotoxy(pos.X - 2, pos.Y + 4); cout << "KEEP";  return THIRD; } //  gotoxy(76 - 1, 18); break;}
+	case 88: {  gotoxy(pos.X - 2, pos.Y + 4); cout << "KEEP";  return FOURTH; } // gotoxy(88 - 1, 18); break;}
+	case 100: {  gotoxy(pos.X - 2, pos.Y + 4); cout << "KEEP";  return FIFTH; } // gotoxy(100 - 1, 18); break;}
+	}
+	
 	cout << "    ";
 	switch (n) {
 	case 1: { gotoxy(52 - 1, 18);  break; }// 1주사위 
