@@ -19,8 +19,12 @@ void StartSceneDraw::TitleDraw() { // title은 startscene에만 등장
 	cout << "  | |  | (_| || |_ | (__ | | | | | |/ / | || (__ |  __/\n";
 	gotoxy(26, 7);
 	cout << "  \\_/   \\__,_| \\__| \\___||_| |_| |___/  |_| \\___| \\___|\n";
-	
 	gotoxy(0, 11);
+<<<<<<< HEAD
+=======
+	for (int i = 0; i < 110; i++)cout<<"■";
+	cout << '\n';
+>>>>>>> c2c392ff82beac7728a51e52760f48bae8dc2c51
 	gotoxy(42, 15); 
 	cout << "Let's play this game!"; // 0
 	gotoxy(42, 16);
@@ -395,38 +399,37 @@ TableDraw::TableDraw() {
 	cout << "  -----------------------------------------\n";
 	cout.width(2);
 	cout << "   " << std::left << "       ";
-	cout << "\t  l           l\n";
+	cout << "\t  ｜           ｜\n";
 
 	cout << "   " << std::left << "       ";
-	cout << "\t  l     1p    l     2p     \n";
+	cout << "\t  ｜     1p    ｜     2p     \n";
 
 	cout << "   " << std::left << "       ";
-	cout << "\t  l           l\n";
+	cout << "\t  ｜           ｜\n";
 
 
 	for (int i = 0; i < 13; i++) {
 		cout << "  -----------------------------------------\n";
 		cout.width(2);
 		cout << "   " << std::left << categories.at(i);
-		cout << "\t  l           l\n";
+		cout << "\t  ｜           ｜\n";
 	}
 
 	cout << "  -----------------------------------------\n";
 	cout << "   " << std::left << categories.at(13);
-	cout << "\t  l           l\n";
+	cout << "\t  ｜           ｜\n";
 
 }
 
 DiceDraw::DiceDraw() {
-	/*
 	gotoxy(48, 13); 
-	//cout << "┌──────┐";
+	cout << "┌──────┐";
 	gotoxy(48, 14);
-	//cout << "│      │";
+	cout << "│      │";
 	gotoxy(48, 15);
-	//cout << "│      │";
+	cout << "│      │";
 	gotoxy(48, 16);
-	//cout << "│      │";
+	cout << "│      │";
 	gotoxy(48, 17);
 	cout << "└──────┘";
 	gotoxy(52, 15); // 첫번째 주사위의 숫자위치
@@ -483,7 +486,6 @@ DiceDraw::DiceDraw() {
 	cout << "└──────┘";
 	gotoxy(100, 15); // 다섯번째 주사위의 숫자위치
 	cout << "5";
-	*/
 }
 
 TableValueDraw::TableValueDraw(vector<int> v) {

@@ -3,18 +3,18 @@
 
 #include "essential.h"
 
-class Draw // Ãß»óÅ¬·¡½º
+class Draw // ï¿½ß»ï¿½Å¬ï¿½ï¿½ï¿½ï¿½
 {
 public:	
-	void gotoxy(int, int); // °øÅë	
+	void gotoxy(int, int); // ï¿½ï¿½ï¿½ï¿½	
 	COORD getxy();
-	virtual void EraseScene(); // °øÅë
+	virtual void EraseScene(); // ï¿½ï¿½ï¿½ï¿½
 	
 private:
 	
 };
 
-// ´ÜÀÏ scene ³»ºÎ¿¡¼­ ÀÛµ¿ÇÏ´Â ±â´É, scenemanager¸¦ »ó¼Ó
+// ï¿½ï¿½ï¿½ï¿½ scene ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ ï¿½Ûµï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½, scenemanagerï¿½ï¿½ ï¿½ï¿½ï¿½
 class StartSceneDraw : public Draw
 {
 public:
@@ -26,7 +26,7 @@ public:
 class GameSceneDraw : public Draw
 {
 public:
-	GameSceneDraw(); // »ý¼ºÀÚ
+	GameSceneDraw(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 class EndSceneDraw : public Draw
@@ -38,7 +38,7 @@ public:
 class TableDraw : public Draw
 {
 public:
-	TableDraw(); // »ý¼ºÀÚ
+	TableDraw(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 class DiceDraw : public Draw
@@ -62,7 +62,7 @@ class CursorDraw : public Draw
 {
 public:
 	int KeyMovingControl();
-	vector<pair<int, int>> cursordice_pos = { {52, 15}, { 64, 15}, {76, 15}, {88, 15}, {100, 15} }; // ÀÏ´Ü ÁÖ»çÀ§¸¸
+	vector<pair<int, int>> cursordice_pos = { {52, 15}, { 64, 15}, {76, 15}, {88, 15}, {100, 15} }; // ï¿½Ï´ï¿½ ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 class DiceValueDraw : public Draw
@@ -80,34 +80,34 @@ public:
 };
 
 
-class SceneInputManager : public Draw// Ãß»óÅ¬·¡½º
+class SceneInputManager : public Draw// ï¿½ß»ï¿½Å¬ï¿½ï¿½ï¿½ï¿½
 {
 public:
 	//virtual void InputKeyBoard();
 	int KeyControl();
-	virtual void KeyMovingControl() = 0; // °øÅë
+	virtual void KeyMovingControl() = 0; // ï¿½ï¿½ï¿½ï¿½
 };
 
 class StartSceneInputManager : public SceneInputManager
 {
 public:
-	void KeyMovingControl(); // °øÅë
+	void KeyMovingControl(); // ï¿½ï¿½ï¿½ï¿½
 };
 
 class InfoSceneInputManager : public SceneInputManager
 {
 public:
-	void KeyMovingControl(); // °øÅë
+	void KeyMovingControl(); // ï¿½ï¿½ï¿½ï¿½
 };
 
 class GameSceneInputManager : public SceneInputManager
 {
 public:
 	void KeyMovingControl();
-	int DiceKeepDraw(); // ¸î¹øÂ° ÁÖ»çÀ§ÀÎÁö
+	int DiceKeepDraw(); // ï¿½ï¿½ï¿½Â° ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	int DiceActivateDraw();
-	int TableFixedDraw(); // ¼±ÅÃµÈ Ç¥ÀÇ Çà num
-	void RollTurnRoundDraw(int, int, int); // ¶ó¿îµå, ÅÏ, ·Ñ
+	int TableFixedDraw(); // ï¿½ï¿½ï¿½Ãµï¿½ Ç¥ï¿½ï¿½ ï¿½ï¿½ num
+	void RollTurnRoundDraw(int, int, int); // ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½, ï¿½ï¿½
 };
 
 class EndSceneInputManager : public SceneInputManager
