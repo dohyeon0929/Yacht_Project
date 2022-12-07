@@ -5,7 +5,7 @@ using namespace std;
 // yatch_chart의 변수가 null인지 확인, null이 아니라면,, setValue 시작
 
 
-bool UpChart::IsNullptr(int* value)
+bool CalChart::IsNullptr(int* value)
 {
 	int result = 0;
 	if (*value)
@@ -14,14 +14,18 @@ bool UpChart::IsNullptr(int* value)
 	}
 	else return true;
 }
-
-int UpChart::SetValue(vector<int>dice_num)
+int CalChart::SetValue(vector<int>dicenum)
 {
 	return 0;
 }
 
 
-int SetUpValue::SetValue(vector<int>dice_num, int number)
+CheckUpValue::CheckUpValue(Chart* chart)
+{
+	this->chart = chart;
+}
+
+int CheckUpValue::SetValue(vector<int>dice_num, int number)
 {
 	int result = 0;
 	for (int i = 0; i < dice_num.size(); i++)
@@ -36,7 +40,7 @@ int SetUpValue::SetValue(vector<int>dice_num, int number)
 /*
 int setValue::ResultValue(vector<int>cal_value)
 {
-	
+
 }
 */
 

@@ -27,6 +27,12 @@
     <ClInclude Include="scene-classes.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="yatch_chart.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="chart_needs.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="system-classes.cpp">
@@ -39,6 +45,18 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="scene-classes.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="downchart_set.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="upchart_set.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="yacht_chart.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 #ifndef CHART_NEEDS_H
 #define CHART_NEEDS_H
 #include<iostream>

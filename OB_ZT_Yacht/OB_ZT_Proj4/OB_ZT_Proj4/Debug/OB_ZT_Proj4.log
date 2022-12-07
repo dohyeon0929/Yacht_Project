@@ -1,0 +1,5 @@
+﻿  Game.cpp
+C:\Users\상우님\source\repos\OB_ZT_Proj4\OB_ZT_Proj4\Game.cpp(7,19): warning C4101: 'roll' :참조되지 않은 지역 변수입니다.
+C:\Users\상우님\source\repos\OB_ZT_Proj4\OB_ZT_Proj4\Game.cpp(7,13): warning C4101: 'turn' :참조되지 않은 지역 변수입니다.
+C:\Users\상우님\source\repos\OB_ZT_Proj4\OB_ZT_Proj4\Game.cpp(7,6): warning C4101: 'round' :참조되지 않은 지역 변수입니다.
+  OB_ZT_Proj4.vcxproj -> C:\Users\상우님\source\repos\OB_ZT_Proj4\Debug\OB_ZT_Proj4.exe

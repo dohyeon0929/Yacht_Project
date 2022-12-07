@@ -2,28 +2,14 @@
 
 using namespace std;
 
-bool DownChart::IsNullptr(int* value)
-{
-	int result = 0;
-	if (*value)
-	{
-		return false;
-	}
-	else return true;
-}
-int DownChart::SetValue(vector<int>dice_num)
-{
-	return 0;
-}
-
 //FOK 값 있는지 확인, 대입
 int CheckFOK::SetValue(vector<int>dice_num)
 {
 	int result = 0;
-	int check_value[6] = {0,};
+	int check_value[6] = { 0, };
 	for (int i = 0; i < dice_num.size(); i++)
 	{
-			check_value[dice_num[i]] += 1;
+		check_value[dice_num[i]] += 1;
 	}
 	for (int i = 0; i < dice_num.size(); i++)
 	{
@@ -31,6 +17,10 @@ int CheckFOK::SetValue(vector<int>dice_num)
 			result = accumulate(dice_num.begin(), dice_num.end(), 0);
 	}
 	return result;
+}
+CheckFOK::CheckFOK(Chart* chart)
+{
+	this->chart = chart;
 }
 
 //Full House 값 있는지 확인, 대입
@@ -56,6 +46,11 @@ int CheckFH::SetValue(vector<int>dice_num)
 	}
 	return result;
 }
+CheckFH::CheckFH(Chart* chart)
+{
+	this->chart = chart;
+}
+
 
 //Small Straight 값 있는지 확인, 대입
 int CheckSS::SetValue(vector<int>dice_num)
@@ -74,17 +69,27 @@ int CheckSS::SetValue(vector<int>dice_num)
 
 	return result;
 }
+CheckSS::CheckSS(Chart* chart)
+{
+	this->chart = chart;
+}
+
 
 //Big Straight 값 있는지 확인, 대입
 int CheckBS::SetValue(vector<int>dice_num)
 {
 	int result = 0;
-	if ((accumulate(dice_num.begin(), dice_num.end(), 0) == 15 && dice_num.front() == 1 &&dice_num.back() == 5)) 
+	if ((accumulate(dice_num.begin(), dice_num.end(), 0) == 15 && dice_num.front() == 1 && dice_num.back() == 5))
 		result = 40;
 	if ((accumulate(dice_num.begin(), dice_num.end(), 0) == 20 && dice_num.front() == 2 && dice_num.back() == 6))
 		result = 40;
 	return result;
 }
+CheckBS::CheckBS(Chart* chart)
+{
+	this->chart = chart;
+}
+
 
 //yacht 값 있는지 확인, 대입
 int CheckYacht::SetValue(vector<int>dice_num)
@@ -94,6 +99,11 @@ int CheckYacht::SetValue(vector<int>dice_num)
 		return 50;
 	else return 0;
 }
+CheckYacht::CheckYacht(Chart* chart)
+{
+	this->chart = chart;
+}
+
 
 //choice 값 있는지 확인, 대입
 int CheckChoice::SetValue(vector<int>dice_num)
@@ -101,4 +111,8 @@ int CheckChoice::SetValue(vector<int>dice_num)
 	int result = 0;
 	result = accumulate(dice_num.begin(), dice_num.end(), 0);
 	return result;
+}
+CheckChoice::CheckChoice(Chart* chart)
+{
+	this->chart = chart;
 }

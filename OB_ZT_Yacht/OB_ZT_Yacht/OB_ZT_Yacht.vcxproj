@@ -139,16 +139,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="chart_needs.h" />
     <ClInclude Include="dice-classes.h" />
     <ClInclude Include="essential.h" />
     <ClInclude Include="scene-classes.h" />
     <ClInclude Include="system-classes.h" />
+    <ClInclude Include="yatch_chart.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dice-classes.cpp" />
+    <ClCompile Include="downchart_set.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="scene-classes.cpp" />
     <ClCompile Include="system-classes.cpp" />
+    <ClCompile Include="upchart_set.cpp" />
+    <ClCompile Include="yacht_chart.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -4,7 +4,7 @@ void StartSceneDraw::Init() {
 	system("mode con cols=110 lines=35 | title Yatch Dice with Special Items");
 }
 
-void StartSceneDraw::TitleDraw() { // titleÀº startscene¿¡¸¸ µîÀå
+void StartSceneDraw::TitleDraw() { // titleì€ startsceneì—ë§Œ ë“±ì¥
 	
 	cout << "\n\n";
 	gotoxy(25, 2);
@@ -21,16 +21,16 @@ void StartSceneDraw::TitleDraw() { // titleÀº startscene¿¡¸¸ µîÀå
 	cout << "  \\_/   \\__,_| \\__| \\___||_| |_| |___/  |_| \\___| \\___|\n";
 	
 	gotoxy(0, 11);
-	cout << "¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á";
+	//cout << "â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– ";
 
-	gotoxy(42, 15); // ¿©±â¼­ ¸Ş´º Å¬¸¯ Ä¿¼­ ½ÃÀÛ
+	gotoxy(42, 15); 
 	cout << "Let's play this game!"; // 0
 	gotoxy(42, 16);
 	cout << "How to play this game?"; // 1
 	gotoxy(42, 17);
 	cout << "Exit"; // 2
 
-	/* team Á¤º¸ Ç¥½Ã */
+	/* team ì •ë³´ í‘œì‹œ */
 	gotoxy(38, 25);
 	cout << "< Object Oriented Programming >";
 	gotoxy(48, 26);
@@ -43,8 +43,8 @@ void StartSceneInputManager::KeyMovingControl() {
 	int y = 15;
 	bool stop = false;
 	gotoxy(x - 2, y);
-	while (1) { // ¹«ÇÑ ¹İº¹
-		int n = KeyControl(); // Å°º¸µå ÀÔ·ÂÀ» Å°°ªÀ¸·Î ¹Ş¾Æ¿À±â
+	while (1) { // ë¬´í•œ ë°˜ë³µ
+		int n = KeyControl(); // í‚¤ë³´ë“œ ì…ë ¥ì„ í‚¤ê°’ìœ¼ë¡œ ë°›ì•„ì˜¤ê¸°
 		if (stop == true) break;
 		switch (n) {
 		case UP: {
@@ -60,7 +60,7 @@ void StartSceneInputManager::KeyMovingControl() {
 			if (y < 17) {
 				gotoxy(x - 2, y);
 				cout << " ";
-				gotoxy(x - 2, ++y);
+				gotoxy(x - 2, ++y); //
 				cout << ">";
 			}
 			break;
@@ -69,8 +69,10 @@ void StartSceneInputManager::KeyMovingControl() {
 			if (y - 15 == 0) { // gamestart
 				GameSceneDraw gamescene;
 				stop = true;
+				
+				break;
 			}
-			else if (y - 15 == 1) { // InfoSceneÀ¸·Î ÀüÈ¯
+			else if (y - 15 == 1) { // InfoSceneìœ¼ë¡œ ì „í™˜
 				InfoSceneDraw infoscene;
 			}
 
@@ -85,8 +87,10 @@ void StartSceneInputManager::KeyMovingControl() {
 	}
 }
 
-void Draw::gotoxy(int x, int y) { // Å°º¸µå ÀÔ·ÂÀ¸·Î ¿òÁ÷ÀÓ
-	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE); // ÄÜ¼Ö ÇÚµé °¡Á®¿À±â
+
+
+void Draw::gotoxy(int x, int y) { // í‚¤ë³´ë“œ ì…ë ¥ìœ¼ë¡œ ì›€ì§ì„
+	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE); // ì½˜ì†” í•¸ë“¤ ê°€ì ¸ì˜¤ê¸°
 	COORD pos;
 	pos.X = x;
 	pos.Y = y;
@@ -108,10 +112,10 @@ void Draw::EraseScene() {
 	system("cls");
 }
 
-InfoSceneDraw::InfoSceneDraw() { // °ÔÀÓ Á¤º¸ È­¸é
+InfoSceneDraw::InfoSceneDraw() { // ê²Œì„ ì •ë³´ í™”ë©´
 	EraseScene();
-	cout << "°ÔÀÓ Á¤º¸ ¼³¸í\n";
-	cout << "¿£ÅÍÅ°¸¦ ´©¸£¸é startsceneÀ¸·Î µ¹¾Æ°©´Ï´Ù.";
+	cout << "ê²Œì„ ì •ë³´ ì„¤ëª…\n";
+	cout << "ì—”í„°í‚¤ë¥¼ ëˆ„ë¥´ë©´ startsceneìœ¼ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.";
 	InfoSceneInputManager infosceneinputmanager;
 	infosceneinputmanager.KeyMovingControl();
 
@@ -121,8 +125,8 @@ void EndSceneInputManager::KeyMovingControl() {
 	int x = 42;
 	int y = 15;
 	gotoxy(x - 2, y);
-	while (1) { // ¹«ÇÑ ¹İº¹
-		int n = KeyControl(); // Å°º¸µå ÀÔ·ÂÀ» Å°°ªÀ¸·Î ¹Ş¾Æ¿À±â
+	while (1) { // ë¬´í•œ ë°˜ë³µ
+		int n = KeyControl(); // í‚¤ë³´ë“œ ì…ë ¥ì„ í‚¤ê°’ìœ¼ë¡œ ë°›ì•„ì˜¤ê¸°
 		switch (n) {
 		case UP: {
 			if (y > 15) {
@@ -146,7 +150,7 @@ void EndSceneInputManager::KeyMovingControl() {
 			if (y - 15 == 0) { // gamestart
 				GameSceneDraw game_scene_draw;
 			}
-			else if (y - 15 == 1) { // InfoSceneÀ¸·Î ÀüÈ¯
+			else if (y - 15 == 1) { // InfoSceneìœ¼ë¡œ ì „í™˜
 				InfoSceneDraw infoscene;
 			}
 
@@ -167,68 +171,216 @@ void InfoSceneInputManager::KeyMovingControl() {
 			EraseScene();
 			StartSceneDraw startscene;
 			startscene.TitleDraw();
-			gotoxy(42, 15);
+			gotoxy(40, 15);
 			break;
 		}
 	}
 }
 
-void GameSceneInputManager::KeyMovingControl() { // ¾ê´Â Á» ±¸ÇöÀÌ ºı¼¼º¸ÀÓ
+void GameSceneInputManager::KeyMovingControl() { // ì–˜ëŠ” ì¢€ êµ¬í˜„ì´ ë¹¡ì„¸ë³´ì„
+	int x = 52;
+	int y = 15;
+	gotoxy(52, 15); // ë¬´ì¡°ê±´ ì²«ë²ˆì§¸ ì£¼ì‚¬ìœ„ ì»¤ì„œë¡œ ì´ë™
+	gotoxy(x, y - 3);
+	cout << "V";
+	while (1) {
+		int n = KeyControl();
+		switch (n) {
+			
+		case RIGHT: {
+			if (x < 100 && x > 40) { // ê°€ì¥ ì˜¤ë¥¸ìª½ ì£¼ì‚¬ìœ„ëŠ” ë„˜ì–´ê°€ì§€ ì•ŠìŒ, ì£¼ì‚¬ìœ„ì—ì„œì˜ right
+				gotoxy(x, y - 3);
+				cout << " ";
+				gotoxy(x + 12, y - 3);
+				cout << "V";
+				gotoxy(x + 12, y);
+				x = x + 12;
+			}
+			else if (x < 40) { // í‘œì—ì„œì˜ right, í•´ë‹¹ cellì˜ ì»¤ì„œ ì‚­ì œ
+				COORD pos;
+				pos = getxy();
+				gotoxy(pos.X - 1, pos.Y);
+
+				cout << " ";
+				x = 52;
+				y = 15;
+				gotoxy(52, 15); // ë¬´ì¡°ê±´ ì²«ë²ˆì§¸ ì£¼ì‚¬ìœ„ ì»¤ì„œë¡œ ì´ë™
+				gotoxy(x, y - 3);
+				cout << "V";
+				gotoxy(x , y);
+			}
+			break;
+		}
+		case LEFT: {
+			if (x > 52) { // ì£¼ì‚¬ìœ„ì—ì„œ left
+				gotoxy(x, y - 3);
+				cout << " ";
+				gotoxy(x - 12, y - 3);
+				cout << "V";
+				gotoxy(x - 12, y); 
+				x = x - 12;
+			}
+			else if (x == 52) { // tableë¡œ ë“¤ì–´ê°€ê¸°
+				int turn = 1; // ì„ì‹œ
+				gotoxy(x, y - 3);
+				cout << " ";
+				// 1pëŠ” 22, 2pëŠ” 34
+				y = 5; // ì—¬ê¸°ì„œ í‘œë¡œ ì…ì¥, *** turnì„ í™•ì¸í•˜ê³  ì…ì¥í•´ì•¼í•¨ ì¢Œí‘œ ìˆ˜ì •	
+
+				if (turn == 1) x = 22;
+				else if (turn == 2) x = 34;
+				gotoxy(x, 5); 
+				cout << "V";
+			}
+			break;
+		}
+		case SPACE: {			
+			if (x < 101 && x > 51) { // ì£¼ì‚¬ìœ„ì—ì„œ ìŠ¤í˜ì´ìŠ¤, keep
+				
+				DiceKeepDraw();
+			}
+			break;
+		}
+		case UP: { // í‘œì—ì„œ ìœ„ë¡œê°€ëŠ” ë°©í–¥í‚¤ ëˆŒë €ì„ ë•Œ
+			if (y > 5 && x < 50) { // ìœ„ë¡œ ë”ëŠ” ëª»ê°€ê²Œ, ì£¼ì‚¬ìœ„ì—ì„œëŠ” ìœ„ë¡œ ì•ˆê°
+				gotoxy(x, y);
+				cout << " ";
+				gotoxy(x, y - 2);
+				cout << "V";
+				y = y - 2;
+			}
+			break;
+		}
+
+		case DOWN: { // í‘œì—ì„œ ì•„ë˜ë¡œ ê°€ëŠ” ë°©í–¥í‚¤ ëˆŒë €ì„ ë–„
+			if (y < 31 && x < 50) { // ì£¼ì‚¬ìœ„ì—ì„œëŠ” ì•„ë˜ë¡œ ì•ˆê°
+				gotoxy(x, y);
+				cout << " ";
+				gotoxy(x, y + 2);
+				cout << "V";
+				y = y + 2;
+			}
+			break;		
+		}
+
+		case ENTER: { // í‘œì—ì„œ ì—”í„°, ì ìˆ˜ë°•ê¸°
+			int turn = 1; // ì„ì‹œ
+			GameSceneInputManager gamescene;
+			gamescene.TableFixedDraw(); // ì—¬ê¸° 1ì˜ ìë¦¬ì— ê·¸ëƒ¥ ì—†ì–´ë„ ë  ë“¯? 
+			// ì—”í„° ëˆ„ë¥´ë©´ TableFixedDraw ë‚´ì—ì„œ í•´ë‹¹ ì»¤ì„œ ìœ„ì¹˜ í™•ì¸í•´ì„œ ê±°ê¸°ì— / ê·¸ë¦¼ / .ë³€ìˆ˜ ì–´ì©Œê³  ë°”ê¾¸ê¸°
+			if (turn == 1) turn = 2;
+			else if (turn == 2) turn = 1;
+		}		
+		}
+	}
+}
+
+COORD Draw::getxy() {
+	CONSOLE_SCREEN_BUFFER_INFO cursor;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursor);
+	return cursor.dwCursorPosition;
+}
+
+void GameSceneInputManager::RollTurnRoundDraw(int round, int turn, int roll) { //  ì„¼í„°ê°€ 76, 8
+	gotoxy(64, 8);
+	cout << "Round" << round;
+	gotoxy(76, 8);
+	cout << "Turn" << turn;
+	gotoxy(88, 8);
+	cout << "Roll" << roll;
+}
+int GameSceneInputManager::DiceActivateDraw() { // në²ˆì§¸ ì£¼ì‚¬ìœ„
+
+	COORD pos;
+	pos = getxy();
+	switch (pos.X) {
+	case 52: { cout << "    ";  return FIRST; }// gotoxy(52 - 1, 18);  break; }// 1ì£¼ì‚¬ìœ„ 
+	case 64: { cout << "    ";  return SECOND; } // gotoxy(64 - 1, 18); break;}
+	case 76: { cout << "    ";  return THIRD; } //  gotoxy(76 - 1, 18); break;}
+	case 88: { cout << "    ";  return FOURTH; } // gotoxy(88 - 1, 18); break;}
+	case 100: { cout << "    "; return FIFTH; } // gotoxy(100 - 1, 18); break;}
+	}
+}
+
+int GameSceneInputManager::DiceKeepDraw() { // në²ˆì§¸ ì£¼ì‚¬ìœ„
+
+	COORD pos;
+	pos = getxy();
+	switch (pos.X) {
+	case 52: { cout << "KEEP";  return FIRST; }// gotoxy(52 - 1, 18);  break; }// 1ì£¼ì‚¬ìœ„ 
+	case 64: { cout << "KEEP";  return SECOND; } // gotoxy(64 - 1, 18); break;}
+	case 76: { cout << "KEEP";  return THIRD; } //  gotoxy(76 - 1, 18); break;}
+	case 88: { cout << "KEEP";  return FOURTH; } // gotoxy(88 - 1, 18); break;}
+	case 100: { cout << "KEEP";  return FIFTH; } // gotoxy(100 - 1, 18); break;}
+	}
+	/*
+	cout << "    ";
+	switch (n) {
+	case 1: { gotoxy(52 - 1, 18);  break; }// 1ì£¼ì‚¬ìœ„ 
+	case 2: { gotoxy(64 - 1, 18); break; }
+	case 3: { gotoxy(76 - 1, 18); break; }
+	case 4: { gotoxy(88 - 1, 18); break; }
+	case 5: { gotoxy(100 - 1, 18); break; }	
+	}
+	*/
+}
+
+int GameSceneInputManager::TableFixedDraw() { //í‘œì˜ í–‰
+	
+	COORD pos;
+	pos = getxy();
+	if (pos.X < 40) {
+		gotoxy(pos.X + 2, pos.Y);
+		cout << "/";
+		gotoxy(pos.X, pos.Y);
+	}
+
+	switch (pos.Y) {
+	case5: { return 1; } // í–‰ì˜ ë²ˆí˜¸ì— ë”°ë¼ í•´ë‹¹ ìœ„ì¹˜ì˜ "ìˆ«ì" ì˜†ì— / ê·¸ë¦¬ê¸°
+	case7: { return 2; }
+	case9: { return 3; }
+	case11: { return 4; }
+	case13: { return 5; }
+	case15: { return 6; }
+	case17: { return 7; }
+	case19: { return 8; }
+	case21: { return 9; }
+	case23: { return 10; }
+	case25: { return 11; }
+	case27: { return 12; }
+
+	}
+	
+	
 	
 }
 
-GameSceneDraw::GameSceneDraw() { // »ı¼ºÀÚ¿¡¼­ ±×¸² ±×¸®±â
+GameSceneDraw::GameSceneDraw() { // ìƒì„±ìì—ì„œ ê·¸ë¦¼ ê·¸ë¦¬ê¸°
 	EraseScene();
-	vector<string> categories;
-	categories = { "Aces  ", "Deuces", "Threes", "Fours", "Fives", "Sixes", "Subtotal"
-		, "Choice", "4 of a Kind", "Full House", "S.Straight", "L.Straight", "Yatch", "Total" };
-	EraseScene();
-
-	cout << "  -----------------------------------------\n";
-	cout.width(2);
-	cout << "   " << std::left << "       ";
-	cout << "\t  l           l\n";
-
-	cout << "   " << std::left << "       ";
-	cout << "\t  l     1p    l     2p     \n";
-
-	cout << "   " << std::left << "       ";
-	cout << "\t  l           l\n";
-
-
-	for (int i = 0; i < 13; i++) {
-		cout << "  -----------------------------------------\n";
-		cout.width(2);
-		cout << "   " << std::left << categories.at(i);
-		cout << "\t  l           l\n";
-	}
-
-	cout << "  -----------------------------------------\n";
-	cout << "   " << std::left << categories.at(13);
-	cout << "\t  l           l\n";
-	//TableDraw table_draw;// Ç¥±×¸®±â
-	//DiceDraw dice_draw; //ÁÖ»çÀ§±×¸®±â
+	TableDraw table_draw;// í‘œê·¸ë¦¬ê¸°
+	DiceDraw dice_draw; //ì£¼ì‚¬ìœ„ê·¸ë¦¬ê¸°
 	TableValueDraw s({});
 	DiceValueDraw v({6,6,6,6,6});
 	vector<pair<int, int>> table_pos = { {24, 5}, {36, 5} };
 	pair<int, int> dice_pos = { 52, 15 };
+	GameSceneInputManager game_scene_input_manager;
+	//game_scene_input_manager.TableFixedDraw(2);
+	game_scene_input_manager.KeyMovingControl();
 
-	//GameSceneInputManager gamesceneinputmanager;
-	//gamesceneinputmanager.KeyMovingControl();
 }
 
 EndSceneDraw::EndSceneDraw() {
 
-	/*  ´©°¡ ½Â¸®ÇÏ¿´´ÂÁö ¶ç¿öÁÖ°í ¾Æ·¡¿¡ ¸Ş´º Ãâ·Â */
+	/*  ëˆ„ê°€ ìŠ¹ë¦¬í•˜ì˜€ëŠ”ì§€ ë„ì›Œì£¼ê³  ì•„ë˜ì— ë©”ë‰´ ì¶œë ¥ */
 
-	gotoxy(42, 15); // starscene°ú °°Àº À§Ä¡¿¡ ¸Ş´º ³ª¿Àµµ·Ï ÇÏ°í ½ÍÀ½
+	gotoxy(42, 15); // starsceneê³¼ ê°™ì€ ìœ„ì¹˜ì— ë©”ë‰´ ë‚˜ì˜¤ë„ë¡ í•˜ê³  ì‹¶ìŒ
 	cout << "Let's play this game!"; // 0
 	gotoxy(42, 16);
 	cout << "How to play this game?"; // 1
 	gotoxy(42, 17);
 	cout << "Exit"; // 2
 
-	/* team Á¤º¸ Ç¥½Ã */
+	/* team ì •ë³´ í‘œì‹œ */
 	gotoxy(38, 25);
 	cout << "< Object Oriented Programming >";
 	gotoxy(48, 26);
@@ -238,9 +390,9 @@ EndSceneDraw::EndSceneDraw() {
 TableDraw::TableDraw() {
 
 	vector<string> categories;
-	categories = { "Aces  ", "Deuces", "Threes", "Fours", "Fives", "Sixes", "Subtotal"
+	categories = { "Aces  ", "Deuce5s", "Threes", "Fours", "Fives", "Sixes", "Subtotal"
 		, "Choice", "4 of a Kind", "Full House", "S.Straight", "L.Straight", "Yatch", "Total" };
-	EraseScene();
+	//EraseScene();
 
 	cout << "  -----------------------------------------\n";
 	cout.width(2);
@@ -268,70 +420,72 @@ TableDraw::TableDraw() {
 }
 
 DiceDraw::DiceDraw() {
-	gotoxy(48, 13); // Ã¹¹øÂ° ´ÙÀÌ½º ½ÃÀÛ À§Ä¡	
-	cout << "¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¤";
+	/*
+	gotoxy(48, 13); 
+	//cout << "â”Œâ”€â”€â”€â”€â”€â”€â”";
 	gotoxy(48, 14);
-	cout << "¦¢      ¦¢";
+	//cout << "â”‚      â”‚";
 	gotoxy(48, 15);
-	cout << "¦¢      ¦¢";
+	//cout << "â”‚      â”‚";
 	gotoxy(48, 16);
-	cout << "¦¢      ¦¢";
+	//cout << "â”‚      â”‚";
 	gotoxy(48, 17);
-	cout << "¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¥";
-	gotoxy(52, 15); // Ã¹¹øÂ° ÁÖ»çÀ§ÀÇ ¼ıÀÚÀ§Ä¡
+	cout << "â””â”€â”€â”€â”€â”€â”€â”˜";
+	gotoxy(52, 15); // ì²«ë²ˆì§¸ ì£¼ì‚¬ìœ„ì˜ ìˆ«ììœ„ì¹˜
 	cout << "1";
 
 	gotoxy(60, 13);
-	cout << "¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¤";
+	cout << "â”Œâ”€â”€â”€â”€â”€â”€â”";
 	gotoxy(60, 14);
-	cout << "¦¢      ¦¢";
+	cout << "â”‚      â”‚";
 	gotoxy(60, 15);
-	cout << "¦¢      ¦¢";
+	cout << "â”‚      â”‚";
 	gotoxy(60, 16);
-	cout << "¦¢      ¦¢";
+	cout << "â”‚      â”‚";
 	gotoxy(60, 17);
-	cout << "¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¥";
-	gotoxy(64, 15); // µÎ¹øÂ° ÁÖ»çÀ§ÀÇ ¼ıÀÚÀ§Ä¡
+	cout << "â””â”€â”€â”€â”€â”€â”€â”˜";
+	gotoxy(64, 15); // ë‘ë²ˆì§¸ ì£¼ì‚¬ìœ„ì˜ ìˆ«ììœ„ì¹˜
 	cout << "2";
 
 	gotoxy(72, 13);
-	cout << "¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¤";
+	cout << "â”Œâ”€â”€â”€â”€â”€â”€â”";
 	gotoxy(72, 14);
-	cout << "¦¢      ¦¢";
+	cout << "â”‚      â”‚";
 	gotoxy(72, 15);
-	cout << "¦¢      ¦¢";
+	cout << "â”‚      â”‚";
 	gotoxy(72, 16);
-	cout << "¦¢      ¦¢";
+	cout << "â”‚      â”‚";
 	gotoxy(72, 17);
-	cout << "¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¥";
-	gotoxy(76, 15); // ¼¼¹øÂ° ÁÖ»çÀ§ÀÇ ¼ıÀÚÀ§Ä¡
+	cout << "â””â”€â”€â”€â”€â”€â”€â”˜";
+	gotoxy(76, 15); // ì„¸ë²ˆì§¸ ì£¼ì‚¬ìœ„ì˜ ìˆ«ììœ„ì¹˜
 	cout << "3";
 
 	gotoxy(84, 13);
-	cout << "¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¤";
+	cout << "â”Œâ”€â”€â”€â”€â”€â”€â”";
 	gotoxy(84, 14);
-	cout << "¦¢      ¦¢";
+	cout << "â”‚      â”‚";
 	gotoxy(84, 15);
-	cout << "¦¢      ¦¢";
+	cout << "â”‚      â”‚";
 	gotoxy(84, 16);
-	cout << "¦¢      ¦¢";
+	cout << "â”‚      â”‚";
 	gotoxy(84, 17);
-	cout << "¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¥";
-	gotoxy(88, 15); // ³×¹øÂ° ÁÖ»çÀ§ÀÇ ¼ıÀÚÀ§Ä¡
+	cout << "â””â”€â”€â”€â”€â”€â”€â”˜";
+	gotoxy(88, 15); // ë„¤ë²ˆì§¸ ì£¼ì‚¬ìœ„ì˜ ìˆ«ììœ„ì¹˜
 	cout << "4";
 
 	gotoxy(96, 13);
-	cout << "¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¤";
+	cout << "â”Œâ”€â”€â”€â”€â”€â”€â”";
 	gotoxy(96, 14);
-	cout << "¦¢      ¦¢";
+	cout << "â”‚      â”‚";
 	gotoxy(96, 15);
-	cout << "¦¢      ¦¢";
+	cout << "â”‚      â”‚";
 	gotoxy(96, 16);
-	cout << "¦¢      ¦¢";
+	cout << "â”‚      â”‚";
 	gotoxy(96, 17);
-	cout << "¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¥";
-	gotoxy(100, 15); // ´Ù¼¸¹øÂ° ÁÖ»çÀ§ÀÇ ¼ıÀÚÀ§Ä¡
+	cout << "â””â”€â”€â”€â”€â”€â”€â”˜";
+	gotoxy(100, 15); // ë‹¤ì„¯ë²ˆì§¸ ì£¼ì‚¬ìœ„ì˜ ìˆ«ììœ„ì¹˜
 	cout << "5";
+	*/
 }
 
 TableValueDraw::TableValueDraw(vector<int> v) {
