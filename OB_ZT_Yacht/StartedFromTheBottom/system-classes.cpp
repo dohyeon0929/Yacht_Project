@@ -312,7 +312,7 @@ int GameScene::KeyMovingControlReturn()
 				int tmp_y = y + 2;
 				while (!table_can_go[{turn, tmp_y}]) {
 					tmp_y += 2;
-					if (tmp_y >= 29)break;
+					if (tmp_y > 29)break;
 				}
 				if (tmp_y <= 29) {
 					gotoxy(x, y);

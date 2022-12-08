@@ -89,14 +89,12 @@ public:
 	Chart(const vector<int>& dice_num_set);
 	void SetDiceNumSet(const vector<int>& dice_num_set);
 	void FillValues();
+
 	void SetChartNum(const int& idx, const int& val);
 	vector<int> GetChartNum();
 	int GetSubTotal() { return sub_total; }
 	int GetTotal() { return total; }
-	void UpdateTotals();
-	void FixedDraw(int num);
 	Chart& operator=(Chart& chart);
 };
-
 
 #endif

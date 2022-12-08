@@ -81,11 +81,16 @@ int SmallStraight::GetPoint() {
 	int dp[5];
 	dp[0] = 1;
 	int ans = 1;
+	sort(dice_num_set.begin(), dice_num_set.end());
 	for (int i = 1; i < 5; i++) {
-		if (dice_num_set[i] == dice_num_set[i-1] + 1) {
+		if (dice_num_set[i] == dice_num_set[i - 1] + 1) {
 			dp[i] = dp[i - 1] + 1;
 			ans = max(ans, dp[i]);
 		}
+		else if (dice_num_set[i] == dice_num_set[i - 1]) {
+			dp[i] = dp[i - 1];
+		}
+		else dp[i] = 1;
 	}
 	if (ans >= 4)return 15;
 	else return 0;
@@ -93,12 +98,17 @@ int SmallStraight::GetPoint() {
 int LargeStraight::GetPoint() {
 	int dp[5];
 	dp[0] = 1;
+	sort(dice_num_set.begin(), dice_num_set.end());
 	int ans = 1;
 	for (int i = 1; i < 5; i++) {
-		if (dice_num_set[i] == dice_num_set[i - 1]+ 1) {
+		if (dice_num_set[i] == dice_num_set[i - 1] + 1) {
 			dp[i] = dp[i - 1] + 1;
 			ans = max(ans, dp[i]);
 		}
+		else if (dice_num_set[i] == dice_num_set[i - 1]) {
+			dp[i] = dp[i - 1];
+		}
+		else dp[i] = 1;
 	}
 	if (ans >= 5)return 30;
 	else return 0;
@@ -147,24 +157,6 @@ Chart::Chart() {
 	command_set.push_back(new SmallStraight);
 	command_set.push_back(new LargeStraight);
 	command_set.push_back(new Yacht);
-	 /*Ones ones;   Twoes twoes;   Threes threes;   Fours fours;  Fives fives;   Sixes sixes;
-	 Choice choice;   FourOfKind fok;   FullHouse fh;   SmallStraight ss;   LargeStraight ls;   Yacht yacht;
-	command_set.push_back(ones);
-	command_set.push_back(twoes);
-	command_set.push_back(threes);
-	command_set.push_back(fours);
-	command_set.push_back(fives);
-	command_set.push_back(sixes);
-	command_set.push_back(choice);
-	command_set.push_back(fok);
-	command_set.push_back(fh);
-	command_set.push_back(ss);
-	command_set.push_back(ls);
-	command_set.push_back(yacht);*/
-	//Command command_set[] = {
-	//ones, twoes, threes, fours, fives, sixes,
-	//choice, fok, fh, ss, ls, yacht
-	//};
 }
 Chart::Chart(const vector<int>& dice_num_set) {
 	for (int i = 0; i < 12; i++) {

@@ -141,14 +141,12 @@
   <ItemGroup>
     <ClCompile Include="chart-classes.cpp" />
     <ClCompile Include="dice-classes.cpp" />
-    <ClCompile Include="draw-classes.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="system-classes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chart-classes.h" />
     <ClInclude Include="dice-classes.h" />
-    <ClInclude Include="draw-classes.h" />
     <ClInclude Include="essential.h" />
     <ClInclude Include="system-classes.h" />
   </ItemGroup>
