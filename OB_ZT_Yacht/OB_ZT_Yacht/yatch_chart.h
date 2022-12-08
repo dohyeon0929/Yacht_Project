@@ -1,14 +1,15 @@
 #pragma once
-#pragma once
+#ifndef YATCH_CHART_H
+#define YATCH_CHART_H
 
 #include "chart_needs.h"
+#include "dice-classes.h"
 using namespace std;
+
 //ǥ class
 class Chart
 {
 private:
-	Chart();
-	Chart(string name);
 	string player_name = "";
 	int aces = -1;	//1
 	int deuces = -1;	//2
@@ -27,7 +28,8 @@ private:
 	int yacht = -1;				//������ 5��			12
 	int totalvalue = -1;
 public:
-
+	Chart();
+	Chart(string name);
 	friend class ChartFactory;		//��Ʈ ���丮 ����
 	friend class CalSet;
 	vector<int> dice_num;			//�ֻ��� ��
@@ -52,8 +54,12 @@ public:
 
 class GameManage
 {
+private:
 public:
+	int round, turn, roll;
+	vector<Dice> dice_set;
 	GameManage();
+	//GameManage GetGameManage();
 };
 
 //�ֻ��� ���� ���� ǥ �� ����
@@ -139,6 +145,7 @@ public:
 	Chart GetChart(string name);
 };
 
+#endif
 
 
 

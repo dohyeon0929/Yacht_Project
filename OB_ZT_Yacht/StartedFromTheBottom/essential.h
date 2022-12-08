@@ -14,7 +14,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <conio.h>
-
+#include <map>
+#include <functional>
+#include <numeric>
 using namespace std;
 
 
@@ -27,20 +29,20 @@ using namespace std;
 #define SUBMIT 4
 #define ENTER 13
 
-#define ACES 20
-#define Deuce5s 21
-#define Threes 22
-#define Fours 23
-#define Fives 24
-#define Sixes 25
-#define Subtotal 26
-#define Choice 27
-#define FourofaKind 28
-#define FullHouse 29
-#define SStraight 30
-#define LStraight 31
-#define Yatch 32
-#define Total 33
+//#define ACES 20
+//#define Deuce5s 21
+//#define Threes 22
+//#define Fours 23
+//#define Fives 24
+//#define Sixes 25
+//#define Subtotal 26
+//#define Choice 27
+//#define FourofaKind 28
+//#define FullHouse 29
+//#define SStraight 30
+//#define LStraight 31
+//#define Yatch 32
+//#define Total 33
 
 #define FIRST 41
 #define SECOND 42

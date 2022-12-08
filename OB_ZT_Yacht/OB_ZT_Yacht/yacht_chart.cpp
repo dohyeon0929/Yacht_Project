@@ -67,7 +67,6 @@ vector<int> Chart::GetRoundResult()
 {
 	this->aces = 10;
 
-	cout << "test\n";
 	vector<int>Result;
 	Result.push_back(this->aces);
 	Result.push_back(this->deuces);
@@ -214,27 +213,21 @@ void Chart::CalSet()
 	//위쪽 표 값 계산
 	if (upvalue.IsAble(this->aces) == false) {
 		this->chart_value[0] = upvalue.SetValue(this->dice_num, 0);
-		cout <<"aces : "<< this->aces << " / input";
 	}
 	if (upvalue.IsAble(this->deuces == false)){
 		this->chart_value[1] = upvalue.SetValue(this->dice_num, 1);
-		cout << "aces : " << this->deuces << " / input";
 	}
 	if (upvalue.IsAble(this->threes)){
 		this->chart_value[2] = upvalue.SetValue(this->dice_num, 2);
-		cout << "aces : " << this->threes << " / input";
 	}
 	if (upvalue.IsAble(this->fours)){
 		this->chart_value[3] = upvalue.SetValue(this->dice_num, 3);
-		cout << "aces : " << this->fours << " / input";
 	}
 	if (upvalue.IsAble(this->fives)){
 		this->chart_value[4] = upvalue.SetValue(this->dice_num, 4);
-		cout << "aces : " << this->fives << " / input";
 	}
 	if (upvalue.IsAble(this->sixes)){
 		this->chart_value[5] = upvalue.SetValue(this->dice_num, 5);
-		cout << "aces : " << this->sixes << " / input";
 	}
 	//for of kind 부터 choice 까지 null 여부 확인 후 값 대입 연산(chart_value에 저장한다)
 	if (fok.IsAble(this->choice))

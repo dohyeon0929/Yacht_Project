@@ -7,7 +7,6 @@ using namespace std;
 
 bool CalChart::IsAble(int value)
 {
-	cout << value << "\n";
 	if (value < 0)
 	{
 		return false;

@@ -2,49 +2,52 @@
 #include "dice-classes.h"
 #include "scene-classes.h"
 #include "yatch_chart.h"
-#include <io.h>
-#include <fcntl.h>
+
+
 GameManage::GameManage()
 {
-	int round, turn, roll;
+	for (int i = 0; i < 5; i++) {
+		Dice dice;
+		dice_set.push_back(dice);
+	}
 	ChartFactory factory;
 	Chart player1 = factory.GetChart();
 	Chart player2 = factory.GetChart();
-	vector<Chart>player;
-	player.push_back(player1);
-	player.push_back(player2);
+	vector<Chart>player(3);
+	player[1]=player1;
+	player[2]=player2;
 	vector<int>dice = { 1,2,3,4,5 }; // 주사위 셋 임시값
 	int winner;
-	player[0].GetRoundResult();
+	player[1].GetRoundResult();
 
-	for (int i = 0; i < 12; i++) //12라운드 진행
+	for (round = 1; round <= 12; round++) //12라운드 진행
 	{
-		for (int j = 0; i < 2; j++) //플레이어가 번갈아 가면서 진행
+		for (turn = 1; turn <= 2; turn++) //플레이어가 번갈아 가면서 진행
 		{
-			GameSceneInputManager game_scene_input_manager;
 			//cout <<  "입니다 ";
 			//TableValueDraw(player[j].GetRoundResult());
-			for (int x = 0; x < 3; x++) //한 플레이어가 3번까지 던질 수 있음
+			for (roll = 1; roll <= 3; roll++) //한 플레이어가 3번까지 던질 수 있음
 			{
+				GameSceneInputManager game_scene_input_manager;
 				while (1)
 				{
 					//임시값
 					//cout << "test1\n";
-					player[i].SetDiceValue(dice);
+					player[turn].SetDiceValue(dice);
 					//cout << "test2\n";
-					player[i].SetDefaultValue();
+					player[turn].SetDefaultValue();
 					//cout << "test3\n";
-					player[i].CalSet();
-					TableValueDraw(player[i].GetChartValue());
+					player[turn].CalSet();
+					TableValueDraw(player[turn].GetChartValue());
 					//cout << "test4\n";
 					//TableValueDraw(player[i].GetRoundResult());
 					int command = game_scene_input_manager.KeyMovingControlReturn();
 					switch (command)
 					{
 					case 1: //주사위 굴림
-						player[i].SetDiceValue(dice);
-						player[i].SetDefaultValue();
-						player[i].CalSet();
+						player[turn].SetDiceValue(dice);
+						player[turn].SetDefaultValue();
+						player[turn].CalSet();
 						//DiceValueDraw();
 						//TableValueDraw(player[i].GetChartValue());
 
@@ -61,12 +64,12 @@ GameManage::GameManage()
 
 					case 3: //표에 저장
 						int getreturn = 0;
-						player[i].PushValue(getreturn);
-						player[i].SetSubTotal();
-						player[i].SetBonus();
-						player[i].SetTotalSum();
+						player[turn].PushValue(getreturn);
+						player[turn].SetSubTotal();
+						player[turn].SetBonus();
+						player[turn].SetTotalSum();
 
-						x = 3; //for문 탈출
+						roll = 3; //for문 탈출
 						break;
 						// player[i].GetRoundResult();
 						//draw
@@ -74,7 +77,7 @@ GameManage::GameManage()
 				}
 			}
 		}
-		winner = player[0].Winner(player[1]);
+		winner = player[turn].Winner(player[turn]);
 	}
 }
 

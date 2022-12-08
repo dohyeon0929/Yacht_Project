@@ -1,6 +1,7 @@
 #include "scene-classes.h"
 #include "yatch_chart.h"
 extern int gamestart;
+//extern GameManage gm
 void StartSceneDraw::Init() {
 	system("mode con cols=110 lines=35 | title Yatch Dice with Special Items");
 }
@@ -72,7 +73,6 @@ void StartSceneInputManager::KeyMovingControl() {
 				gamestart = 1;
 				GameSceneDraw gamescene;
 				stop = true;
-				
 				break;
 			}
 			else if (y - 15 == 1) { // InfoScene으로 전환
@@ -240,11 +240,20 @@ int GameSceneInputManager::KeyMovingControlReturn()
 		}
 		case SPACE: {
 			if (x < 101 && x > 51) { // 주사위에서 스페이스, keep	
+				//extern GameManage gm;
+				//GameManage gm;
 				COORD pos;
 				pos = getxy(); // 커서 위치
-
+				int dice_num = (pos.X - 52) / 12;
+				/*gm.dice_set[dice_num].Toggle();
+				if (gm.dice_set[dice_num].IsActivated()) {
+					DiceKeepDraw(pos.X, pos.Y);
+				}
+				else {
+					DiceActivateDraw(pos.X, pos.Y);
+				}*/
 				/* 여기에 ifelse 만들어두삼 */
-				DiceKeepDraw(pos.X, pos.Y); // dice 변수가 들어옴
+				//DiceKeepDraw(pos.X, pos.Y); // dice 변수가 들어옴
 				//DiceActivateDraw(pos.X, pos.Y);
 			}
 			break;
@@ -382,6 +391,10 @@ void GameSceneInputManager::KeyMovingControl() { // 얘는 좀 구현이 빡세�
 			if (turn == 1) turn = 2;
 			else if (turn == 2) turn = 1;
 		}		
+
+		case 'R': {
+			
+		}
 		}
 	}
 }

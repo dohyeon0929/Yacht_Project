@@ -41,6 +41,7 @@ protected:
 public:		
 	virtual void Roll(); //�ֻ����� ���� ������ ���� ���´� 
 	virtual void Toggle(); //�ֻ����� ���¸� �ٲ۴�
+	bool IsActivated();
 	bool operator<(const Dice& dice) const;
 	Dice& operator=(Dice& dice);
 };

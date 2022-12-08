@@ -23,6 +23,10 @@ void Dice::Toggle() {
 	dice_state->Toggle(dice_state);
 }
 
+bool Dice::IsActivated() {
+	return dice_state->IsActivated();
+}
+
 bool Dice::operator<(const Dice& dice)const {
 	return this->dice_num > dice.dice_num;
 }

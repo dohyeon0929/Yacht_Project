@@ -2,8 +2,6 @@
 #include "dice-classes.h"
 #include "scene-classes.h"
 #include "yatch_chart.h"
-#include <io.h>
-#include <fcntl.h>
 int gamestart;
 int main() {
 	//_setmode(_fileno(stdout), _O_U16TEXT);

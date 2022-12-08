@@ -2,6 +2,7 @@
 #define SCENE_CLASSES_H
 
 #include "essential.h"
+#include "yatch_chart.h"
 
 class Draw // 추상클래스
 {
@@ -26,6 +27,7 @@ public:
 class GameSceneDraw : public Draw
 {
 public:
+	//GameManage gm;
 	GameSceneDraw();// 생성자
 };
 
