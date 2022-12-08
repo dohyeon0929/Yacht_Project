@@ -57,7 +57,7 @@ void StartScene::TitleDraw() { // title은 startscene에만 등장
 	std::cout << "  \\_/   \\__,_| \\__| \\___||_| |_| |___/  |_| \\___| \\___|\n";
 	gotoxy(0, 11);
 
-	for (int i = 0; i < 110; i++) std::cout<<"■";
+	for (int i = 0; i < 55; i++) std::cout<<"■";
 	std::cout << '\n';
 
 	gotoxy(42, 15); 
@@ -293,7 +293,7 @@ int GameScene::KeyMovingControlReturn()
 				int tmp_y = y-2;
 				while (!table_can_go[{turn, tmp_y}]) {
 					tmp_y -= 2;
-					if (tmp_y <= 5)break;
+					if (tmp_y < 5)break;
 				}
 				if (tmp_y >= 5) {
 					gotoxy(x, y);
