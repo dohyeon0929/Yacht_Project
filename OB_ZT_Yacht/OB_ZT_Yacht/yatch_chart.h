@@ -10,22 +10,22 @@ private:
 	Chart();
 	Chart(string name);
 	string player_name = "";
-	int* aces = nullptr;	//1  
-	int* deuces = nullptr;	//2
-	int* threes = nullptr;	//3
-	int* fours = nullptr;	//4
-	int* fives = nullptr;	//5
-	int* sixes = nullptr;	//6
-	int* bonus = nullptr;				//���ʽ� ����
-	int* subtotal = nullptr;			//���� ��Ż
+	int aces = -1;	//1
+	int deuces = -1;	//2
+	int threes = -1;	//3
+	int fours = -1;	//4
+	int fives = -1;	//5
+	int sixes = -1;	//6
+	int bonus = -1;				//���ʽ� ����
+	int subtotal = -1;			//���� ��Ż
 
-	int* choice = nullptr;				//choice				7
-	int* four_of_a_kind = nullptr;		//4�� ������			8
-	int* full_house = nullptr;			//Ǯ �Ͽ콺(2�� 3��)	9
-	int* s_straight = nullptr;			//���ӵ� 4��			10
-	int* b_straight = nullptr;			//���ӵ� 5��			11
-	int* yacht = nullptr;				//������ 5��			12
-	int* totalvalue = nullptr;
+	int choice = -1;				//choice				7
+	int four_of_a_kind = -1;		//4�� ������			8
+	int full_house = -1;			//Ǯ �Ͽ콺(2�� 3��)	9
+	int s_straight = -1;			//���ӵ� 4��			10
+	int b_straight = -1;			//���ӵ� 5��			11
+	int yacht = -1;				//������ 5��			12
+	int totalvalue = -1;
 public:
 
 	friend class ChartFactory;		//��Ʈ ���丮 ����
@@ -36,6 +36,7 @@ public:
 
 	vector<int> GetChartValue();	//chart_value �� ���� 
 	vector<int> GetRoundResult();	// ���� ����� ����
+	vector<int> GetDiceNum();
 	void SetDefaultValue();					//chart_value �ʱ�ȭ �� ����� �� ����
 
 	int Winner(Chart Player2);//���� ����ߴ���
@@ -61,7 +62,7 @@ class CalChart //: public ISetValue
 private:
 	Chart* chart;
 public:
-	virtual bool IsNullptr(int* values);
+	virtual bool IsAble(int values);
 	virtual int SetValue(vector<int>dice_num);
 };
 

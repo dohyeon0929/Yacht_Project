@@ -49,6 +49,14 @@ using namespace std;
 #define FIFTH 45
 
 /*
+extern bool FIRSTDICE;
+extern bool SECONDDICE;
+extern bool THIRDDICE;
+extern bool FOURTHDICE;
+extern bool FIFTHDICE;
+*/
+
+/*
 enum KEYBOARD {
     1p_UP = 72, 1p_LEFT = 75, 1p_RIGHT = 77, 1p_DOWN = 80
 };
@@ -64,5 +72,5 @@ int RandRange(int min, int max)
 }
 */
 
-// 안녕하세요 
+
 #endif

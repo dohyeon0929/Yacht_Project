@@ -2,13 +2,13 @@
 
 using namespace std;
 
-// yatch_chart�� ������ null���� Ȯ��, null�� �ƴ϶��,, setValue ����
+// yatch_chart의 변수가 null인지 확인, null이 아니라면,, setValue 시작
 
 
-bool CalChart::IsNullptr(int* value)
+bool CalChart::IsAble(int value)
 {
-	int result = 0;
-	if (*value)
+	cout << value << "\n";
+	if (value < 0)
 	{
 		return false;
 	}

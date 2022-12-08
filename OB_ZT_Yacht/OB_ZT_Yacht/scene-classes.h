@@ -3,18 +3,18 @@
 
 #include "essential.h"
 
-class Draw // �߻�Ŭ����
+class Draw // 추상클래스
 {
 public:	
-	void gotoxy(int, int); // ����	
+	void gotoxy(int, int); // 공통	
 	COORD getxy();
-	virtual void EraseScene(); // ����
+	virtual void EraseScene(); // 공통
 	
 private:
 	
 };
 
-// ���� scene ���ο��� �۵��ϴ� ���, scenemanager�� ���
+// 단일 scene 내부에서 작동하는 기능, scenemanager를 상속
 class StartSceneDraw : public Draw
 {
 public:
@@ -26,7 +26,7 @@ public:
 class GameSceneDraw : public Draw
 {
 public:
-	GameSceneDraw(); // ������
+	GameSceneDraw();// 생성자
 };
 
 class EndSceneDraw : public Draw
@@ -38,7 +38,7 @@ public:
 class TableDraw : public Draw
 {
 public:
-	TableDraw(); // ������
+	TableDraw(); // 생성자
 };
 
 class DiceDraw : public Draw
@@ -80,34 +80,35 @@ public:
 };
 
 
-class SceneInputManager : public Draw// �߻�Ŭ����
+class SceneInputManager : public Draw// 추상 클래스
 {
 public:
 	//virtual void InputKeyBoard();
 	int KeyControl();
-	virtual void KeyMovingControl() = 0; // ����
+	virtual void KeyMovingControl() = 0; // 공통
 };
 
 class StartSceneInputManager : public SceneInputManager
 {
 public:
-	void KeyMovingControl(); // ����
+	void KeyMovingControl(); // 공통
 };
 
 class InfoSceneInputManager : public SceneInputManager
 {
 public:
-	void KeyMovingControl(); // ����
+	void KeyMovingControl(); //공통
 };
 
 class GameSceneInputManager : public SceneInputManager
 {
 public:
 	void KeyMovingControl();
-	int DiceKeepDraw(); // ���° �ֻ�������
-	int DiceActivateDraw();
-	int TableFixedDraw(); // ���õ� ǥ�� �� num
-	void RollTurnRoundDraw(int, int, int); // ����, ��, ��
+	int KeyMovingControlReturn();
+	void DiceKeepDraw(int, int); // 몇 번째 주사위인지
+	void DiceActivateDraw(int, int);
+	int TableFixedDraw(); // 선택된 표의 행 num
+	void RollTurnRoundDraw(int, int, int); // 라운드, 턴, 롤
 };
 
 class EndSceneInputManager : public SceneInputManager
