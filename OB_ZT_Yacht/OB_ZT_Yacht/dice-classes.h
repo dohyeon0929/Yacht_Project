@@ -4,16 +4,16 @@
 #include "essential.h"
 int RandRange(const int& min, const int& max);
 
-// DiceÀÇ »óÅÂ activate/keep
+// Diceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ activate/keep
 class DiceState
 {
 private:
 public:
-	virtual void Toggle(DiceState* dice_state)=0; // ÁÖ»çÀ§ »óÅÂ Åä±Û
-	virtual bool IsActivated()=0; // ÁÖ»çÀ§°¡ ActivateÀÎÁö ¹ÝÈ¯
+	virtual void Toggle(DiceState* dice_state)=0; // ï¿½Ö»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	virtual bool IsActivated()=0; // ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ Activateï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
 };
 
-// ´ÙÀ½ ÁÖ»çÀ§ ·Ñ ¶§ ±¼¸± ¼ö ÀÖ´Â »óÅÂ
+// ï¿½ï¿½ï¿½ï¿½ ï¿½Ö»ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
 class DiceStateActivate : public DiceState
 {
 private:
@@ -22,7 +22,7 @@ public:
 	virtual bool IsActivated() { return true; }
 };
 
-// ´ÙÀ½ ÁÖ»çÀ§ ·Ñ ¶§ ±¼¸± ¼ö ¾ø´Â »óÅÂ
+// ï¿½ï¿½ï¿½ï¿½ ï¿½Ö»ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 class DiceStateKeep : public DiceState
 {
 private:
@@ -31,21 +31,21 @@ public:
 	virtual bool IsActivated() { return false; }
 };
 
-// ÁÖ»çÀ§ °ü·Ã Á¤º¸¿Í ±â´ÉÀ» ´ã´Â Å¬·¡½º
+// ï¿½Ö»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 class Dice
 {
 protected:
-	int dice_num = 0; //ÁÖ»çÀ§¸¦ ±¼·Á¼­ ³ª¿Â ¼ö
-	vector<int> dice_num_set; //ÁÖ»çÀ§ 6¸éÀÇ ´«µéÀÇ ÁýÇÕ
-	DiceState* dice_state = new DiceStateActivate(); //ÁÖ»çÀ§ÀÇ »óÅÂ¸¦ ÀÇ¹Ì
+	int dice_num = 0; //ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+	vector<int> dice_num_set; //ï¿½Ö»ï¿½ï¿½ï¿½ 6ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	DiceState* dice_state = new DiceStateActivate(); //ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½Ç¹ï¿½
 public:		
-	virtual void Roll(); //ÁÖ»çÀ§¸¦ ±¼·Á ÀÓÀÇÀÇ °ªÀ» °®´Â´Ù 
-	virtual void Toggle(); //ÁÖ»çÀ§ÀÇ »óÅÂ¸¦ ¹Ù²Û´Ù
+	virtual void Roll(); //ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½ 
+	virtual void Toggle(); //ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½Ù²Û´ï¿½
 	bool operator<(const Dice& dice) const;
 	Dice& operator=(Dice& dice);
 };
 
-//Æò¹üÇÑ ÁÖ»çÀ§
+//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö»ï¿½ï¿½ï¿½
 class NormalDice : public Dice
 {
 public:
@@ -53,7 +53,7 @@ public:
 	bool isNormal() { return true; }
 };
 
-//Æ¯¼ö´É·ÂÀ» ÅëÇØ »ç¿ëÇÒ ¼ö ÀÖ´Â ¼ýÀÚ 2°³·Î ÀÌ·ç¾îÁø ÁÖ»çÀ§
+//Æ¯ï¿½ï¿½ï¿½É·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ï¿½ ï¿½Ö»ï¿½ï¿½ï¿½
 class TwoSideDice : public Dice
 {
 private:
@@ -63,31 +63,31 @@ public:
 	void SetDiceNumSet();
 };
 
-// TwoSideDice¸¦ ¾µ ¶§ »ç¿ëÇÒ µÎ °³ÀÇ ¼ýÀÚ¸¦ °í¸£°í ³Ñ°ÜÁÖ´Â Å¬·¡½º
+// TwoSideDiceï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½Ö´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 class SelectNums {
 private:
 	int count;
 	vector<int> num_set; 
 public:
 	SelectNums(int count = 2) { this->count = count; }
-	void Select(); //¼ýÀÚ count°³ ÀÔ·Â¹Þ±â
+	void Select(); //ï¿½ï¿½ï¿½ï¿½ countï¿½ï¿½ ï¿½Ô·Â¹Þ±ï¿½
 	vector<int> GetDiceNumSet() { return num_set; }
 };
 
-// ÁÖ»çÀ§µéÀÇ ÁýÇÕ
+// ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 class DiceSet {
 protected:
 	vector<Dice> dice_set;
 public:
-	virtual Dice GetDice(const int& idx); //idx ÀÎµ¦½º¿¡ ÇØ´çµÇ´Â ÁÖ»çÀ§ ¹ÝÈ¯
+	virtual Dice GetDice(const int& idx); //idx ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½Ç´ï¿½ ï¿½Ö»ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
 	virtual vector<Dice> GetDiceSet() { return dice_set; }
-	virtual int Size() { return dice_set.size(); }// ÁÖ»çÀ§ ÁýÇÕÀÇ Å©±â¸¦ ¹ÝÈ¯
-	virtual void Add(const Dice& dice); //ÁÖ»çÀ§ ÁýÇÕ dices¿¡ dice Ãß°¡
-	virtual void Remove(const int& count); //ÁÖ»çÀ§ ÁýÇÕ¿¡¼­ ÆÄ¶ó¹ÌÅÍ¿¡ ÇØ´çµÇ´Â Á¾·ùÀÇ dice Á¦°Å
-	virtual void Clear(); //ÁÖ»çÀ§ ÁýÇÕ ºñ¿ì±â
+	virtual int Size() { return dice_set.size(); }// ï¿½Ö»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½â¸¦ ï¿½ï¿½È¯
+	virtual void Add(const Dice& dice); //ï¿½Ö»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ dicesï¿½ï¿½ dice ï¿½ß°ï¿½
+	virtual void Remove(const int& count); //ï¿½Ö»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Õ¿ï¿½ï¿½ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½Ø´ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ dice ï¿½ï¿½ï¿½ï¿½
+	virtual void Clear(); //ï¿½Ö»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 };
 
-// Activate »óÅÂÀÎ ÁÖ»çÀ§µéÀÇ ÁýÇÕ
+// Activate ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 class ActivateDiceSet : public DiceSet
 {
 private:
@@ -101,7 +101,7 @@ public:
 	virtual void Clear();
 };
 
-// DiceSet »ý¼ºÇÏ´Â Å¬·¡½º
+// DiceSet ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 class DiceSetFactory 
 {
 private:
@@ -109,8 +109,8 @@ private:
 	DiceSet special_dice_set;
 	int dice_count=5;
 public:
-	DiceSetFactory SetDiceCount(const int& count); // »ý¼ºÇÒ DiceSetÀÇ dice °³¼ö ¼³Á¤
-	DiceSetFactory ChangeSpecialDice(const Dice& dice); // »ý¼ºÇÒ DiceSet¿¡¼­ normal_dice ÇÏ³ª¸¦ Á¦°ÅÇÏ°í ÆÄ¶ó¹ÌÅÍ·Î ¹ÞÀº dice Ãß°¡
-	DiceSet GetDiceSet(); // ¼³Á¤ÇÑ Á¶°Ç´ë·Î DiceSetÀ» »ý¼ºÇÏ°í ¹ÝÈ¯ÇÔ
+	DiceSetFactory SetDiceCount(const int& count); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ DiceSetï¿½ï¿½ dice ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	DiceSetFactory ChangeSpecialDice(const Dice& dice); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ DiceSetï¿½ï¿½ï¿½ï¿½ normal_dice ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½Í·ï¿½ ï¿½ï¿½ï¿½ï¿½ dice ï¿½ß°ï¿½
+	DiceSet GetDiceSet(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç´ï¿½ï¿½ DiceSetï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½È¯ï¿½ï¿½
 };
 #endif

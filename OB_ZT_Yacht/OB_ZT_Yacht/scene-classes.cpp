@@ -20,11 +20,7 @@ void StartSceneDraw::TitleDraw() { // title은 startscene에만 등장
 	gotoxy(26, 7);
 	cout << "  \\_/   \\__,_| \\__| \\___||_| |_| |___/  |_| \\___| \\___|\n";
 	gotoxy(0, 11);
-<<<<<<< HEAD
-=======
 	for (int i = 0; i < 110; i++)cout<<"■";
-	cout << '\n';
->>>>>>> c2c392ff82beac7728a51e52760f48bae8dc2c51
 	gotoxy(42, 15); 
 	cout << "Let's play this game!"; // 0
 	gotoxy(42, 16);

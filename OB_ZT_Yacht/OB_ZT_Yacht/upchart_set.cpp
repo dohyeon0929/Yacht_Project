@@ -2,7 +2,7 @@
 
 using namespace std;
 
-// yatch_chartÀÇ º¯¼ö°¡ nullÀÎÁö È®ÀÎ, nullÀÌ ¾Æ´Ï¶ó¸é,, setValue ½ÃÀÛ
+// yatch_chartï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ nullï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½, nullï¿½ï¿½ ï¿½Æ´Ï¶ï¿½ï¿½,, setValue ï¿½ï¿½ï¿½ï¿½
 
 
 bool CalChart::IsNullptr(int* value)

@@ -48,7 +48,7 @@ void TwoSideDice::SetDiceNumSet() {
 
 //SelectNums
 void SelectNums::Select() {
-	//UI ¾î¶»°Ô ±¸ÇöÇÒÁö¿¡ µû¶ó ´Þ¸° µí?
+	//UI ï¿½î¶»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¸ï¿½ ï¿½ï¿½?
 	int num;
 	for (int i = 0; i < count; i++) {
 		cin >> num;

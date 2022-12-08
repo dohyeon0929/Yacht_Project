@@ -2,19 +2,19 @@
 #include "yatch_chart.h"
 
 
-Chart::Chart() // »ý¼ºÀÚ 
+Chart::Chart() // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 {
 	this->player_name = "guest";
 }
 
 
-Chart::Chart(string name)// »ý¼ºÀÚ, ÇÃ·¹ÀÌ¾î ÀÌ¸§ °ªÀ» ³ÖÀ» ¶§
+Chart::Chart(string name)// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 {
 	this->player_name = name;
 }
 
 
-void Chart::SetBonus() //subtotal ÀÇ °ªÀÌ 63ÀÌ»óÀÌ¸é bonus¸¦ 35·Î ¼³Á¤, bonusÀÇ ±âº»°ªÀº null
+void Chart::SetBonus() //subtotal ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 63ï¿½Ì»ï¿½ï¿½Ì¸ï¿½ bonusï¿½ï¿½ 35ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, bonusï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½ null
 {
 	if (*subtotal > 63)
 	{
@@ -23,26 +23,26 @@ void Chart::SetBonus() //subtotal ÀÇ °ªÀÌ 63ÀÌ»óÀÌ¸é bonus¸¦ 35·Î ¼³Á¤, bonusÀÇ 
 }
 
 
-void Chart::SetTotalSum() //À§ÂÊ Ç¥ ÇÕ, ÇÏ´Ü Ç¥ÀÇ ÇÕ , º¸³Ê½º Á¡¼öÀÇ ÇÕ ´õÇÏ±â
+void Chart::SetTotalSum() //ï¿½ï¿½ï¿½ï¿½ Ç¥ ï¿½ï¿½, ï¿½Ï´ï¿½ Ç¥ï¿½ï¿½ ï¿½ï¿½ , ï¿½ï¿½ï¿½Ê½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
 {
 	*this->totalvalue = *subtotal + *choice + *four_of_a_kind + *full_house + *s_straight + *b_straight + *totalvalue + *bonus;
 }
 
 
-void Chart::SetSubTotal() //»ó´Ü Ç¥ °ª
+void Chart::SetSubTotal() //ï¿½ï¿½ï¿½ Ç¥ ï¿½ï¿½
 {
 	*this->subtotal = *aces + *deuces + *threes + *fours + *fives + *sixes;
 }
 
 
-void Chart::SetDiceValue(vector<int>input) //ÁÖ»çÀ§·ÎºÎÅÍ ¹ÞÀº vector<int> ÇüÅÂ·Î ¸®ÅÏ
+void Chart::SetDiceValue(vector<int>input) //ï¿½Ö»ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ vector<int> ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½
 {
-	this->dice_num.clear();//erase(dice_num.begin(), dice_num.end()); //ÀÌÀü ÁÖ»çÀ§ ÀúÀåµÈ °ª ÃÊ±âÈ­
+	this->dice_num.clear();//erase(dice_num.begin(), dice_num.end()); //ï¿½ï¿½ï¿½ï¿½ ï¿½Ö»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê±ï¿½È­
 	for (int i = 0; i < input.size(); i++)
 	{
-		this->dice_num[i] = input[i]; //ÀÔ·Â¹ÞÀº ÁÖ»çÀ§ °ªÀ» dice_num (ÁÖ»çÀ§ ´« °á°ú°ª) ¿¡ ÀúÀå
+		this->dice_num[i] = input[i]; //ï¿½Ô·Â¹ï¿½ï¿½ï¿½ ï¿½Ö»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ dice_num (ï¿½Ö»ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
-	sort(this->dice_num.begin(), this->dice_num.end()); //ÁÖ»çÀ§ °á°ú°ª Á¤·Ä
+	sort(this->dice_num.begin(), this->dice_num.end()); //ï¿½Ö»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 }
 int Chart::Winner(Chart player2)
 {
@@ -51,10 +51,10 @@ int Chart::Winner(Chart player2)
 	else return 0;
 }
 
-// *subtotal = GetSuubtotal() ·Î Ã³¸®
+// *subtotal = GetSuubtotal() ï¿½ï¿½ Ã³ï¿½ï¿½
 
 
-//ÇÃ·¹ÀÌ¾î°¡ ÅÏÀ» ³Ñ±æ ¶§ ÃÖÁ¾ °á°ú°ª Ç¥¿¡ ±â·Ï, vector<int>°ª ¸®ÅÏÇÑ´Ù.
+//ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ±ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½, vector<int>ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 vector<int> Chart::GetRoundResult()
 {
 	vector<int>Result;
@@ -78,12 +78,12 @@ vector<int> Chart::GetRoundResult()
 }
 
 /*
-ÇÃ·¹ÀÌ¾î ÅÏÀÌ µÇ¾úÀ» ¶§, ¿¬»ê¿¡ ÀÌ¿ëÇÒ ÀÓ½Ã°ª¿¡ ÀÌÀü ±â·Ï°ªÀ» ´õÇÏ¿© ÃÊ±âÈ­ ÇØÁØ´Ù
-public º¯¼ö chart_value(ÀÓ½Ã°ª) º¤ÅÍ¿¡ º¹»çÇÏ¿© °ª Àü´Þ
+ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½ï¿½ê¿¡ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½Ó½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½Ø´ï¿½
+public ï¿½ï¿½ï¿½ï¿½ chart_value(ï¿½Ó½Ã°ï¿½) ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 */
 void Chart::SetDefaultValue()
 {
-	this->chart_value.clear();//erase(chart_value.egin(), chart_value.end());  //ÀÌÀü °ª Á¤¸®
+	this->chart_value.clear();//erase(chart_value.egin(), chart_value.end());  //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	this->chart_value.push_back(*this->aces);		//1
 	this->chart_value.push_back(*this->deuces);		//2		this->chart_value.push_back(*this->threes); //3
 	this->chart_value.push_back(*this->fours);		//4
@@ -101,13 +101,13 @@ void Chart::SetDefaultValue()
 	this->chart_value.push_back(*this->totalvalue);
 }
 
-//ÀÓ½Ã°ª ¸®ÅÏ(ÇÑ ¹ø ÁÖ»çÀ§¸¦ ´øÁú ¶§¸¶´Ù ¸®ÅÏÇØÁØ´Ù)
+//ï¿½Ó½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½)
 vector<int> Chart::GetChartValue()
 {
 	return this->chart_value;
 }
 
-//Ç¥¿¡ ±â·ÏÇÏ±â·Î °áÁ¤ÇÑ °ª ÀÔ·ÂÇØÁÖ±â
+//Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 void Chart::PushValue(int choose_num)
 {   
 	switch (choose_num)
@@ -190,10 +190,10 @@ void Chart::CalSet()
 	{
 		if (upvalue.IsNullptr(&this->chart_value[i]))
 			this->chart_value[i] = upvalue.SetValue(this->dice_num, i);
-	} //À§ÂÊ Ç¥ °ª °è»ê
+	} //ï¿½ï¿½ï¿½ï¿½ Ç¥ ï¿½ï¿½ ï¿½ï¿½ï¿½
 
-	//for of kind ºÎÅÍ choice ±îÁö null ¿©ºÎ È®ÀÎ ÈÄ °ª ´ëÀÔ ¿¬»ê(chart_value¿¡ ÀúÀåÇÑ´Ù)
-	if (fok.IsNullptr(&this->chart_value[6])) //¾Æ·¡ÂÊ Ç¥ °ª °è»ê
+	//for of kind ï¿½ï¿½ï¿½ï¿½ choice ï¿½ï¿½ï¿½ï¿½ null ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(chart_valueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½)
+	if (fok.IsNullptr(&this->chart_value[6])) //ï¿½Æ·ï¿½ï¿½ï¿½ Ç¥ ï¿½ï¿½ ï¿½ï¿½ï¿½
 		this->chart_value[6] = fok.SetValue(this->dice_num);
 
 	if (fh.IsNullptr(&this->chart_value[7]))

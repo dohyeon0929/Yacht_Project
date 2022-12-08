@@ -16,36 +16,36 @@ private:
 	int* fours = nullptr;	//4
 	int* fives = nullptr;	//5
 	int* sixes = nullptr;	//6
-	int* bonus = nullptr;				//º¸³Ê½º Á¡¼ö
-	int* subtotal = nullptr;			//¼­ºê ÅäÅ»
+	int* bonus = nullptr;				//ï¿½ï¿½ï¿½Ê½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	int* subtotal = nullptr;			//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å»
 
 	int* choice = nullptr;				//choice				7
-	int* four_of_a_kind = nullptr;		//4°³ °°Àº¼ö			8
-	int* full_house = nullptr;			//Ç® ÇÏ¿ì½º(2°³ 3°³)	9
-	int* s_straight = nullptr;			//¿¬¼ÓµÈ 4°³			10
-	int* b_straight = nullptr;			//¿¬¼ÓµÈ 5°³			11
-	int* yacht = nullptr;				//°°Àº¼ö 5°³			12
+	int* four_of_a_kind = nullptr;		//4ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½			8
+	int* full_house = nullptr;			//Ç® ï¿½Ï¿ì½º(2ï¿½ï¿½ 3ï¿½ï¿½)	9
+	int* s_straight = nullptr;			//ï¿½ï¿½ï¿½Óµï¿½ 4ï¿½ï¿½			10
+	int* b_straight = nullptr;			//ï¿½ï¿½ï¿½Óµï¿½ 5ï¿½ï¿½			11
+	int* yacht = nullptr;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 5ï¿½ï¿½			12
 	int* totalvalue = nullptr;
 public:
 
-	friend class ChartFactory;		//Â÷Æ® ÆÑÅä¸® »ý¼º
+	friend class ChartFactory;		//ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½
 	friend class CalSet;
-	vector<int> dice_num;			//ÁÖ»çÀ§ °ª
-	vector<int> chart_value;		//ÀÓ½Ã °ª
+	vector<int> dice_num;			//ï¿½Ö»ï¿½ï¿½ï¿½ ï¿½ï¿½
+	vector<int> chart_value;		//ï¿½Ó½ï¿½ ï¿½ï¿½
 
 
-	vector<int> GetChartValue();	//chart_value °ª ¸®ÅÏ 
-	vector<int> GetRoundResult();	// ¶ó¿îµå °á°ú°ª ¸®ÅÏ
-	void SetDefaultValue();					//chart_value ÃÊ±âÈ­ ¹× ÀúÀåµÈ °ª ´ëÀÔ
+	vector<int> GetChartValue();	//chart_value ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+	vector<int> GetRoundResult();	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	void SetDefaultValue();					//chart_value ï¿½Ê±ï¿½È­ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-	int Winner(Chart Player2);//´©°¡ ¿ì½ÂÇß´ÂÁö
-	void SetTotalSum();						//ÀüÃ¼ °ª ÇÕ
-	void SetSubTotal();						//À§ÂÊ Ç¥ °ª ´õÇÏ±â
-	void CalSet();							//¿¬»ê°ª ÀÓ½Ã ÀúÀå
+	int Winner(Chart Player2);//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½
+	void SetTotalSum();						//ï¿½ï¿½Ã¼ ï¿½ï¿½ ï¿½ï¿½
+	void SetSubTotal();						//ï¿½ï¿½ï¿½ï¿½ Ç¥ ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
+	void CalSet();							//ï¿½ï¿½ï¿½ê°ª ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-	void PushValue(int choose_num);			//ÀÓ½Ã°ª °è»ê °á°úÁß ÀúÀåÇÒ °ª È®Á¤Áþ±â
-	void SetBonus();						//º¸³Ê½º Á¡¼ö È®ÀÎ
-	void SetDiceValue(vector<int>input);	//ÁÖ»çÀ§·ÎºÎÅÍ ÀÔ·Â¹ÞÀº °ª ÀúÀå
+	void PushValue(int choose_num);			//ï¿½Ó½Ã°ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	void SetBonus();						//ï¿½ï¿½ï¿½Ê½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
+	void SetDiceValue(vector<int>input);	//ï¿½Ö»ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ ï¿½Ô·Â¹ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 };
 
 
@@ -55,7 +55,7 @@ public:
 	GameManage();
 };
 
-//ÁÖ»çÀ§ °ª¿¡ µû¸¥ Ç¥ °ª ¼³Á¤
+//ï¿½Ö»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ç¥ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 class CalChart //: public ISetValue
 {
 private:
@@ -66,7 +66,7 @@ public:
 };
 
 
-// À§ÂÊ Ç¥, command
+// ï¿½ï¿½ï¿½ï¿½ Ç¥, command
 class CheckUpValue : public CalChart
 {
 private:
@@ -76,7 +76,7 @@ public:
 	int SetValue(vector<int>dice_num, int number);
 };
 
-//¾Æ·¡ÂÊ Ç¥, command
+//ï¿½Æ·ï¿½ï¿½ï¿½ Ç¥, command
 class CheckFOK : public CalChart
 {
 private:

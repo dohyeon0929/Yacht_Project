@@ -18,8 +18,8 @@
 using namespace std;
 
 
-#define MAGIC_KEY 224 // »óÇÏÁÂ¿ì È­»ìÇ¥°¡ µé¾î¿Ã ¶§ ¼±ÇàµÇ¾î µé¾î¿À´Â ¼ýÀÚ
-#define SPACE 32 // ½ºÆäÀÌ½º Å° °ª
+#define MAGIC_KEY 224 // ï¿½ï¿½ï¿½ï¿½ï¿½Â¿ï¿½ È­ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+#define SPACE 32 // ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ Å° ï¿½ï¿½
 #define UP 0
 #define DOWN 1
 #define LEFT 2
@@ -64,5 +64,5 @@ int RandRange(int min, int max)
 }
 */
 
-
+// ì•ˆë…•í•˜ì„¸ìš” 
 #endif
