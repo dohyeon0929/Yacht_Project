@@ -305,7 +305,7 @@ int GameScene::KeyMovingControlReturn()
 				int tmp_y = y-2;
 				while (!table_can_go[{turn, tmp_y}]) {
 					tmp_y -= 2;
-					if (tmp_y <= 5)break;
+					if (tmp_y < 5)break;
 				}
 				if (tmp_y >= 5) {
 					gotoxy(x, y);
@@ -324,7 +324,7 @@ int GameScene::KeyMovingControlReturn()
 				int tmp_y = y + 2;
 				while (!table_can_go[{turn, tmp_y}]) {
 					tmp_y += 2;
-					if (tmp_y >= 29)break;
+					if (tmp_y > 29)break;
 				}
 				if (tmp_y <= 29) {
 					gotoxy(x, y);
@@ -379,9 +379,9 @@ void GameScene::MakeDiceNumSet() {
 void GameScene::TableDraw() {
 
 	vector<string> categories;
-	categories = { "Aces  ", "Deuce5s", "Threes", "Fours", "Fives", "Sixes", "Subtotal"
+	categories = { "Aces  ", "Deuces", "Threes", "Fours", "Fives", "Sixes", "Subtotal"
 		, "Choice", "4 of a Kind", "Full House", "S.Straight", "L.Straight", "Yatch", "Total" };
-	//EraseScene();
+	//EraseScene()
 
 	std::cout << "  -------------------------------------------\n";
 	std::cout.width(2);

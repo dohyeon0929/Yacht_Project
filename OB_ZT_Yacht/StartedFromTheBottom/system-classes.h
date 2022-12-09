@@ -46,7 +46,7 @@ private:
 	vector<int> dice_num_set;
 	Chart player[3];
 	Chart tmp_player[3];
-	vector<pair<int, int>> table_pos = { {0,0}, {24, 5}, {36, 5} };
+	vector<pair<int, int>> table_pos = { {0,0}, {25, 5}, {38, 5} };
 	vector<int> table_y_pos = { 5,7,9,11,13,15,19,21,23,25,27,29 };
 	vector<int> table_total_y_pos = { 17,31 };
 	pair<int, int> dice_pos = { 52, 15 };
