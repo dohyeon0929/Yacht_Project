@@ -1,15 +1,15 @@
-﻿#include "yatch_chart.h"
+#include "yatch_chart.h"
 
 using namespace std;
 
-//FOK 값 있는지 확인, 대입
+//FOK �� �ִ��� Ȯ��, ����
 int CheckFOK::SetValue(vector<int>dice_num)
 {
 	int result = 0;
-	int check_value[6] = {0,};
+	int check_value[6] = { 0, };
 	for (int i = 0; i < dice_num.size(); i++)
 	{
-			check_value[dice_num[i]] += 1;
+		check_value[dice_num[i]] += 1;
 	}
 	for (int i = 0; i < dice_num.size(); i++)
 	{
@@ -23,7 +23,7 @@ CheckFOK::CheckFOK(Chart* chart)
 	this->chart = chart;
 }
 
-//Full House 값 있는지 확인, 대입
+//Full House �� �ִ��� Ȯ��, ����
 int CheckFH::SetValue(vector<int>dice_num)
 {
 	int result = 0;
@@ -52,7 +52,7 @@ CheckFH::CheckFH(Chart* chart)
 }
 
 
-//Small Straight 값 있는지 확인, 대입
+//Small Straight �� �ִ��� Ȯ��, ����
 int CheckSS::SetValue(vector<int>dice_num)
 {
 	int result = 0;
@@ -75,11 +75,11 @@ CheckSS::CheckSS(Chart* chart)
 }
 
 
-//Big Straight 값 있는지 확인, 대입
+//Big Straight �� �ִ��� Ȯ��, ����
 int CheckBS::SetValue(vector<int>dice_num)
 {
 	int result = 0;
-	if ((accumulate(dice_num.begin(), dice_num.end(), 0) == 15 && dice_num.front() == 1 &&dice_num.back() == 5)) 
+	if ((accumulate(dice_num.begin(), dice_num.end(), 0) == 15 && dice_num.front() == 1 && dice_num.back() == 5))
 		result = 40;
 	if ((accumulate(dice_num.begin(), dice_num.end(), 0) == 20 && dice_num.front() == 2 && dice_num.back() == 6))
 		result = 40;
@@ -91,7 +91,7 @@ CheckBS::CheckBS(Chart* chart)
 }
 
 
-//yacht 값 있는지 확인, 대입
+//yacht �� �ִ��� Ȯ��, ����
 int CheckYacht::SetValue(vector<int>dice_num)
 {
 	int result = 50;
@@ -105,7 +105,7 @@ CheckYacht::CheckYacht(Chart* chart)
 }
 
 
-//choice 값 있는지 확인, 대입
+//choice �� �ִ��� Ȯ��, ����
 int CheckChoice::SetValue(vector<int>dice_num)
 {
 	int result = 0;

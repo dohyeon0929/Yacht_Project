@@ -23,6 +23,10 @@ void Dice::Toggle() {
 	dice_state->Toggle(dice_state);
 }
 
+bool Dice::IsActivated() {
+	return dice_state->IsActivated();
+}
+
 bool Dice::operator<(const Dice& dice)const {
 	return this->dice_num > dice.dice_num;
 }
@@ -48,7 +52,7 @@ void TwoSideDice::SetDiceNumSet() {
 
 //SelectNums
 void SelectNums::Select() {
-	//UI ¾î¶»°Ô ±¸ÇöÇÒÁö¿¡ µû¶ó ´Þ¸° µí?
+	//UI ï¿½î¶»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¸ï¿½ ï¿½ï¿½?
 	int num;
 	for (int i = 0; i < count; i++) {
 		cin >> num;

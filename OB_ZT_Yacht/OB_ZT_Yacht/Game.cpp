@@ -1,38 +1,57 @@
-﻿#include "yatch_chart.h"
-
+#include "essential.h"
+#include "dice-classes.h"
+#include "scene-classes.h"
+#include "yatch_chart.h"
 
 
 GameManage::GameManage()
 {
-	int round, turn, roll;
+	for (int i = 0; i < 5; i++) {
+		Dice dice;
+		dice_set.push_back(dice);
+	}
 	ChartFactory factory;
-	vector<Chart>player;
-	player[0] = factory.GetChart();
-	player[1] = factory.GetChart();
-
-	vector<int>dice; // 주사위 셋 임시값
+	Chart player1 = factory.GetChart();
+	Chart player2 = factory.GetChart();
+	vector<Chart>player(3);
+	player[1]=player1;
+	player[2]=player2;
+	vector<int>dice = { 1,2,3,4,5 }; // 주사위 셋 임시값
 	int winner;
+	player[1].GetRoundResult();
 
-	for (int i = 0; i < 12; i++)
+	for (round = 1; round <= 12; round++) //12라운드 진행
 	{
-		for (int j = 0; i < 2; j++)
+		for (turn = 1; turn <= 2; turn++) //플레이어가 번갈아 가면서 진행
 		{
-			for (int x = 0; x < 3; x++)
+			//cout <<  "입니다 ";
+			//TableValueDraw(player[j].GetRoundResult());
+			for (roll = 1; roll <= 3; roll++) //한 플레이어가 3번까지 던질 수 있음
 			{
-				//RoundTurnRollDraw()
+				GameSceneInputManager game_scene_input_manager;
 				while (1)
 				{
-					int command = 0;
+					//임시값
+					//cout << "test1\n";
+					player[turn].SetDiceValue(dice);
+					//cout << "test2\n";
+					player[turn].SetDefaultValue();
+					//cout << "test3\n";
+					player[turn].CalSet();
+					TableValueDraw(player[turn].GetChartValue());
+					//cout << "test4\n";
+					//TableValueDraw(player[i].GetRoundResult());
+					int command = game_scene_input_manager.KeyMovingControlReturn();
 					switch (command)
 					{
 					case 1: //주사위 굴림
-						player[i].SetDiceValue(dice);
-						player[i].SetDefaultValue();
-						player[i].CalSet();
+						player[turn].SetDiceValue(dice);
+						player[turn].SetDefaultValue();
+						player[turn].CalSet();
 						//DiceValueDraw();
 						//TableValueDraw(player[i].GetChartValue());
 
-					case 2:
+					case 2: //주사위 킵
 						//여쪽 코드는 내가 몰라요,,,우ㅠㅜ..
 						/*
 						커서가 스페이스를 눌렀을 때->얘가 몇 번째 주사위에서 누른 건지를
@@ -43,18 +62,23 @@ GameManage::GameManage()
 						DiceActivateDraw(int 몇 번째 주사위)-- > 테두리에 아무것도 없게 #기본 상태
 						*/
 
-					case 3:
+					case 3: //표에 저장
 						int getreturn = 0;
-						player[i].PushValue(getreturn);
-						player[i].SetSubTotal();
-						player[i].SetBonus();
-						player[i].SetTotalSum();
+						player[turn].PushValue(getreturn);
+						player[turn].SetSubTotal();
+						player[turn].SetBonus();
+						player[turn].SetTotalSum();
+
+						roll = 3; //for문 탈출
+						break;
 						// player[i].GetRoundResult();
 						//draw
 					}
 				}
 			}
 		}
-		winner = player[0].Winner(player[1]);
+		winner = player[turn].Winner(player[turn]);
 	}
 }
+
+

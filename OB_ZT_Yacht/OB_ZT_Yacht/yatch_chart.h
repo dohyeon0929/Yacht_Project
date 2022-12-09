@@ -1,70 +1,79 @@
-﻿#pragma once
+#pragma once
+#ifndef YATCH_CHART_H
+#define YATCH_CHART_H
+
 #include "chart_needs.h"
+#include "dice-classes.h"
 using namespace std;
-//표 class
+
+//ǥ class
 class Chart
 {
-	private:
-		Chart();
-		Chart(string name);
-		string player_name = "";
-		int *aces = nullptr;	//1  
-		int *deuces = nullptr;	//2
-		int *threes = nullptr;	//3
-		int *fours = nullptr;	//4
-		int *fives = nullptr;	//5
-		int *sixes = nullptr;	//6
-		int* bonus = nullptr;				//보너스 점수
-		int* subtotal = nullptr;			//서브 토탈
+private:
+	string player_name = "";
+	int aces = -1;	//1
+	int deuces = -1;	//2
+	int threes = -1;	//3
+	int fours = -1;	//4
+	int fives = -1;	//5
+	int sixes = -1;	//6
+	int bonus = -1;				//���ʽ� ����
+	int subtotal = -1;			//���� ��Ż
 
-		int *choice = nullptr;				//choice				7
-		int *four_of_a_kind = nullptr;		//4개 같은수			8
-		int *full_house = nullptr;			//풀 하우스(2개 3개)	9
-		int *s_straight = nullptr;			//연속된 4개			10
-		int *b_straight = nullptr;			//연속된 5개			11
-		int *yacht = nullptr;				//같은수 5개			12
-		int *totalvalue = nullptr;
-	public:
+	int choice = -1;				//choice				7
+	int four_of_a_kind = -1;		//4�� ������			8
+	int full_house = -1;			//Ǯ �Ͽ콺(2�� 3��)	9
+	int s_straight = -1;			//���ӵ� 4��			10
+	int b_straight = -1;			//���ӵ� 5��			11
+	int yacht = -1;				//������ 5��			12
+	int totalvalue = -1;
+public:
+	Chart();
+	Chart(string name);
+	friend class ChartFactory;		//��Ʈ ���丮 ����
+	friend class CalSet;
+	vector<int> dice_num;			//�ֻ��� ��
+	vector<int> chart_value;		//�ӽ� ��
 
-		friend class ChartFactory;		//차트 팩토리 생성
-		friend class CalSet;
-		vector<int> dice_num;			//주사위 값
-		vector<int> chart_value;		//임시 값
 
+	vector<int> GetChartValue();	//chart_value �� ���� 
+	vector<int> GetRoundResult();	// ���� ����� ����
+	vector<int> GetDiceNum();
+	void SetDefaultValue();					//chart_value �ʱ�ȭ �� ����� �� ����
 
-		vector<int> GetChartValue();	//chart_value 값 리턴 
-		vector<int> GetRoundResult();	// 라운드 결과값 리턴
-		void SetDefaultValue();					//chart_value 초기화 및 저장된 값 대입
+	int Winner(Chart Player2);//���� ����ߴ���
+	void SetTotalSum();						//��ü �� ��
+	void SetSubTotal();						//���� ǥ �� ���ϱ�
+	void CalSet();							//���갪 �ӽ� ����
 
-		int Winner(Chart Player2);//누가 우승했는지
-		void SetTotalSum();						//전체 값 합
-		void SetSubTotal();						//위쪽 표 값 더하기
-		void CalSet();							//연산값 임시 저장
-
-		void PushValue(int choose_num);			//임시값 계산 결과중 저장할 값 확정짓기
-		void SetBonus();						//보너스 점수 확인
-		void SetDiceValue(vector<int>input);	//주사위로부터 입력받은 값 저장
+	void PushValue(int choose_num);			//�ӽð� ��� ����� ������ �� Ȯ������
+	void SetBonus();						//���ʽ� ���� Ȯ��
+	void SetDiceValue(vector<int>input);	//�ֻ����κ��� �Է¹��� �� ����
 };
 
 
 class GameManage
 {
+private:
 public:
+	int round, turn, roll;
+	vector<Dice> dice_set;
 	GameManage();
+	//GameManage GetGameManage();
 };
 
-//주사위 값에 따른 표 값 설정
+//�ֻ��� ���� ���� ǥ �� ����
 class CalChart //: public ISetValue
 {
 private:
 	Chart* chart;
 public:
-	virtual bool IsNullptr(int* values);
+	virtual bool IsAble(int values);
 	virtual int SetValue(vector<int>dice_num);
 };
 
 
-// 위쪽 표, command
+// ���� ǥ, command
 class CheckUpValue : public CalChart
 {
 private:
@@ -74,7 +83,7 @@ public:
 	int SetValue(vector<int>dice_num, int number);
 };
 
-//아래쪽 표, command
+//�Ʒ��� ǥ, command
 class CheckFOK : public CalChart
 {
 private:
@@ -131,11 +140,12 @@ public:
 
 class ChartFactory
 {
-	public:
-		Chart GetChart();
-		Chart GetChart(string name);
+public:
+	Chart GetChart();
+	Chart GetChart(string name);
 };
 
+#endif
 
 
 

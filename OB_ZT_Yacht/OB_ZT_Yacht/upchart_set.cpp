@@ -1,14 +1,13 @@
-﻿#include "yatch_chart.h"
+#include "yatch_chart.h"
 
 using namespace std;
 
 // yatch_chart의 변수가 null인지 확인, null이 아니라면,, setValue 시작
 
 
-bool CalChart::IsNullptr(int* value)
+bool CalChart::IsAble(int value)
 {
-	int result = 0;
-	if (*value)
+	if (value < 0)
 	{
 		return false;
 	}
@@ -40,7 +39,7 @@ int CheckUpValue::SetValue(vector<int>dice_num, int number)
 /*
 int setValue::ResultValue(vector<int>cal_value)
 {
-	
+
 }
 */
 

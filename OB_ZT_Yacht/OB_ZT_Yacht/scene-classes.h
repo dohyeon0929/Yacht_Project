@@ -2,19 +2,20 @@
 #define SCENE_CLASSES_H
 
 #include "essential.h"
+#include "yatch_chart.h"
 
-class Draw // Ãß»óÅ¬·¡½º
+class Draw // ì¶”ìƒí´ë˜ìŠ¤
 {
 public:	
-	void gotoxy(int, int); // °øÅë	
+	void gotoxy(int, int); // ê³µí†µ	
 	COORD getxy();
-	virtual void EraseScene(); // °øÅë
+	virtual void EraseScene(); // ê³µí†µ
 	
 private:
 	
 };
 
-// ´ÜÀÏ scene ³»ºÎ¿¡¼­ ÀÛµ¿ÇÏ´Â ±â´É, scenemanager¸¦ »ó¼Ó
+// ë‹¨ì¼ scene ë‚´ë¶€ì—ì„œ ì‘ë™í•˜ëŠ” ê¸°ëŠ¥, scenemanagerë¥¼ ìƒì†
 class StartSceneDraw : public Draw
 {
 public:
@@ -26,7 +27,8 @@ public:
 class GameSceneDraw : public Draw
 {
 public:
-	GameSceneDraw(); // »ı¼ºÀÚ
+	//GameManage gm;
+	GameSceneDraw();// ìƒì„±ì
 };
 
 class EndSceneDraw : public Draw
@@ -38,7 +40,7 @@ public:
 class TableDraw : public Draw
 {
 public:
-	TableDraw(); // »ı¼ºÀÚ
+	TableDraw(); // ìƒì„±ì
 };
 
 class DiceDraw : public Draw
@@ -62,7 +64,7 @@ class CursorDraw : public Draw
 {
 public:
 	int KeyMovingControl();
-	vector<pair<int, int>> cursordice_pos = { {52, 15}, { 64, 15}, {76, 15}, {88, 15}, {100, 15} }; // ÀÏ´Ü ÁÖ»çÀ§¸¸
+	vector<pair<int, int>> cursordice_pos = { {52, 15}, { 64, 15}, {76, 15}, {88, 15}, {100, 15} }; // ï¿½Ï´ï¿½ ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 class DiceValueDraw : public Draw
@@ -80,34 +82,35 @@ public:
 };
 
 
-class SceneInputManager : public Draw// Ãß»óÅ¬·¡½º
+class SceneInputManager : public Draw// ì¶”ìƒ í´ë˜ìŠ¤
 {
 public:
 	//virtual void InputKeyBoard();
 	int KeyControl();
-	virtual void KeyMovingControl() = 0; // °øÅë
+	virtual void KeyMovingControl() = 0; // ê³µí†µ
 };
 
 class StartSceneInputManager : public SceneInputManager
 {
 public:
-	void KeyMovingControl(); // °øÅë
+	void KeyMovingControl(); // ê³µí†µ
 };
 
 class InfoSceneInputManager : public SceneInputManager
 {
 public:
-	void KeyMovingControl(); // °øÅë
+	void KeyMovingControl(); //ê³µí†µ
 };
 
 class GameSceneInputManager : public SceneInputManager
 {
 public:
 	void KeyMovingControl();
-	void DiceKeepDraw(int); // ¸î¹øÂ° ÁÖ»çÀ§ÀÎÁö
-	void DiceActivateDraw(int);
-	void TableFixedDraw(int); // ¼±ÅÃµÈ Ç¥ÀÇ Çà num
-	void RollTurnRoundDraw(int, int, int); // ¶ó¿îµå, ÅÏ, ·Ñ
+	int KeyMovingControlReturn();
+	void DiceKeepDraw(int, int); // ëª‡ ë²ˆì§¸ ì£¼ì‚¬ìœ„ì¸ì§€
+	void DiceActivateDraw(int, int);
+	int TableFixedDraw(); // ì„ íƒëœ í‘œì˜ í–‰ num
+	void RollTurnRoundDraw(int, int, int); // ë¼ìš´ë“œ, í„´, ë¡¤
 };
 
 class EndSceneInputManager : public SceneInputManager
