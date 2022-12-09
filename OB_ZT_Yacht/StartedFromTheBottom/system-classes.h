@@ -70,6 +70,7 @@ private:
 public:
 	EndScene();
 	void EndSceneDraw();
+	void KeyMovingControl();
 };
 
 class GameManager {

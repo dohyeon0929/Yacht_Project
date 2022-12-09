@@ -138,7 +138,7 @@ void InfoScene::InfoDraw() {
 	std::cout << " Enter the result of rolling 3 times in the desired table cell.\n\n";
 	std::cout << " Fill in the table cell one by one.\n\n";
 	std::cout << " If you fill in all table cells, the person with the highest score WIN ! !\n\n";
-	std::cout << " Press the enter to return start scene.";
+	std::cout << " \nPress the enter to return start scene.";
 
 }
 void InfoScene::KeyMovingControl() {
@@ -207,7 +207,7 @@ void GameScene::RollTurnRoundDraw() { //  센터가 76, 8
 	gotoxy(59, 8);
 	std::cout << "Round : " << round;
 	gotoxy(71, 8);
-	std::cout << "Turn : " << turn<<"p";
+	std::cout << "Turn : " << turn <<"p";
 	gotoxy(84, 8);
 	std::cout << "Roll : " << roll;
 
@@ -383,7 +383,7 @@ void GameScene::TableDraw() {
 		, "Choice", "4 of a Kind", "Full House", "S.Straight", "L.Straight", "Yatch", "Total" };
 	//EraseScene();
 
-	std::cout << "  -----------------------------------------\n";
+	std::cout << "  -------------------------------------------\n";
 	std::cout.width(2);
 	std::cout << "   " << std::left << "       ";
 	std::cout << "\t  ｜           ｜\n";
@@ -396,13 +396,13 @@ void GameScene::TableDraw() {
 
 
 	for (int i = 0; i < 13; i++) {
-		std::cout << "  -----------------------------------------\n";
+		std::cout << "  -------------------------------------------\n";
 		std::cout.width(2);
 		std::cout << "   " << std::left << categories.at(i);
 		std::cout << "\t  ｜           ｜\n";
 	}
 
-	std::cout << "  -----------------------------------------\n";
+	std::cout << "  -------------------------------------------\n";
 	std::cout << "   " << std::left << categories.at(13);
 	std::cout << "\t  ｜           ｜\n";
 
@@ -490,6 +490,18 @@ void GameScene::DiceActivateDraw(const int& x, const int& y) {
 //EndScene
 EndScene::EndScene() {
 	EndSceneDraw();
+	KeyMovingControl();
+}
+
+void EndScene::KeyMovingControl() {
+	while (1) {
+		if (KeyControl() == ENTER) {
+			EraseScene();
+			gm.SetScene("start");
+			gotoxy(40, 15);
+			break;
+		}
+	}
 }
 
 void EndScene::EndSceneDraw() {
@@ -512,9 +524,10 @@ void EndScene::EndSceneDraw() {
 
 	for (int i = 0; i < 110; i++) std::cout << "■";
 	//std::cout << '\n';
-	//gotoxy(42, 15);
-	std::cout << gm.GetWinner() << "p is Winner!!";
-	//cout << "Press Enter to play again";
+	gotoxy(45, 15);
+	std::cout << gm.GetWinner() << "p is Winner!!\n\n";
+	gotoxy(38, 17);
+	cout << "Press Enter : Return to Start";
 }
 
 //GameManager
