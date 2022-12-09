@@ -53,7 +53,6 @@ public:
 	void SetActivated();
 };
 
-
 //class NormalDice : public Dice
 //{
 //public:

@@ -58,6 +58,14 @@ extern bool FIFTHDICE;
 */
 
 /*
+extern bool FIRSTDICE;
+extern bool SECONDDICE;
+extern bool THIRDDICE;
+extern bool FOURTHDICE;
+extern bool FIFTHDICE;
+*/
+
+/*
 enum KEYBOARD {
     1p_UP = 72, 1p_LEFT = 75, 1p_RIGHT = 77, 1p_DOWN = 80
 };

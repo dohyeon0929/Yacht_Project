@@ -57,7 +57,7 @@ void StartScene::TitleDraw() { // title은 startscene에만 등장
 	std::cout << "  \\_/   \\__,_| \\__| \\___||_| |_| |___/  |_| \\___| \\___|\n";
 	gotoxy(0, 11);
 
-	for (int i = 0; i < 55; i++) std::cout<<"■";
+	for (int i = 0; i < 110; i++) std::cout<<"■";
 	std::cout << '\n';
 
 	gotoxy(42, 15); 
@@ -131,8 +131,15 @@ InfoScene::InfoScene() {
 }
 void InfoScene::InfoDraw() {
 	EraseScene();
-	std::cout << "게임 정보 설명\n";
-	std::cout << "엔터키를 누르면 startscene으로 돌아갑니다.";
+	std::cout << "\n\n ! ! Welcome to Yatch Dice ! !\n\n\n";
+	std::cout << " This game's kind of like poker, but with dice instead of cards.\n\n";
+	std::cout << " There are total 5 dices.\n\n";
+	std::cout << " You can roll the dices 3 times, keep specific dice after the roll.\n\n";
+	std::cout << " Enter the result of rolling 3 times in the desired table cell.\n\n";
+	std::cout << " Fill in the table cell one by one.\n\n";
+	std::cout << " If you fill in all table cells, the person with the highest score WIN ! !\n\n";
+	std::cout << " \nPress the enter to return start scene.";
+
 }
 void InfoScene::KeyMovingControl() {
 	while (1) {
@@ -197,12 +204,17 @@ GameScene::GameScene() {
 	gm.SetScene("end");
 }
 void GameScene::RollTurnRoundDraw() { //  센터가 76, 8
-	gotoxy(64, 8);
+	gotoxy(59, 8);
 	std::cout << "Round : " << round;
-	gotoxy(76, 8);
-	std::cout << "Turn : " << turn<<"p";
-	gotoxy(89, 8);
+	gotoxy(71, 8);
+	std::cout << "Turn : " << turn <<"p";
+	gotoxy(84, 8);
 	std::cout << "Roll : " << roll;
+
+	gotoxy(59, 22);
+	std::cout << "Enter : select value or roll the dice";
+	gotoxy(59, 23);
+	std::cout << "Space : keep your dice";
 }
 int GameScene::KeyMovingControlReturn()
 {
@@ -293,7 +305,7 @@ int GameScene::KeyMovingControlReturn()
 				int tmp_y = y-2;
 				while (!table_can_go[{turn, tmp_y}]) {
 					tmp_y -= 2;
-					if (tmp_y < 5)break;
+					if (tmp_y <= 5)break;
 				}
 				if (tmp_y >= 5) {
 					gotoxy(x, y);
@@ -312,7 +324,7 @@ int GameScene::KeyMovingControlReturn()
 				int tmp_y = y + 2;
 				while (!table_can_go[{turn, tmp_y}]) {
 					tmp_y += 2;
-					if (tmp_y > 29)break;
+					if (tmp_y >= 29)break;
 				}
 				if (tmp_y <= 29) {
 					gotoxy(x, y);
@@ -371,7 +383,7 @@ void GameScene::TableDraw() {
 		, "Choice", "4 of a Kind", "Full House", "S.Straight", "L.Straight", "Yatch", "Total" };
 	//EraseScene();
 
-	std::cout << "  -----------------------------------------\n";
+	std::cout << "  -------------------------------------------\n";
 	std::cout.width(2);
 	std::cout << "   " << std::left << "       ";
 	std::cout << "\t  ｜           ｜\n";
@@ -384,13 +396,13 @@ void GameScene::TableDraw() {
 
 
 	for (int i = 0; i < 13; i++) {
-		std::cout << "  -----------------------------------------\n";
+		std::cout << "  -------------------------------------------\n";
 		std::cout.width(2);
 		std::cout << "   " << std::left << categories.at(i);
 		std::cout << "\t  ｜           ｜\n";
 	}
 
-	std::cout << "  -----------------------------------------\n";
+	std::cout << "  -------------------------------------------\n";
 	std::cout << "   " << std::left << categories.at(13);
 	std::cout << "\t  ｜           ｜\n";
 
@@ -478,13 +490,44 @@ void GameScene::DiceActivateDraw(const int& x, const int& y) {
 //EndScene
 EndScene::EndScene() {
 	EndSceneDraw();
+	KeyMovingControl();
+}
+
+void EndScene::KeyMovingControl() {
+	while (1) {
+		if (KeyControl() == ENTER) {
+			EraseScene();
+			gm.SetScene("start");
+			gotoxy(40, 15);
+			break;
+		}
+	}
 }
 
 void EndScene::EndSceneDraw() {
 	EraseScene();
-	gotoxy(50, 50);
-	cout << gm.GetWinner() << "p is Winner!!";
-	//cout << "Press Enter to play again";
+
+	std::cout << "\n\n";
+	gotoxy(25, 2);
+	std::cout << " __   __        _          _      ______  _    \n";
+	gotoxy(26, 3);
+	std::cout << "\\ \\ / /       | |        | |     |  _  \\(_)            \n";
+	gotoxy(26, 4);
+	std::cout << " \\ V /   __ _ | |_   ___ | |__   | | | | _   ___   ___ \n";
+	gotoxy(26, 5);
+	std::cout << "  \\ /   / _` || __| / __|| '_ \\  | | | || | / __| / _ \\\n";
+	gotoxy(26, 6);
+	std::cout << "  | |  | (_| || |_ | (__ | | | | | |/ / | || (__ |  __/\n";
+	gotoxy(26, 7);
+	std::cout << "  \\_/   \\__,_| \\__| \\___||_| |_| |___/  |_| \\___| \\___|\n";
+	gotoxy(0, 11);
+
+	for (int i = 0; i < 110; i++) std::cout << "■";
+	//std::cout << '\n';
+	gotoxy(45, 15);
+	std::cout << gm.GetWinner() << "p is Winner!!\n\n";
+	gotoxy(38, 17);
+	cout << "Press Enter : Return to Start";
 }
 
 //GameManager
