@@ -158,27 +158,6 @@ Chart::Chart() {
 	command_set.push_back(new LargeStraight);
 	command_set.push_back(new Yacht);
 }
-Chart::Chart(const vector<int>& dice_num_set) {
-	for (int i = 0; i < 12; i++) {
-		chart_nums.push_back(-1);
-	}
-	command_set.push_back(new Ones());
-	command_set.push_back(new Twoes());
-	command_set.push_back(new Threes());
-	command_set.push_back(new Fours());
-	command_set.push_back(new Fives());
-	command_set.push_back(new Sixes);
-	command_set.push_back(new Choice);
-	command_set.push_back(new FourOfKind);
-	command_set.push_back(new FullHouse);
-	command_set.push_back(new SmallStraight);
-	command_set.push_back(new LargeStraight);
-	command_set.push_back(new Yacht);
-	this->SetDiceNumSet(dice_num_set);
-}
-void Chart::SetDiceNumSet(const vector<int>& dice_num_set) {
-	this->dice_num_set = dice_num_set;
-}
 void Chart::FillValues() {
 	for (int i = 0; i < 12; i++) {
 		command_set[i]->SetDiceNumSet(dice_num_set);
@@ -200,6 +179,9 @@ vector<int> Chart::GetChartNum() {
 		tmp.push_back(chart_nums[i]);
 	}
 	return tmp;
+}
+void Chart::SetDiceNumSet(const vector<int>& dice_num_set) {
+	this->dice_num_set = dice_num_set;
 }
 Chart& Chart::operator=(Chart& chart) {
 	this->chart_nums = chart.chart_nums;

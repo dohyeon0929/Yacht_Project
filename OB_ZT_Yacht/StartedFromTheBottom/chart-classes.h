@@ -75,8 +75,8 @@ public:
 	Chart(const vector<int>& dice_num_set);
 	void FillValues(); // 주사위 셋 바탕으로 값 채우기
 
-	void SetDiceNumSet(const vector<int>& dice_num_set); 
 	void SetChartNum(const int& idx, const int& val); // 표의 특정 인덱스의 숫자만 수정
+	void SetDiceNumSet(const vector<int>& dice_num_set);
 	vector<int> GetChartNum(); // 차트의 숫자 전체 집합을 반환
 	int GetSubTotal() { return sub_total; } 
 	int GetTotal() { return total; }

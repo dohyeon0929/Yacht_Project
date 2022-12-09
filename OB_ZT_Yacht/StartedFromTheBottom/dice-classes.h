@@ -1,33 +1,6 @@
 #ifndef DICE_CLASSES_H
 #define DICE_CLASSES_H
-
 #include "essential.h"
-
-//DiceState Keep/Activate
-//class DiceState
-//{
-//private:
-//public:
-//	virtual void Toggle(DiceState* dice_state)=0;  
-//	virtual bool IsActivated()=0; 
-//};
-//
-//class DiceStateActivate : public DiceState
-//{
-//private:
-//public:
-//	virtual void Toggle(DiceState* dice_state);
-//	virtual bool IsActivated() { return true; }
-//};
-//
-//
-//class DiceStateKeep : public DiceState
-//{
-//private:
-//public:
-//	virtual void Toggle(DiceState* dice_state);
-//	virtual bool IsActivated() { return false; }
-//};
 
 //Dice
 class Dice
@@ -35,7 +8,6 @@ class Dice
 protected:
 	int dice_num ; 
 	vector<int> dice_num_set; 
-	//DiceState* dice_state = new DiceStateActivate(); 
 	bool is_activated=true;
 public:		
 	Dice();
@@ -50,34 +22,6 @@ public:
 	void SetDiceNum(const int& num); // 주사위 수 설정
 	void SetActivated(); // 주사위 상태 activated로 변경
 };
-
-//class NormalDice : public Dice
-//{
-//public:
-//	NormalDice(); 
-//	bool isNormal() { return true; }
-//};
-//
-//class TwoSideDice : public Dice
-//{
-//private:
-//	int side_count = 2;
-//public:
-//	TwoSideDice();
-//	void SetDiceNumSet();
-//};
-
-// For TwoSideDice
-//class SelectNums {
-//private:
-//	int count;
-//	vector<int> num_set; 
-//public:
-//	SelectNums(int count = 2) { this->count = count; }
-//	void Select();
-//	vector<int> GetDiceNumSet() { return num_set; }
-//};
-
 class DiceSet {
 protected:
 	vector<Dice> dice_set;
@@ -93,29 +37,4 @@ public:
 	void Roll(); // 주사위 셋 전체 굴리기
 	void Toggle(const int& num); // 특정 주사위 상태 토글
 };
-
-//class ActivateDiceSet : public DiceSet
-//{
-//private:
-//	multiset<Dice> dice_multiset;
-//public:
-//	virtual Dice GetDice(const int& idx); 
-//	virtual vector<Dice>& GetDiceSet();
-//	virtual int Size() { return dice_multiset.size(); }
-//	virtual void Add(const Dice& dice) override;
-//	virtual void Remove(const int& idx) override; 
-//	virtual void Clear();
-//};
-//
-//class DiceSetFactory 
-//{
-//private:
-//	DiceSet dice_set;
-//	DiceSet special_dice_set;
-//	int dice_count=5;
-//public:
-//	DiceSetFactory SetDiceCount(const int& count); 
-//	DiceSetFactory ChangeSpecialDice(const Dice& dice); 
-//	DiceSet GetDiceSet(); 
-//};
 #endif
