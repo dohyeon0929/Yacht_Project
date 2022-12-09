@@ -57,7 +57,7 @@ void StartScene::TitleDraw() { // title은 startscene에만 등장
 	std::cout << "  \\_/   \\__,_| \\__| \\___||_| |_| |___/  |_| \\___| \\___|\n";
 	gotoxy(0, 11);
 
-	for (int i = 0; i < 110; i++) std::cout<<"■";
+	for (int i = 0; i < 110; i++) std::cout<<"=";
 	std::cout << '\n';
 
 	gotoxy(42, 15); 
@@ -383,34 +383,35 @@ void GameScene::TableDraw() {
 		, "Choice", "4 of a Kind", "Full House", "S.Straight", "L.Straight", "Yatch", "Total" };
 	//EraseScene()
 
-	std::cout << "  -------------------------------------------\n";
+	std::cout << "  +---------------+-----------+-----------+\n";
 	std::cout.width(2);
-	std::cout << "   " << std::left << "       ";
-	std::cout << "\t  ｜           ｜\n";
+	std::cout << "  | " << std::left << "       ";
+	std::cout << "\t  |           |           |\n";
 
-	std::cout << "   " << std::left << "       ";
-	std::cout << "\t  ｜     1p    ｜     2p     \n";
+	std::cout << "  | " << std::left << "       ";
+	std::cout << "\t  |     1p    |     2p    |\n";
 
-	std::cout << "   " << std::left << "       ";
-	std::cout << "\t  ｜           ｜\n";
+	std::cout << "  | " << std::left << "       ";
+	std::cout << "\t  |           |           |\n";
 
 
 	for (int i = 0; i < 13; i++) {
-		std::cout << "  -------------------------------------------\n";
+		std::cout << "  +---------------+-----------+-----------+\n";
 		std::cout.width(2);
-		std::cout << "   " << std::left << categories.at(i);
-		std::cout << "\t  ｜           ｜\n";
+		std::cout << "  |" << std::left << " "<<categories.at(i);
+		std::cout << "\t  |           |           |\n";
 	}
 
-	std::cout << "  -------------------------------------------\n";
-	std::cout << "   " << std::left << categories.at(13);
-	std::cout << "\t  ｜           ｜\n";
+	std::cout << "  +---------------+-----------+-----------+\n";
+	std::cout << "  |" << std::left << " "<<categories.at(13);
+	std::cout << "\t  |           |           |\n";
+	std::cout << "  +---------------+-----------+-----------+\n";
 
 }
 void GameScene::DiceDraw() {
 	int arr[] = { 48,60,72,84,96 };
 	for (int i = 0; i < 5; i++) {
-		gotoxy(arr[i], 13);
+	/*	gotoxy(arr[i], 13);
 		std::cout << "┌──────┐";
 		gotoxy(arr[i], 14);
 		std::cout << "│      │";
@@ -419,7 +420,17 @@ void GameScene::DiceDraw() {
 		gotoxy(arr[i], 16);
 		std::cout << "│      │";
 		gotoxy(arr[i], 17);
-		std::cout << "└──────┘";
+		std::cout << "└──────┘";*/
+		gotoxy(arr[i], 13);
+		std::cout << "+------+";
+		gotoxy(arr[i], 14);
+		std::cout << "|      |";
+		gotoxy(arr[i], 15);
+		std::cout << "|      |";
+		gotoxy(arr[i], 16);
+		std::cout << "|      |";
+		gotoxy(arr[i], 17);
+		std::cout << "+------+";
 	}
 }
 void GameScene::TableValueDraw(const vector<int>& table_value) {
@@ -522,7 +533,7 @@ void EndScene::EndSceneDraw() {
 	std::cout << "  \\_/   \\__,_| \\__| \\___||_| |_| |___/  |_| \\___| \\___|\n";
 	gotoxy(0, 11);
 
-	for (int i = 0; i < 110; i++) std::cout << "■";
+	for (int i = 0; i < 110; i++) std::cout << "=";
 	//std::cout << '\n';
 	gotoxy(45, 15);
 	std::cout << gm.GetWinner() << "p is Winner!!\n\n";
