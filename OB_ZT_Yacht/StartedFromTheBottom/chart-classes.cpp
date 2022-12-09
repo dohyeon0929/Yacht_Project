@@ -122,7 +122,7 @@ int FourOfKind::GetPoint() {
 	}
 	int isFour = 0;
 	for (int i = 1; i <= 6; i++) {
-		if (m[i] == 4)isFour = i;
+		if (m[i] >= 4)isFour = i;
 	}
 	if (isFour)return sum;
 	else return 0;
