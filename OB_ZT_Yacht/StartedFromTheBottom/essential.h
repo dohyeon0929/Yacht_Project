@@ -10,7 +10,6 @@
 #include <time.h>
 #include <random>
 #include <windows.h>
-#include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
 #include <conio.h>
@@ -20,8 +19,8 @@
 using namespace std;
 
 
-#define MAGIC_KEY 224 // �����¿� ȭ��ǥ�� ���� �� ����Ǿ� ������ ����
-#define SPACE 32 // �����̽� Ű ��
+#define MAGIC_KEY 224 // 방향키를 입력 받으면 먼저 얘가 입력되고(224) 그 다음 고유값이 입력됨. 
+#define SPACE 32 
 #define UP 0
 #define DOWN 1
 #define LEFT 2

@@ -53,8 +53,8 @@ private:
 
 public:
 	GameScene();
-	void RollTurnRoundDraw();
 	int KeyMovingControlReturn();
+	void RollTurnRoundDraw();
 	void MakeDiceNumSet();
 	void TableDraw();
 	void DiceDraw();
