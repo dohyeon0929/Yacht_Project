@@ -2,7 +2,8 @@
 #include "essential.h"
 #include "system-classes.h"
 
-static GameManager gm; // 게임을 총괄하는 전역 변수. 
+// 게임을 총괄하는 Singleton 
+GameManager& gm = GameManager::GetIncetance();
 
 //Scene
 COORD Scene::getxy() { // 현재 커서의 위치를 반환하는 함수

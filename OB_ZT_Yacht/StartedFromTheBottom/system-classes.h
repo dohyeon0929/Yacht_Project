@@ -73,13 +73,34 @@ public:
 	void KeyMovingControl();
 };
 
+//class GameManager {
+//private:
+//	Scene* now_scene = new StartScene();
+//	friend Scene;
+//	int winner=-1;
+//public:
+//	GameManager() {}
+//	void SetScene(const string& usage);
+//	void SetWinner(const int& winner);
+//	int GetWinner() { return winner; }
+//};
+
+
 class GameManager {
 private:
-	Scene* now_scene = new StartScene();
-	friend Scene;
-	int winner=-1;
-public:
 	GameManager() {}
+	GameManager(const GameManager& ref) {}
+	GameManager& operator=(const GameManager& ref) {}
+	~GameManager() {}
+	//static GameManager* gm;
+	Scene* now_scene;
+	int winner;
+	friend Scene;
+public:
+	static GameManager& GetIncetance() {
+		static GameManager s;
+		return s;
+	}
 	void SetScene(const string& usage);
 	void SetWinner(const int& winner);
 	int GetWinner() { return winner; }
