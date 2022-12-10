@@ -6,7 +6,6 @@
 class Command // 표의 12가지 항목을 주사위 값에 따라 판단할 객체들의 부모 추상 클래스. 
 {
 protected:
-	vector<Dice> dice_set; 
 	vector<int> dice_num_set; // 주사위의 값들만 저장한 벡터
 public:
 	Command() {}

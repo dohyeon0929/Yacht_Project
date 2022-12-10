@@ -108,7 +108,9 @@ int StartScene::KeyMovingControl() { // 키 움직이는 거 컨트롤 메소드
 			}
 			break;
 		}
-		case ENTER: {
+		case ENTER:
+		case ENTER1P:
+		case ENTER2P: {
 			if (y - 15 == 0) { // gamestart
 				gm.SetScene("game");
 				stop = true;
@@ -116,6 +118,7 @@ int StartScene::KeyMovingControl() { // 키 움직이는 거 컨트롤 메소드
 			}
 			else if (y - 15 == 1) { // InfoScene으로 전환
 				gm.SetScene("info");
+				break;
 			}
 
 			else if (y - 15 == 2) { // exit
@@ -143,17 +146,17 @@ void InfoScene::InfoDraw() {
 	cout << " Enter the result of rolling 3 times in the desired table cell.\n\n";
 	cout << " Fill in the table cell one by one.\n\n";
 	cout << " If you fill in all table cells, the person with the highest score WIN ! !\n\n";
-	cout << " \nPress the enter to return start scene.";
-	cout << " \n\n";
+	cout << " \n";
 	cout << " \n\t1P :\t\t\t\t\t2p : ";
 	cout << " \n\tMove : WASD\t\t\t\tMove : Arrow Key";
 	cout << " \n\tKeep/Activate : 1 \t\t\tKeep/Activate : O";
 	cout << " \n\tRoll / Fix point : 2 \t\t\tRoll / Fix point : P";
+	cout << " \n\n\n\n\t\tPress the enter to return start scene.";
 
 }
 int InfoScene::KeyMovingControl() {
 	while (1) {
-		if (KeyControl() == ENTER) {
+		if (KeyControl() == ENTER || KeyControl()==ENTER1P || KeyControl()==ENTER2P) {
 			EraseScene();
 			gm.SetScene("start");
 			gotoxy(40, 15);
