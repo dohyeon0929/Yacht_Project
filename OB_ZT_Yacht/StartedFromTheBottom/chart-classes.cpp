@@ -141,27 +141,38 @@ int Yacht::GetPoint() {
 }
 
 //Chart
+vector<Command*> Chart::command_set = {
+	new Ones(),
+	new Twoes(),
+	new Threes(),
+	new Fours(),
+	new Fives(),
+	new Sixes(),
+	new Choice(),
+	new FourOfKind(),
+	new FullHouse(),
+	new SmallStraight(),
+	new LargeStraight(),
+	new Yacht()
+};
+
 Chart::Chart() {
 	for (int i = 0; i < 12; i++) {
 		chart_nums.push_back(-1);
 	}
-	command_set.push_back(new Ones());
-	command_set.push_back(new Twoes());
-	command_set.push_back(new Threes());
-	command_set.push_back(new Fours());
-	command_set.push_back(new Fives());
-	command_set.push_back(new Sixes);
-	command_set.push_back(new Choice);
-	command_set.push_back(new FourOfKind);
-	command_set.push_back(new FullHouse);
-	command_set.push_back(new SmallStraight);
-	command_set.push_back(new LargeStraight);
-	command_set.push_back(new Yacht);
 }
 void Chart::FillValues() {
 	for (int i = 0; i < 12; i++) {
 		command_set[i]->SetDiceNumSet(dice_num_set);
 		chart_nums[i] = command_set[i]->GetPoint();
+	}
+}
+void Chart::FillValues(const bool* is_fixed) {
+	for (int i = 0; i < 12; i++) {
+		if (!is_fixed[i]) {
+			command_set[i]->SetDiceNumSet(dice_num_set);
+			chart_nums[i] = command_set[i]->GetPoint();
+		}
 	}
 }
 void Chart::SetChartNum(const int& idx, const int& val) {
@@ -182,6 +193,9 @@ vector<int> Chart::GetChartNum() {
 }
 void Chart::SetDiceNumSet(const vector<int>& dice_num_set) {
 	this->dice_num_set = dice_num_set;
+}
+void Chart::SetIsFixed(const int& num, const bool& is_fixed) {
+	this->is_fixed[num] = is_fixed;
 }
 Chart& Chart::operator=(Chart& chart) {
 	this->chart_nums = chart.chart_nums;

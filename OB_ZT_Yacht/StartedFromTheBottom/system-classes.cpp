@@ -31,7 +31,6 @@ int Scene::KeyControl() { // 사용자 입력 컨트롤
 	else if (temp == 'd' || temp == 'D' || temp == 77) { return RIGHT; }
 	else if (temp == 13) { return ENTER; }
 }
-void Scene::KeyMovingControl() {} // 씬 별로 다 다를 예정
 
 //StartScene
 StartScene::StartScene() {
@@ -74,7 +73,7 @@ void StartScene::TitleDraw() { // title은 startscene에만 등장
 	gotoxy(48, 26);
 	std::cout << "Team 4";
 }
-void StartScene::KeyMovingControl() { // 키 움직이는 거 컨트롤 메소드
+int StartScene::KeyMovingControl() { // 키 움직이는 거 컨트롤 메소드
 	int x = 42;
 	int y = 15;
 	bool stop = false;
@@ -119,6 +118,7 @@ void StartScene::KeyMovingControl() { // 키 움직이는 거 컨트롤 메소�
 		}	    
 		}
 	}
+	return 0;
 }
 
 //InfoScene
@@ -138,7 +138,7 @@ void InfoScene::InfoDraw() {
 	std::cout << " \nPress the enter to return start scene.";
 
 }
-void InfoScene::KeyMovingControl() {
+int InfoScene::KeyMovingControl() {
 	while (1) {
 		if (KeyControl() == ENTER) {
 			EraseScene();
@@ -147,6 +147,7 @@ void InfoScene::KeyMovingControl() {
 			break;
 		}
 	}
+	return 0;
 }
 
 //GameScene
@@ -176,19 +177,15 @@ GameScene::GameScene() { // 본 게임 화면
 				MakeDiceNumSet(); // dice_set을 dice_num_set으로 변환
 				DiceValueDraw(dice_num_set); // 5개 dice의 값을 표시
 
-				int command = KeyMovingControlReturn(); // 사용자 입력을 받음. 
+				int command = KeyMovingControl(); // 사용자 입력을 받음. 
 				// 사용자가 주사위를 굴리거나 점수를 고정하기 전까지 무한 반복이 되며 사용자 입력을 받는다. 
 				// 사용자가 점수를 고정하면 1, 아니면 0을 반환한다. 
 
 				MakeDiceNumSet(); // 사용자가 주사위 굴렸을 때를 대비하여
 				DiceValueDraw(dice_num_set); // 주사위 다시 그려주기 
 				tmp_player[turn].SetDiceNumSet(dice_num_set);  // 새로운 주사위 값에 대한 임시 테이블 작성
-				tmp_player[turn].FillValues();
-				for (int i = 0; i < 12; i++) { // 사용자가 고정한 값을 임시 테이블에 반영
-					if (table_fixed[turn][i]) {
-						tmp_player[turn].SetChartNum(i, player[turn].GetChartNum()[i]);
-					}
-				}
+				tmp_player[turn].FillValues(player[turn].GetIsFixed());
+
 				if (command == 1) break; // 점수 고정했으면 그 즉시 턴을 넘긴다. 
 				if (first_roll) { // 첫 롤의 경우 생기는 예외 때문에, 첫 롤인지 아닌지 여부를 가르는 부분
 					roll--;
@@ -214,7 +211,7 @@ void GameScene::RollTurnRoundDraw() { // 몇 번째 롤,턴,라운드인지 그�
 	gotoxy(59, 23);
 	std::cout << "Space : keep your dice";
 }
-int GameScene::KeyMovingControlReturn() // 롤에서 사용자한테 입력을 받는 메소드
+int GameScene::KeyMovingControl() // 롤에서 사용자한테 입력을 받는 메소드
 {
 	int x = 52;
 	int y = 15;
@@ -348,6 +345,7 @@ int GameScene::KeyMovingControlReturn() // 롤에서 사용자한테 입력을 �
 							pos = i;
 							table_can_go[{turn, cursor_pos.Y}] = false;
 							table_fixed[turn][pos] = true;
+							player[turn].SetIsFixed(pos, true);
 							break;
 						}
 					}
@@ -490,7 +488,7 @@ EndScene::EndScene() {
 	KeyMovingControl();
 }
 
-void EndScene::KeyMovingControl() {
+int EndScene::KeyMovingControl() {
 	while (1) {
 		if (KeyControl() == ENTER) {
 			EraseScene();
@@ -499,6 +497,7 @@ void EndScene::KeyMovingControl() {
 			break;
 		}
 	}
+	return 0;
 }
 
 void EndScene::EndSceneDraw() {

@@ -12,7 +12,7 @@ public:
 	COORD getxy();
 	virtual void EraseScene(); // 공통
 	int KeyControl();
-	virtual void KeyMovingControl();// 공통
+	virtual int KeyMovingControl()=0;// 공통
 };
 
 class StartScene : public Scene {
@@ -22,7 +22,7 @@ public:
 	StartScene();
 	void Init(); // startscene
 	void TitleDraw(); // startscene
-	void KeyMovingControl();
+	virtual int KeyMovingControl();
 };
 
 class InfoScene : public Scene {
@@ -30,7 +30,7 @@ private:
 public:
 	InfoScene();
 	void InfoDraw();
-	void KeyMovingControl();
+	virtual int KeyMovingControl();
 };
 
 class GameScene : public Scene {
@@ -53,7 +53,7 @@ private:
 
 public:
 	GameScene();
-	int KeyMovingControlReturn();
+	virtual int KeyMovingControl();
 	void RollTurnRoundDraw();
 	void MakeDiceNumSet();
 	void TableDraw();
@@ -70,21 +70,8 @@ private:
 public:
 	EndScene();
 	void EndSceneDraw();
-	void KeyMovingControl();
+	virtual int KeyMovingControl();
 };
-
-//class GameManager {
-//private:
-//	Scene* now_scene = new StartScene();
-//	friend Scene;
-//	int winner=-1;
-//public:
-//	GameManager() {}
-//	void SetScene(const string& usage);
-//	void SetWinner(const int& winner);
-//	int GetWinner() { return winner; }
-//};
-
 
 class GameManager {
 private:

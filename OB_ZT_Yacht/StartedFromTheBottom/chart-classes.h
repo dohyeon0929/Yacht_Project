@@ -69,17 +69,21 @@ private:
 	vector<int> dice_num_set; // 표에 적용되는 주사위 수 집합
 	int sub_total = 0; // ones~sixes 까지의 합을 저장할 변수
 	int total = 0; // 전체 숫자들의 합 저장할 변수
-	vector<Command*> command_set; // ones~yacht까지 커맨드들을 저장할 벡터
+	bool is_fixed[12]; // fix되었는지 여부를 저장
+	static vector<Command*> command_set; // ones~yacht까지 커맨드들을 저장할 벡터
 public:
 	Chart();
 	Chart(const vector<int>& dice_num_set);
 	void FillValues(); // 주사위 셋 바탕으로 값 채우기
+	void FillValues(const bool* is_fixed);
 
 	void SetChartNum(const int& idx, const int& val); // 표의 특정 인덱스의 숫자만 수정
 	void SetDiceNumSet(const vector<int>& dice_num_set);
 	vector<int> GetChartNum(); // 차트의 숫자 전체 집합을 반환
 	int GetSubTotal() { return sub_total; } 
 	int GetTotal() { return total; }
+	bool* GetIsFixed() { return is_fixed; }
+	void SetIsFixed(const int& num, const bool& is_fixed);
 	Chart& operator=(Chart& chart);
 };
 
