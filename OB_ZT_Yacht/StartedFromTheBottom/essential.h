@@ -24,6 +24,7 @@ using namespace std;
 #define DOWN 1
 #define LEFT 2
 #define RIGHT 3
-//#define SUBMIT 4
 #define ENTER 13
+#define ENTER1P 14
+#define ENTER2P 15
 #endif

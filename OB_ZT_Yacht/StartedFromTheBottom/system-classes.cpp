@@ -29,7 +29,15 @@ int Scene::KeyControl() { // 사용자 입력 컨트롤
 	else if (temp == 'a' || temp == 'A' || temp == 75) { return LEFT; }
 	else if (temp == 's' || temp == 'S' || temp == 80) { return DOWN; }
 	else if (temp == 'd' || temp == 'D' || temp == 77) { return RIGHT; }
-	else if (temp == 13) { return ENTER; }
+	else if (temp == SPACE || temp == '1' || temp == 'o' || temp == 'O') {
+		return SPACE; 
+	}
+	else if ( temp=='2' ) {
+		return ENTER1P; 
+	}
+	else if ( temp == 'p' || temp == 'P') {
+		return ENTER2P; 
+	}
 }
 
 //StartScene
@@ -42,36 +50,36 @@ void StartScene::Init() { // 시작 화면 크기 설정. 프로그램 이름 �
 	system("mode con cols=110 lines=35 | title Yatch Dice with Special Items");
 }
 void StartScene::TitleDraw() { // title은 startscene에만 등장
-	std::cout << "\n\n";
+	cout << "\n\n";
 	gotoxy(25, 2);
-	std::cout << " __   __        _          _      ______  _    \n";
+	cout << " __   __        _          _      ______  _    \n";
 	gotoxy(26, 3);
-	std::cout << "\\ \\ / /       | |        | |     |  _  \\(_)            \n";
+	cout << "\\ \\ / /       | |        | |     |  _  \\(_)            \n";
 	gotoxy(26, 4);
-	std::cout << " \\ V /   __ _ | |_   ___ | |__   | | | | _   ___   ___ \n";
+	cout << " \\ V /   __ _ | |_   ___ | |__   | | | | _   ___   ___ \n";
 	gotoxy(26, 5);
-	std::cout << "  \\ /   / _` || __| / __|| '_ \\  | | | || | / __| / _ \\\n";
+	cout << "  \\ /   / _` || __| / __|| '_ \\  | | | || | / __| / _ \\\n";
 	gotoxy(26, 6);
-	std::cout << "  | |  | (_| || |_ | (__ | | | | | |/ / | || (__ |  __/\n";
+	cout << "  | |  | (_| || |_ | (__ | | | | | |/ / | || (__ |  __/\n";
 	gotoxy(26, 7);
-	std::cout << "  \\_/   \\__,_| \\__| \\___||_| |_| |___/  |_| \\___| \\___|\n";
+	cout << "  \\_/   \\__,_| \\__| \\___||_| |_| |___/  |_| \\___| \\___|\n";
 	gotoxy(0, 11);
 
-	for (int i = 0; i < 110; i++) std::cout<<"=";
-	std::cout << '\n';
+	for (int i = 0; i < 110; i++) cout<<"=";
+	cout << '\n';
 
 	gotoxy(42, 15); 
-	std::cout << "Let's play this game!"; // 0
+	cout << "Let's play this game!"; // 0
 	gotoxy(42, 16);
-	std::cout << "How to play this game?"; // 1
+	cout << "How to play this game?"; // 1
 	gotoxy(42, 17);
-	std::cout << "Exit"; // 2
+	cout << "Exit"; // 2
 
 	/* team 정보 표시 */
 	gotoxy(38, 25);
-	std::cout << "< Object Oriented Programming >";
+	cout << "< Object Oriented Programming >";
 	gotoxy(48, 26);
-	std::cout << "Team 4";
+	cout << "Team 4";
 }
 int StartScene::KeyMovingControl() { // 키 움직이는 거 컨트롤 메소드
 	int x = 42;
@@ -85,18 +93,18 @@ int StartScene::KeyMovingControl() { // 키 움직이는 거 컨트롤 메소드
 		case UP: {
 			if (y > 15) {
 				gotoxy(x - 2, y);
-				std::cout << " ";
+				cout << " ";
 				gotoxy(x - 2, --y);
-				std::cout << ">";
+				cout << ">";
 			}
 			break;
 		}
 		case DOWN: {
 			if (y < 17) {
 				gotoxy(x - 2, y);
-				std::cout << " ";
+				cout << " ";
 				gotoxy(x - 2, ++y); //
-				std::cout << ">";
+				cout << ">";
 			}
 			break;
 		}
@@ -112,7 +120,7 @@ int StartScene::KeyMovingControl() { // 키 움직이는 거 컨트롤 메소드
 
 			else if (y - 15 == 2) { // exit
 				gotoxy(0, 27);
-				std::cout << "\n\n--------------------------------------------------------------------------------------";
+				cout << "\n\n--------------------------------------------------------------------------------------";
 				exit(1);
 			}
 		}	    
@@ -128,14 +136,19 @@ InfoScene::InfoScene() { // 룰 설명 씬
 }
 void InfoScene::InfoDraw() {
 	EraseScene();
-	std::cout << "\n\n ! ! Welcome to Yatch Dice ! !\n\n\n";
-	std::cout << " This game's kind of like poker, but with dice instead of cards.\n\n";
-	std::cout << " There are total 5 dices.\n\n";
-	std::cout << " You can roll the dices 3 times, keep specific dice after the roll.\n\n";
-	std::cout << " Enter the result of rolling 3 times in the desired table cell.\n\n";
-	std::cout << " Fill in the table cell one by one.\n\n";
-	std::cout << " If you fill in all table cells, the person with the highest score WIN ! !\n\n";
-	std::cout << " \nPress the enter to return start scene.";
+	cout << "\n\n ! ! Welcome to Yatch Dice ! !\n\n\n";
+	cout << " This game's kind of like poker, but with dice instead of cards.\n\n";
+	cout << " There are total 5 dices.\n\n";
+	cout << " You can roll the dices 3 times, keep specific dice after the roll.\n\n";
+	cout << " Enter the result of rolling 3 times in the desired table cell.\n\n";
+	cout << " Fill in the table cell one by one.\n\n";
+	cout << " If you fill in all table cells, the person with the highest score WIN ! !\n\n";
+	cout << " \nPress the enter to return start scene.";
+	cout << " \n\n";
+	cout << " \n\t1P :\t\t\t\t\t2p : ";
+	cout << " \n\tMove : WASD\t\t\t\tMove : Arrow Key";
+	cout << " \n\tKeep/Activate : 1 \t\t\tKeep/Activate : O";
+	cout << " \n\tRoll / Fix point : 2 \t\t\tRoll / Fix point : P";
 
 }
 int InfoScene::KeyMovingControl() {
@@ -200,16 +213,16 @@ GameScene::GameScene() { // 본 게임 화면
 void GameScene::RollTurnRoundDraw() { // 몇 번째 롤,턴,라운드인지 그리는 메소드
 	// 센터가 76, 8  
 	gotoxy(59, 8);
-	std::cout << "Round : " << round;
+	cout << "Round : " << round;
 	gotoxy(71, 8);
-	std::cout << "Turn : " << turn <<"p";
+	cout << "Turn : " << turn <<"p";
 	gotoxy(84, 8);
-	std::cout << "Roll : " << roll;
+	cout << "Roll : " << roll;
 
 	gotoxy(59, 22);
-	std::cout << "Enter : select value or roll the dice";
+	cout << "1 / O : keep or activate your dice";
 	gotoxy(59, 23);
-	std::cout << "Space : keep your dice";
+	cout << "2 / P : select value or roll the dice";
 }
 int GameScene::KeyMovingControl() // 롤에서 사용자한테 입력을 받는 메소드
 {
@@ -217,7 +230,7 @@ int GameScene::KeyMovingControl() // 롤에서 사용자한테 입력을 받는 
 	int y = 15;
 	gotoxy(52, 15); // 무조건 첫번째 주사위 커서로 이동
 	gotoxy(x, y - 3);
-	std::cout << "V";
+	cout << "V";
 	gotoxy(52, 15); // 무조건 첫번째 주사위 커서로 이동
 	while (1) {
 		int n = KeyControl(); // 사용자한테 입력 뭐 받았는지 판단
@@ -226,9 +239,9 @@ int GameScene::KeyMovingControl() // 롤에서 사용자한테 입력을 받는 
 		case RIGHT: { 
 			if (x < 100 && x > 40) { // 가장 오른쪽 주사위는 넘어가지 않음, 주사위에서의 right
 				gotoxy(x, y - 3);
-				std::cout << " ";
+				cout << " ";
 				gotoxy(x + 12, y - 3);
-				std::cout << "V";
+				cout << "V";
 				gotoxy(x + 12, y);
 				x = x + 12;
 			}
@@ -236,13 +249,13 @@ int GameScene::KeyMovingControl() // 롤에서 사용자한테 입력을 받는 
 				COORD pos;
 				pos = getxy();
 				gotoxy(pos.X - 1, pos.Y);
-				std::cout << "  ";
+				cout << "  ";
 				gotoxy(pos.X , pos.Y);
 				cout << "  ";
 				x = 52; y = 15;
 				gotoxy(52, 15); // 무조건 첫번째 주사위 커서로 이동
 				gotoxy(x, y - 3);
-				std::cout << "V";
+				cout << "V";
 				gotoxy(x, y);
 			}
 			break;
@@ -250,15 +263,15 @@ int GameScene::KeyMovingControl() // 롤에서 사용자한테 입력을 받는 
 		case LEFT: {
 			if (x > 52) { // 주사위에서 left
 				gotoxy(x, y - 3);
-				std::cout << " ";
+				cout << " ";
 				gotoxy(x - 12, y - 3);
-				std::cout << "V";
+				cout << "V";
 				gotoxy(x - 12, y);
 				x = x - 12;
 			}
 			else if (x == 52) { // table로 들어가기
 				gotoxy(x, y - 3);
-				std::cout << " ";
+				cout << " ";
 				if (turn == 1) x = 22;
 				else if (turn == 2) x = 34;
 				int tmp_y = 5;
@@ -268,9 +281,9 @@ int GameScene::KeyMovingControl() // 롤에서 사용자한테 입력을 받는 
 				}
 				if (tmp_y <= 29) {
 					gotoxy(x, y);
-					std::cout << " ";
+					cout << " ";
 					gotoxy(x, tmp_y);
-					std::cout << "V";
+					cout << "V";
 					gotoxy(x, tmp_y);
 					y = tmp_y;
 				}
@@ -286,9 +299,9 @@ int GameScene::KeyMovingControl() // 롤에서 사용자한테 입력을 받는 
 				}
 				if (tmp_y >= 5) {
 					gotoxy(x, y);
-					std::cout << " ";
+					cout << " ";
 					gotoxy(x, tmp_y);
-					std::cout << "V";
+					cout << "V";
 					gotoxy(x, tmp_y);
 					y = tmp_y;
 				}
@@ -305,9 +318,9 @@ int GameScene::KeyMovingControl() // 롤에서 사용자한테 입력을 받는 
 				}
 				if (tmp_y <= 29) {
 					gotoxy(x, y);
-					std::cout << " ";
+					cout << " ";
 					gotoxy(x, tmp_y);
-					std::cout << "V";
+					cout << "V";
 					gotoxy(x, tmp_y);
 					y = tmp_y;
 				}
@@ -333,34 +346,68 @@ int GameScene::KeyMovingControl() // 롤에서 사용자한테 입력을 받는 
 			break;
 		}
 
-		case ENTER: { // 표에서 엔터, 점수박기
-			if (x < 50) { // 표 위에서 엔터를 눌렀다면
-				if (dice_set.GetDiceSet()[0].GetDiceNum() != 0) {
-					cout << " ";
-					COORD cursor_pos;
-					cursor_pos = getxy();
-					int pos;
-					for (int i = 0; i < 12; i++) {
-						if (cursor_pos.Y == table_y_pos[i]) {
-							pos = i;
-							table_can_go[{turn, cursor_pos.Y}] = false;
-							table_fixed[turn][pos] = true;
-							player[turn].SetIsFixed(pos, true);
-							break;
+		case ENTER1P: { // 표에서 엔터, 점수박기
+			if (turn == 1) {
+				if (x < 50) { // 표 위에서 엔터를 눌렀다면
+					if (dice_set.GetDiceSet()[0].GetDiceNum() != 0) {
+						cout << " ";
+						COORD cursor_pos;
+						cursor_pos = getxy();
+						int pos;
+						for (int i = 0; i < 12; i++) {
+							if (cursor_pos.Y == table_y_pos[i]) {
+								pos = i;
+								table_can_go[{turn, cursor_pos.Y}] = false;
+								table_fixed[turn][pos] = true;
+								player[turn].SetIsFixed(pos, true);
+								break;
+							}
 						}
+						player[turn].SetChartNum(pos, tmp_player[turn].GetChartNum()[pos]);
+						return 1;
 					}
-					player[turn].SetChartNum(pos, tmp_player[turn].GetChartNum()[pos]);
-					return 1;
+				}
+				else { // 주사위 위에서 엔터를 눌렀다면
+					if (roll < 3) {
+						gotoxy(x, y - 3);
+						cout << "  ";
+						dice_set.Roll();
+						return 0;
+					}
+
 				}
 			}
-			else { // 주사위 위에서 엔터를 눌렀다면
-				if (roll < 3) {
-					gotoxy(x, y - 3);
-					cout << "  ";
-					dice_set.Roll();
-					return 0;
+		}
+		case ENTER2P: { // 표에서 엔터, 점수박기
+			if (turn == 2) {
+				if (x < 50) { // 표 위에서 엔터를 눌렀다면
+					if (dice_set.GetDiceSet()[0].GetDiceNum() != 0) {
+						cout << " ";
+						COORD cursor_pos;
+						cursor_pos = getxy();
+						int pos;
+						for (int i = 0; i < 12; i++) {
+							if (cursor_pos.Y == table_y_pos[i]) {
+								pos = i;
+								table_can_go[{turn, cursor_pos.Y}] = false;
+								table_fixed[turn][pos] = true;
+								player[turn].SetIsFixed(pos, true);
+								break;
+							}
+						}
+						player[turn].SetChartNum(pos, tmp_player[turn].GetChartNum()[pos]);
+						return 1;
+					}
 				}
+				else { // 주사위 위에서 엔터를 눌렀다면
+					if (roll < 3) {
+						gotoxy(x, y - 3);
+						cout << "  ";
+						dice_set.Roll();
+						return 0;
+					}
 
+				}
 			}
 		}
 		}
@@ -377,44 +424,44 @@ void GameScene::TableDraw() { // table 틀 그리기
 	vector<string> categories;
 	categories = { "Aces  ", "Deuces", "Threes", "Fours", "Fives", "Sixes", "Subtotal"
 		, "Choice", "4 of a Kind", "Full House", "S.Straight", "L.Straight", "Yatch", "Total" };
-	std::cout << "  +---------------+-----------+-----------+\n";
-	std::cout.width(2);
-	std::cout << "  | " << std::left << "       ";
-	std::cout << "\t  |           |           |\n";
+	cout << "  +---------------+-----------+-----------+\n";
+	cout.width(2);
+	cout << "  | " << std::left << "       ";
+	cout << "\t  |           |           |\n";
 
-	std::cout << "  | " << std::left << "       ";
-	std::cout << "\t  |     1p    |     2p    |\n";
+	cout << "  | " << std::left << "       ";
+	cout << "\t  |     1p    |     2p    |\n";
 
-	std::cout << "  | " << std::left << "       ";
-	std::cout << "\t  |           |           |\n";
+	cout << "  | " << std::left << "       ";
+	cout << "\t  |           |           |\n";
 
 
 	for (int i = 0; i <= 12; i++) {
-		std::cout << "  +---------------+-----------+-----------+\n";
-		std::cout.width(2);
-		std::cout << "  |" << std::left << " "<<categories.at(i);
-		std::cout << "\t  |           |           |\n";
+		cout << "  +---------------+-----------+-----------+\n";
+		cout.width(2);
+		cout << "  |" << std::left << " "<<categories.at(i);
+		cout << "\t  |           |           |\n";
 	}
 
-	std::cout << "  +---------------+-----------+-----------+\n";
-	std::cout << "  |" << std::left << " "<<categories.at(13);
-	std::cout << "\t  |           |           |\n";
-	std::cout << "  +---------------+-----------+-----------+\n";
+	cout << "  +---------------+-----------+-----------+\n";
+	cout << "  |" << std::left << " "<<categories.at(13);
+	cout << "\t  |           |           |\n";
+	cout << "  +---------------+-----------+-----------+\n";
 
 }
 void GameScene::DiceDraw() { // 주사위 틀 그리기
 	int arr[] = { 48,60,72,84,96 };
 	for (int i = 0; i < 5; i++) {
 		gotoxy(arr[i], 13);
-		std::cout << "+------+";
+		cout << "+------+";
 		gotoxy(arr[i], 14);
-		std::cout << "|      |";
+		cout << "|      |";
 		gotoxy(arr[i], 15);
-		std::cout << "|      |";
+		cout << "|      |";
 		gotoxy(arr[i], 16);
-		std::cout << "|      |";
+		cout << "|      |";
 		gotoxy(arr[i], 17);
-		std::cout << "+------+";
+		cout << "+------+";
 	}
 }
 void GameScene::TableValueDraw(const vector<int>& table_value) { // 표 값 그리기 (임시 테이블 전용)
@@ -425,9 +472,9 @@ void GameScene::TableValueDraw(const vector<int>& table_value) { // 표 값 그�
 		cout << "  ";
 		gotoxy(table_pos[turn].first, table_pos[turn].second + 2 * i+tmp);
 		if (table_value[i] < 0)
-			std::cout << "";
+			cout << "";
 		else
-			std::cout << table_value[i];
+			cout << table_value[i];
 	}
 }
 void GameScene::TableValueDraw(const int& who, const vector<int>& table_value) { // 표 값 그리기 (사용자 테이블 전용)
@@ -438,9 +485,9 @@ void GameScene::TableValueDraw(const int& who, const vector<int>& table_value) {
 		int y = table_pos[who].second + 2 * i + tmp;
 		gotoxy(x,y);
 		if (table_value[i] < 0)
-			std::cout << "";
+			cout << "";
 		else {
-			std::cout << table_value[i];
+			cout << table_value[i];
 			gotoxy(x - 1, y);
 			cout << "#";
 			gotoxy(x + 2, y);
@@ -457,7 +504,7 @@ void GameScene::DiceValueDraw(const vector<int>& dice_num_set) { // 주사위 �
 	for (int i = 0; i < dice_num_set.size(); i++) {
 		gotoxy(dice_pos.first + 12 * i, dice_pos.second);
 		if(dice_num_set[i]!=0)
-			std::cout << dice_num_set[i];
+			cout << dice_num_set[i];
 	}
 }
 void GameScene::WhosWinner() { // 승자 판단
@@ -503,22 +550,22 @@ int EndScene::KeyMovingControl() {
 void EndScene::EndSceneDraw() {
 	EraseScene();
 
-	std::cout << "\n\n";
+	cout << "\n\n";
 	gotoxy(25, 2);
-	std::cout << " __   __        _          _      ______  _    \n";
+	cout << " __   __        _          _      ______  _    \n";
 	gotoxy(26, 3);
-	std::cout << "\\ \\ / /       | |        | |     |  _  \\(_)            \n";
+	cout << "\\ \\ / /       | |        | |     |  _  \\(_)            \n";
 	gotoxy(26, 4);
-	std::cout << " \\ V /   __ _ | |_   ___ | |__   | | | | _   ___   ___ \n";
+	cout << " \\ V /   __ _ | |_   ___ | |__   | | | | _   ___   ___ \n";
 	gotoxy(26, 5);
-	std::cout << "  \\ /   / _` || __| / __|| '_ \\  | | | || | / __| / _ \\\n";
+	cout << "  \\ /   / _` || __| / __|| '_ \\  | | | || | / __| / _ \\\n";
 	gotoxy(26, 6);
-	std::cout << "  | |  | (_| || |_ | (__ | | | | | |/ / | || (__ |  __/\n";
+	cout << "  | |  | (_| || |_ | (__ | | | | | |/ / | || (__ |  __/\n";
 	gotoxy(26, 7);
-	std::cout << "  \\_/   \\__,_| \\__| \\___||_| |_| |___/  |_| \\___| \\___|\n";
+	cout << "  \\_/   \\__,_| \\__| \\___||_| |_| |___/  |_| \\___| \\___|\n";
 	gotoxy(0, 11);
 
-	for (int i = 0; i < 110; i++) std::cout << "=";
+	for (int i = 0; i < 110; i++) cout << "=";
 
 	if (gm.GetWinner() == 0) {
 		gotoxy(52, 15);
@@ -526,7 +573,7 @@ void EndScene::EndSceneDraw() {
 	}
 	else {
 		gotoxy(45, 15);
-		std::cout << gm.GetWinner() << "p is Winner!!\n\n";
+		cout << gm.GetWinner() << "p is Winner!!\n\n";
 	}
 	gotoxy(38, 17);
 	cout << "Press Enter : Return to Start";
