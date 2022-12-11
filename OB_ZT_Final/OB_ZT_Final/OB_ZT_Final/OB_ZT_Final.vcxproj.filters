@@ -15,36 +15,31 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dice-classes.cpp">
+    <ClCompile Include="chart-classes.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="system-classes.cpp">
+    <ClCompile Include="dice-classes.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="chart-classes.cpp">
+    <ClCompile Include="system-classes.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="dice-classes.h">
+    <ClInclude Include="chart-classes.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="system-classes.h">
+    <ClInclude Include="dice-classes.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="essential.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="chart-classes.h">
+    <ClInclude Include="system-classes.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\.editorconfig">
-      <Filter>소스 파일</Filter>
-    </None>
   </ItemGroup>
 </Project>
