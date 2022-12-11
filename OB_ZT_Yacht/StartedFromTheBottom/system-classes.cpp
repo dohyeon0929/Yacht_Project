@@ -380,6 +380,7 @@ int GameScene::KeyMovingControl() // 롤에서 사용자한테 입력을 받는 
 
 				}
 			}
+			break;
 		}
 		case ENTER2P: { // 표에서 엔터, 점수박기
 			if (turn == 2) {
@@ -412,6 +413,7 @@ int GameScene::KeyMovingControl() // 롤에서 사용자한테 입력을 받는 
 
 				}
 			}
+			break;
 		}
 		}
 	}

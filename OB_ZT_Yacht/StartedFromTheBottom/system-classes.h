@@ -8,11 +8,11 @@
 
 class Scene {
 public:
-	void gotoxy(int, int); // 공통	
-	COORD getxy();
-	virtual void EraseScene(); // 공통
-	int KeyControl();
-	virtual int KeyMovingControl()=0;// 공통
+	void gotoxy(int, int); // 커서 위치 이동	
+	COORD getxy(); // 커서 위치 반환
+	void EraseScene(); // 화면 전체 지우기
+	int KeyControl(); // 사용자 입력 받기
+	virtual int KeyMovingControl()=0;// Scene별로 사용자 입력을 다르게 처리
 };
 
 class StartScene : public Scene {
